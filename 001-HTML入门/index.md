@@ -4313,90 +4313,59 @@ div{
 
 
 
-- **注意:** `text-alogn` 属性是可以被子元素继承的, 所以父元素设置了 `text-align` 后, 所有的子元素会继承这个属性
+- **注意:** `text-align` 属性是可以被子元素继承的, 所以父元素设置了 `text-align` 后, 所有的子元素会继承这个属性
 
-  ```
-  
-  ```
-<style> 
-      div {
-          margin-top: 50px;
-          background-color: pink;
-          height: 100px;
-          // 这个属性是会被子元素继承的
-          text-align: center;
-      } 
-      strong {
-          display: inline-block;
-          background-color: yellow;
-          width: 250px;
-          height: 50px; 
-      } 
-</style>
   ```
   <style> 
-      div {
-          margin-top: 50px;
-          background-color: pink;
-          height: 100px;
-          // 这个属性是会被子元素继承的
-          text-align: center;
-      } 
-      strong {
-          display: inline-block;
-          background-color: yellow;
-          width: 250px;
-          height: 50px; 
-      } 
+        div {
+            margin-top: 50px;
+            background-color: pink;
+            height: 100px;
+            // 这个属性是会被子元素继承的
+            text-align: center;
+        } 
+        strong {
+            display: inline-block;
+            background-color: yellow;
+            width: 250px;
+            height: 50px; 
+        } 
   </style>
   ```
-  <div>
-       <strong> text-align属性是可以继承 </strong> 
-  </div>
-```
+  
+  - **text-align属性是可以继承**
+  
+    ![Snip20191121_6](Snip20191121_6.png) 
 
-
-
-  ![Snip20191121_6](Snip20191121_6.png) 
-
-### 3. 块级元素水平居中 (标准流)
-
-
+### 2. 块级元素水平居中 (标准流)
 
 - 设置块级元素水平居中只需要给自己设置  `margin-left:auto;`  ` margin-right:auto;`
 
-```
+  ```
   <style>
-    div {
-      background-color: pink;
-      height: 100px;
-    }
-    p {
-      background-color: yellow;
-      width: 50px;
-      height: 50px;
-      // 设置 块级元素在父元素中水平居中
-      margin-left:auto;
-      margin-right:auto;
-      // margin: 0 auto;
-    } 
-  </style>
+      div {
+        background-color: pink;
+        height: 100px;
+      }
+      p {
+        background-color: yellow;
+        width: 50px;
+        height: 50px;
+        // 设置 块级元素在父元素中水平居中
+        margin-left:auto;
+        margin-right:auto;
+        // margin: 0 auto;
+      } 
+    </style>
   ```
 
+   ![Snip20191121_4](Snip20191121_4.png)  
 
-  		 ![Snip20191121_4](Snip20191121_4.png)  
-     
+
+
 # 十三. Photoshop
 
 前端工程师, 一般使用PhotoShop的时候就两个, **测量** **切图** 
-
-
-
-
-
-
-
-
 
 
 
@@ -4404,21 +4373,25 @@ div{
 
 
 
+
+
 ## 1. CSS属性- background-image
-
-
 
 - `background-image` 用于设置元素的背景图片
 
   - `background-image` 会盖在`background-color`的上面
+  
 - 在图片的透明区域, 可以看到背景色
+  
   - 可以为同一个元素设置多张背景图片 (多张背景图依次叠加)
-
+  
   ```
-  background-image: url("bg1.png"), url("bg2.png");
+    background-image: url("bg1.png"), url("bg2.png");
   ```
   
-  ![Snip20191121_7](Snip20191121_7.png) 
+    ![Snip20191121_7](Snip20191121_7.png)   
+  
+  
   
   > 注意: 
   >
@@ -4427,7 +4400,6 @@ div{
   > - 默认背景图不会像img标签中显示图片一样压缩, 背景图片默认不压缩
 
 
-​    
 
 
 
@@ -4458,44 +4430,39 @@ div{
 - `background-size` 用于设置背景图片的大小
 
   ```
-  // 宽度150px, 高度100px
-  background-size: 150px  100px;
-
-  // 宽度保持原来的宽高比自动计算, 高度100px
-  background-size: auto 100px;
-
-  // 高度保持原来的宽高比自动计算, 高度120px
-  background-size: 120px auto;
-  // 高度保持原来的宽高比自动计算, 高度150px
-  background-size: 150px;
+    // 宽度150px, 高度100px
+    background-size: 150px  100px;
+  
+    // 宽度保持原来的宽高比自动计算, 高度100px
+    background-size: auto 100px;
+  
+    // 高度保持原来的宽高比自动计算, 高度120px
+    background-size: 120px auto;
+    // 高度保持原来的宽高比自动计算, 高度150px
+    background-size: 150px;
   ```
 
 - `background-size` 的取值也可以使用百分比
 
   ```
-  <style>
-    div {
-      width: 100px;
-      height: 100px;
-      padding: 50px;
-      background-color: green;
-      background-image: url(./images/heart.gif);
-
-      background-size: 50% 50% ;
-      background-repeat: no-repeat;
-    }
+   <style>
+      div {
+        width: 100px;
+        height: 100px;
+        padding: 50px;
+        background-color: green;
+        background-image: url(./images/heart.gif);
+        background-size: 50% 50% ;
+    		background-repeat: no-repeat;
+  	}
   </style>
   ```
-
-  
 
   > 注意当,background-size 使用百分比来表示的时候, 其默认参考的是 `padding-box` 来计算的
 
   ![Snip20191121_9](Snip20191121_9.png) 
 
-
-
-
+  
 
 ## 4. CSS 属性- background-position
 
@@ -4508,20 +4475,15 @@ div{
     - `可以是具体的像素 eg: 10px` `也可以是百分比,不常用` 
 
   - 如果只设置了1个方向的值, 另一个方向默认是center
-
-  ```
-    div { // 第一个参数是水平方向, 第二个参数是垂直
-    	background-position:80px;
-    	// 等价于 background-position:80px center;
-    }
-    ```
-
-
-​    
-
   
-
-  ![Snip20191121_11](Snip20191121_12.png)  
+  ```
+  div { // 第一个参数是水平方向, 第二个参数是垂直
+  	background-position:80px;
+  	// 等价于 background-position:80px center;
+  }
+  ```
+  
+  ![Snip20191121_11](Snip20191121_12.png)   
 
 
 
@@ -4651,7 +4613,7 @@ div{
 
 
 
-### 4. Sprite 制作
+### 4. Sprite 制作 
 
 https://www.toptal.com/developers/css/sprite-generator
 
