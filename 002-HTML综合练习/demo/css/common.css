@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+/*每一行主要内容, 宽度1090 水平居中*/
+.row {
+    width: 1090px;
+    margin: 0  auto;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/*清除默认的内外边距*/
+body, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6, pre, p,
+form, button, input, textarea, select,
+table, tr, td, th {
+    margin: 0;
+    padding: 0;
+}
+
+i, em {
+    /*清除文字默认的倾斜样式*/
+    font-style: normal;
+}
+
+
+h1, h2, h3, h4, h5, h6, strong, b {
+    /*清除默认的字体加粗*/
+    font-weight: normal;
+}
+
+li {
+    /*清除item前面的项目符号*/
+    list-style: none;
+}
+
+a {
+    /*清除默认的上中下划线*/
+    text-decoration: none;
+}
+
+table {
+    /*表格默认合并边框*/
+    border-collapse: collapse;
+    /*清除单元格之间默认的水平垂直间距*/
+    border-spacing: 0;
+}
+
+/*清除默认的轮廓线*/
+button, input, textarea, select, a {
+    outline: none;
+}
+
+img {
+    /*很久以前图片默认是有边框的, 清除它*/
+    border: none;
+    /*修改img标签在一行内默认的垂直对齐方式, 取出底部间隙*/
+    vertical-align: top;
+}

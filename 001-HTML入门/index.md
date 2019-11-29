@@ -6364,5 +6364,90 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 
 
+# 二十一 CSS 属性- vertical-align
 
+## 1.  vertical-align 属性介绍
+
+
+
+- `vertical-align` 属性是用来设置**行内级** 标签在一行中垂直方向的位置的
+
+  > 这句话, 怎么理解呢? 我们知道一行容中的不同元素的高度是不一样的, 有的高些, 有的矮些,
+  >
+  > vertical-align 属性就是用来控制行内级标签在一行中垂直方向上显示的位置的, 如下图: 
+
+  ![Snip20191128_6](Snip20191128_6.png) 
+
+  
+
+  - 常用属性与字体的参考线的关系
+
+    ![Snip20191119_8](Snip20191119_8.png) 
+  
+  
+  
+  ![Snip20191128_7](Snip20191128_7.png) 
+  
+  
+  
+  ```
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title</title>
+  
+  
+      <style>
+          div {
+              border: 1px solid #000;
+          }
+  
+          strong {
+              font-size: 50px;
+          }
+          span {
+              display: inline-block;
+              vertical-align: top;
+          }
+  
+      </style>
+  </head>
+  <body>
+
+      <div>
+        <span>我是span</span>
+          <strong>我是strong</strong>
+    </div>
+  </body>
+</html>
+  ```
+  
+  
+  
+  ![Snip20191128_8](Snip20191128_8.png) 
+  
+  
+  
+  
+
+## 2. vertical-align  在img中的使用
+
+经过测试发现, img 标签的`vertical-align` 属性的默认值是` baseline` 基线对齐的样式, 默认效果如下图:
+
+![Snip20191129_2](Snip20191129_5.png) 
+
+- 调整`img`标签的默认对齐方式样式
+
+  ```
+  img {
+  	vertical-align: top; // 与一行的顶部部对齐
+  }
+  ```
+
+  ![Snip20191129_3](Snip20191129_6.png) 
+
+
+
+ 
 

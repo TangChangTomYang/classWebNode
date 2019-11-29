@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+.site-nav {
+    height: 36px;
+    /*行高是会被子元素继承的*/
+    line-height: 36px;
+    background-color: #333;
+    font-size: 12px;
+}
+
+
+.site-nav a {
+    color: #ccc;
+}
+
+.site-nav a:hover {
+    color: #fff;
+}
+
+.site-nav .slogan {
+    float: left;
+    margin-right: 30px;
+}
+
+
+.site-nav .notice-list {
+    float: left;
+    background: url("../images/notice-icon.gif") no-repeat left center;
+    /*这里不能使用百分比, 因为父元素没设置高度*/
+    height: 36px;
+    padding-left: 26px;
+    overflow: hidden;
+}
+
+.site-nav .notice-list ul {
+    position: relative;
+    top:0;
+}
+
+.site-nav .notice-list li {
+    /*微调一下高度, 默认a标签行高撑起来的高度有点偏差*/
+    height: 36px;
+}
+
+.site-nav .notice-list a {
+    vertical-align: top;
+    text-decoration: underline;
+    color: #b4a078;
+}
+
+.site-nav .notice-list a:hover {
+    text-decoration: none;
+}
+
+.site-nav .item, .divider{
+    float: left;
+}
+
+.site-nav .login {
+    margin-right: 8px;
+}
+
+.site-nav .divider {
+    width: 1px;
+    height: 16px;
+    background-color: #5c5c5c;
+    margin: 10px 10px 0px;
+}
