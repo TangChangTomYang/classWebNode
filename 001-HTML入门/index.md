@@ -6451,3 +6451,41 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
  
 
+
+
+# 二十二. 行内级元素之间的空格消除
+
+行内级元素在书写HTML标签时, 如果标签之间有空格或者换行符, 那么在显示时, 标签与标签之间是有间距的无法, 如下图: 
+
+![Snip20191203_3](Snip20191203_3.png) 
+
+- 目前清除行内级元素之间的间隔有3种方法
+
+  - 方法1, 使用浮动清除
+  - 方法2, 使用定位清除
+  - 方法3, 使用js方法清除标签之间的空格节点
+
+  ```
+  方法3,
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script>
+  
+      //    传入选择器, 删除空格
+      function removeSpace() {
+          for (var i in arguments){
+              $(arguments[i]).contents().filter(function () {
+                  // 过滤空格节点
+                  return this.nodeType === 3;
+              }).remove()  // 删除空格节点
+          }
+      }
+  
+      $(function () {
+      		// 将要清除空格的行内级元素的父元素的选择器 传入即可
+          removeSpace('.box1', '.box2')
+      })
+  </script>
+  ```
+
+  ![Snip20191203_4](Snip20191203_4.png)   
+

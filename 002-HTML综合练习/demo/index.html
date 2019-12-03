@@ -18,6 +18,7 @@
 
 <!--header-->
 <div id="header">
+    <!--网站导航-->
     <div class="site-nav">
         <div class="row">
 
@@ -32,31 +33,219 @@
             </div>
 
             <div class="right">
-                <ul>
-                    <a href="#" class="item login">登陆</a>
-                    <a href="#" class="item regist">注册</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">我的订单</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">会员</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">甑选家</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">企业采购</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">客服服务</a>
-                    <span class="divider"></span>
-                    <a href="#" class="item">APP</a>
-                </ul>
+                <a href="#" class="item login">登陆</a>
+                <a href="#" class="item regist">注册</a>
+                <i class="divider"></i>
+                <a href="#" class="item">我的订单</a>
+                <i class="divider"></i>
+                <a href="#" class="item">会员</a>
+                <i class="divider"></i>
+                <a href="#" class="item">甑选家</a>
+                <i class="divider"></i>
+                <a href="#" class="item">企业采购</a>
+                <i class="divider"></i>
+                <a href="#" class="item service">客服服务</a>
+                <i class="divider"></i>
+                <a href="#" class="item download-app">APP</a>
             </div>
         </div>
     </div>
+
+    <!--功能导航-->
+    <div class="func-nav">
+        <div class="row">
+
+            <!--很多公司你发现, logo 是一张图片, 但是链接里面是有文字的, 是为了让搜索引擎能搜索到他
+                因此, 这里我们要在 h1 标签内嵌套 a 标签,并设置文字内容
+            -->
+            <h1 class="logo"><a href="#">网易严选</a></h1>
+
+            <div class="search">
+                <input type="text">
+                <span class="placeholder">男士羽绒服牛仔裤冬靴一套仅739元</span>
+                <i class="button"></i>
+            </div>
+
+            <a href="#" class="buy-car">
+                <i class="car"></i>
+                <i class="count">9</i>
+            </a>
+
+            <ul class="tab-nav ">
+                <li class="item active"><a href="#">首页</a></li>
+                <li class="item"><a href="#">居家</a></li>
+                <li class="item"><a href="#">餐厨</a></li>
+                <li class="item"><a href="#">配件</a></li>
+                <li class="item"><a href="#">服装</a></li>
+                <li class="item"><a href="#">电器</a></li>
+                <li class="item"><a href="#">洗护</a></li>
+                <li class="item"><a href="#">杂货</a></li>
+                <li class="item"><a href="#">饮食</a></li>
+                <li class="item"><a href="#">婴童</a></li>
+                <li class="item"><a href="#">志趣</a></li>
+                <li class="divider"></li>
+
+                <li class="item"><a href="#">为你严选</a></li>
+                <li class="item"><a href="#">众筹</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+    
+
 </div>
 
 
 
 <!--main-->
-<div id="main"></div>
-<div id="footer"></div>
+<div id="main">
+    <!--轮播图-->
+    <div class="slider">
+        <ul class=image-list>
+            <li class="item"><a href="#"><img src="images/slider_01.jpg" alt=""></a></li>
+            <li class="item"><a href="#"><img src="images/slider_02.jpg" alt=""></a></li>
+            <li class="item"><a href="#"><img src="images/slider_03.jpg" alt=""></a></li>
+            <li class="item"><a href="#"><img src="images/slider_04.jpg" alt=""></a></li>
+            <li class="item"><a href="#"><img src="images/slider_05.jpg" alt=""></a></li>
+        </ul>
+        <div class="page-list">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </div>
+        <button class="pre arrow-btn"></button>
+        <button class="next arrow-btn"></button>
+    </div>
+
+    <!--品牌-->
+    <div class="brand">
+        <div class="row">
+            <div class="header clear-fix">
+
+                <div class="left">
+                    <h2 class="title"><a href="#">品牌制造</a></h2>
+                    <span class="subtitle">工厂直达消费者,剔除品牌溢价</span>
+                </div>
+
+                <div class="right">
+                    <span class="more"><a href="#">更多制造商&gt;</a></span>
+                </div>
+            </div>
+
+            <div class="content clear-fix">
+
+                <!--a标签一旦缺少 href 属性, 小手不会出现-->
+                <a class="item large img-scale" href="#">
+                    <h3 class="name">Adidas制造商</h3>
+                    <p class="price" >35元起</p>
+                    <img src="images/brand_01.jpg" alt="">
+                </a>
+                <a class="item large img-scale" href="#">
+                    <h3 class="name">Adidas制造商</h3>
+                    <p class="price" >35元起</p>
+                    <img src="images/brand_02.jpg" alt="">
+                </a>
+                <a class="item small img-scale" href="#">
+                    <h3 class="name">Adidas制造商</h3>
+                    <p class="price" >35元起</p>
+                    <img src="images/brand_03.jpg" alt="">
+                </a>
+                <a class="item small img-scale last" href="#">
+                    <h3 class="name">Adidas制造商</h3>
+                    <p class="price" >35元起</p>
+                    <img src="images/brand_04.jpg" alt="">
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!--新品首发-->
+    <div class="new-products">
+        <div class="row">
+
+            <div class="header clear-fix">
+
+                <div class="left">
+                    <h2 class="title"><a href="#">新品首发</a></h2>
+                    <span class="subtitle">周一周四上新,为你寻觅世间好物</span>
+                </div>
+
+                <div class="right">
+                    <span class="more"><a href="#">更多新品&gt;</a></span>
+                </div>
+            </div>
+
+            <div class="div content">
+
+                <div class="product">
+
+                    <a href="#" class="image">
+                        <img src="images/new-products_01.png" alt="箱包">
+                        <span class="tag">2色可选</span>
+                        <img src="images/new-products_01_02.jpg"alt="" class="cover">
+                    </a>
+                    <div class="info">
+                        <p class="attrs">
+                            <span class="attr hot">爆品</span>
+                            <span class="attr">加价购</span>
+                            <span class="attr app-special">app特惠</span>
+                        </p>
+                        <h3 class="name"><a href="3">24寸 纯PC "铝框" (非全吕) 拉杆箱</a></h3>
+                        <p class="price">
+                            <span class="price-value">289元</span>
+                            <a href="#" class="brand-name">新秀丽制造商</a></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <button class="pre arrow-btn"></button>
+            <button class="next arrow-btn"></button>
+
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
 </body>
 </html>

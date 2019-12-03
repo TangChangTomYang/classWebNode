@@ -2,9 +2,11 @@
 
 /*每一行主要内容, 宽度1090 水平居中*/
 .row {
+    position: relative;
     width: 1090px;
     margin: 0  auto;
 }
+
 
 
 .left {
@@ -17,3 +19,67 @@
 
 
 
+.clear-fix::after {
+    content: "";
+    display: block;;
+    clear: both;
+    /*兼容旧浏览器*/
+    height:0;
+    /*兼容旧浏览器*/
+    visibility: hidden;
+}
+
+.clear-fix {
+    /*兼容旧浏览器*/
+    *zoom:1;
+}
+
+
+
+a {
+    color: #333;
+}
+
+a:hover {
+    color: #b4a078;
+}
+
+
+
+.arrow-btn {
+    position: absolute;
+    top: 200px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: url("../images/icon-normal.png") no-repeat #d0c4af;
+    /*按钮默认有个边框, 我们要给它去掉*/
+    border: none;
+}
+
+.arrow-btn:hover {
+    background-color: #b19d79;
+}
+
+.arrow-btn.pre {
+    background-position: 0 -4700px;
+}
+
+.arrow-btn.next {
+    background-position: 0 -4880px;
+}
+
+
+
+.img-scale {
+    overflow: hidden;
+}
+
+.img-scale img {
+    transition: transform 1s;
+}
+
+.img-scale:hover img {
+    transform: scale(1.05);
+}

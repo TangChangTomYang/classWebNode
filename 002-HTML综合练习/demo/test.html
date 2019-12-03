@@ -6,22 +6,51 @@
 
 
     <style>
-        div {
-            border: 1px solid #000;
+
+        span:nth-child(1){
+            background-color: red;
         }
 
-        img {
-            width: 100px;
-            vertical-align: top;
+        span:nth-child(2){
+            background-color: yellow;
+        }
+
+        span:nth-child(3){
+            background-color: green;
         }
 
     </style>
 </head>
 <body>
 
-<div>
-    <img src="images/new-products_01_02.jpg" alt="">
-    English abc XYZ function
+<div class="box1">
+    <span>span1</span>
+    <span>span2</span>
+    <span>span3</span>
 </div>
+<div class="box2">
+    <span>span1</span>
+    <span>span2</span>
+    <span>span3</span>
+</div>
+
 </body>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+
+    //    传入选择器, 删除空格
+    function removeSpace() {
+        for (var i in arguments){
+            $(arguments[i]).contents().filter(function () {
+                // 过滤空格节点
+                return this.nodeType === 3;
+            }).remove()  // 删除空格节点
+        }
+    }
+
+    $(function () {
+        removeSpace('.box1', '.box2')
+    })
+</script>
 </html>

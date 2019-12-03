@@ -1,13 +1,20 @@
 @charset "utf-8";
 
+
+body {
+    background-color: #fff;
+    font-size: 12px;
+}
+
+
+/*region 网站导航*/
+
 .site-nav {
     height: 36px;
     /*行高是会被子元素继承的*/
     line-height: 36px;
     background-color: #333;
-    font-size: 12px;
 }
-
 
 .site-nav a {
     color: #ccc;
@@ -22,13 +29,12 @@
     margin-right: 30px;
 }
 
-
 .site-nav .notice-list {
     float: left;
-    background: url("../images/notice-icon.gif") no-repeat left center;
     /*这里不能使用百分比, 因为父元素没设置高度*/
     height: 36px;
     padding-left: 26px;
+    background: url("../images/notice-icon.gif") no-repeat left center;
     overflow: hidden;
 }
 
@@ -63,6 +69,473 @@
 .site-nav .divider {
     width: 1px;
     height: 16px;
-    background-color: #5c5c5c;
     margin: 10px 10px 0px;
+    background-color: #5c5c5c;
 }
+
+.site-nav .download-app::before {
+    content: "";
+    display: inline-block;
+    height: 11px;
+    width: 7px;
+    margin-right: 6px;
+    background: url("../images/component.png") no-repeat 0 0;
+    /*图片内容和文字中间对齐*/
+    vertical-align: middle;
+}
+
+.site-nav .service::after {
+    content: "";
+    display: inline-block;
+    height: 5px;
+    width: 11px;
+    margin-left: 6px;
+    background: url("../images/component.png") no-repeat 0 -321px;
+    /*图片内容和文字中间对齐*/
+    vertical-align: middle;
+}
+
+/*hover时,图标旋转
+  在hover时, 找到 :after伪元素
+*/
+.site-nav .service:hover::after {
+    /*翻转180度*/
+    transform: rotate(180deg);
+}
+
+/*end region--------*/
+
+
+
+
+
+
+/*region 功能导航------*/
+
+.func-nav {
+    /*边框阴影*/
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 3px  rgba(0,0,0,.2);
+}
+
+.func-nav .row {
+    height: 204px;
+    /*如果 块级子 元素和 块级父 元素的 顶部线重叠, 那么这个块级子元素的margin-top就会传递给块级父元素
+      这里是为了解决margin-top传递的问题
+    */
+    padding-top: 1px;
+
+}
+
+.func-nav .logo {
+    width: 180px;
+    height: 60px;
+    margin: 50px auto 0;
+    background: url("../images/component.png") no-repeat 0 -146px;
+}
+
+.func-nav .logo a {
+    display: block;
+    height: 60px;
+    /*让文字看不见*/
+    font-size: 0;
+}
+
+.func-nav .buy-car {
+    position: absolute;
+    top: 65px;
+    right: 9px;
+    width: 34px;
+    height: 32px;
+}
+
+.func-nav .buy-car .car {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    left: 0;
+    bottom: 0;
+    background: url("../images/component.png") no-repeat 0 -113px;
+}
+
+.func-nav .buy-car:hover .car {
+    background-position: 0 -80px;
+}
+
+.func-nav .buy-car .count {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+
+    color: #fff;
+    text-align: center;
+    line-height: 19px;
+    font-size:12px;
+    top: 0;
+    right: 0;
+    background: url("../images/component.png") no-repeat 0 -51px;
+}
+
+.func-nav .search {
+    position: absolute;
+    top: 75px;
+    right: 70px;
+}
+
+.func-nav .search input {
+
+    height: 22px;
+    width: 252px;
+    color: #333;
+    line-height: 22px;
+    border: none;
+    border-bottom: 1px solid #d8cebc;
+}
+
+.func-nav .search .placeholder {
+    position: absolute;
+    top: 0px;
+    left: 11px;
+    height: 22px;
+    line-height: 22px;
+    color: #999;
+}
+
+.func-nav .search .button {
+    float: right;
+    width: 20px;
+    height: 20px;
+    background: url("../images/component.png") no-repeat 0 -291px;
+}
+
+.func-nav .search .button {
+    cursor: pointer;
+}
+
+.func-nav .tab-nav {
+
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    /*background-color: cyan;*/
+
+}
+
+.func-nav .tab-nav .item {
+    float:  left;
+    padding: 0 26px;
+    position: relative;
+}
+
+.func-nav .tab-nav a {
+    display: block;
+    padding-bottom: 5px;
+}
+
+.func-nav .tab-nav .item:hover a,
+.func-nav .tab-nav .active a{
+    border-bottom: 2px solid #b4a078;
+    color:  #b4a078;
+}
+
+.func-nav .tab-nav .divider {
+    float: left;
+    width: 1px;
+    height: 16px;
+    vertical-align: middle;
+    background-color: #333;
+}
+/*end region----------*/
+
+
+
+/*region main-----*/
+
+/*轮播图*/
+.slider {
+    overflow: hidden;
+    position: relative;
+}
+.slider .image-list {
+    position: relative;
+    left: 50%;
+    margin-left: -960px;
+    height: 400px;
+}
+
+.slider .image-list .item {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.slider .pre {
+    left: 120px;
+}
+.slider .next {
+    right: 120px;
+}
+
+
+.slider .page-list {
+    position: absolute;
+    width: 400px;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.slider .page-list button {
+
+    width: 12px;
+    height: 12px;
+    margin:0 3px;
+    border-radius: 50%;
+    /*行内级在一行垂直居中*/
+    vertical-align: middle;
+    border: none;
+    background-color: #b4a078;
+
+}
+
+.slider .page-list button:hover,
+.slider .page-list button.active{
+    /*背景色透明*/
+    background-color: transparent;
+    border: 2px solid #b4a078;
+    box-shadow: 0 0 0 3px #dfcead;
+}
+
+/*end region*/
+
+
+
+
+
+
+
+
+/*region 品牌------*/
+
+
+.brand,
+.new-products{
+    margin-top: 30px;
+}
+
+/*通用的头部*/
+.header {
+    margin-bottom: 10px;
+}
+
+
+.header .title {
+    float: left;
+    margin-right: 20PX;
+    font-size: 28PX;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.header .subtitle {
+    float: left;
+    margin-top: 13px;
+    font-size: 14px;
+    line-height: 1;
+
+}
+
+.header .more {
+    float: right;
+    margin-left: 30px;
+    margin-top: 14px;
+    font-size: 14px;
+}
+
+.brand .item {
+    position: relative;
+    float: left;
+    text-align: center;
+    color: #666;
+}
+
+.brand .large {
+    width: 357px;
+    height: 320px;
+    margin-right: 9px;
+}
+
+.brand .small {
+    width: 357px;
+    height: 155px;
+    text-align: left;
+}
+
+.brand .item img {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.brand .item .name,
+.brand .item .price {
+    position: relative;
+    z-index: 1;
+}
+
+.brand .item .name {
+    margin: 48px 0 19px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.brand .item .price {
+    display: inline-block;
+    padding-top: 10px;
+    border-top: 1px solid #666;
+}
+
+.brand .small .price,
+.brand .small .name {
+    margin-left: 20px;
+}
+
+.brand .small .name{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.brand .small.last {
+    margin-top: 9px;
+}
+/*end region */
+
+
+/*region 新品首发*/
+
+.new-products .pre,
+.new-products .next {
+    /*垂直居中*/
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.new-products .pre {
+    left: -80px;
+
+}
+.new-products .next {
+    right: -80px;
+}
+
+
+.new-products .product {
+
+    width: 265px;
+    text-align: center;
+}
+
+.new-products .product .image {
+    position: relative;
+    display: block;
+    width: 265px;
+    height: 265px;
+    margin-bottom: 8px;
+}
+
+.new-products .product .cover {
+    position: absolute;
+    display: none;
+    width: 265px;
+    height: 265px;
+    top: 0;
+    left: 0;
+    margin-bottom: 8px;
+
+}
+
+.new-products .product .image .tag {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    height: 20px;
+
+    line-height: 20px;
+    padding: 0 4px;
+
+    font-size: 12px;
+    color: #a7936e;
+    background-color: #f4f0ea;
+    border: 1px solid #b3a07d;
+    border-radius: 5px;
+}
+
+.new-products .product .info {
+    padding-bottom: 10px;
+}
+
+.new-products .product .attrs {
+    height: 20px;
+    margin-bottom: 3px;
+    line-height: 20px;
+
+}
+
+.new-products .product .attr {
+    display: inline-block;
+    height: 20px;
+    margin:0 3px;
+    padding: 0 5px;
+    color: #fff;
+    font-size: 12px;
+    background-color: #e36844;
+}
+
+.new-products .product .attr.hot {
+    background-color: #f28f2d;
+}
+
+.new-products .product .attr.app-special {
+    background-color: #f8bc59;
+}
+
+.new-products .product .name {
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+
+
+.new-products .product .price {
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.new-products .product .price-value {
+    color: #d4282d;
+}
+
+.new-products .product .brand-name {
+    border-left: 1px solid #999;
+    padding-left: 10px;
+    margin-left: 10px;
+    color: #999;
+}
+
+.new-products .product:hover {
+    background-color: #f4f0ea;
+    box-shadow: 0 0 3px  rgba(0,0,0,.2);
+}
+.new-products .product:hover .cover {
+    display: block;
+}
+
+/*end region*/
