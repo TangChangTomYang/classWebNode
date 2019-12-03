@@ -45,7 +45,7 @@ a:hover {
 }
 
 
-
+/*左右箭头样式*/
 .arrow-btn {
     position: absolute;
     top: 200px;
@@ -57,29 +57,35 @@ a:hover {
     /*按钮默认有个边框, 我们要给它去掉*/
     border: none;
 }
-
 .arrow-btn:hover {
     background-color: #b19d79;
 }
-
 .arrow-btn.pre {
     background-position: 0 -4700px;
 }
-
 .arrow-btn.next {
     background-position: 0 -4880px;
 }
 
 
-
+/*鼠标放在父元素上,图片有缩放效果*/
 .img-scale {
     overflow: hidden;
 }
-
 .img-scale img {
     transition: transform 1s;
 }
-
 .img-scale:hover img {
     transform: scale(1.05);
+}
+
+
+/*文字永远只显示一行, 超出部分显示省略号*/
+.ellipsis {
+    /*1. 保证文字永远显示一行(可以超出父元素显示)*/
+    white-space: nowrap;
+    /*2. 超出父元素部分隐藏*/
+    overflow: hidden;
+    /*3. 超出父元素. 隐藏掉的元素用省略号显示*/
+    text-overflow: ellipsis;
 }

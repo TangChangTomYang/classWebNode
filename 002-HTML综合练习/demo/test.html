@@ -7,50 +7,58 @@
 
     <style>
 
-        span:nth-child(1){
-            background-color: red;
+        div {
+            width: 280px;
+            height: 100px;
+            border: 1px solid #000;
         }
-
-        span:nth-child(2){
-            background-color: yellow;
+        .box1 {
+            white-space: normal;
         }
-
-        span:nth-child(3){
-            background-color: green;
+        .box2 {
+            white-space: pre;
         }
+        .box3 {
+            white-space: pre-wrap;
+        }
+        .box4 {
+            white-space: nowrap;
+        }
+        .box5 {
+            white-space: normal;
+        }
+           pre {
+               border: 1px solid #000;
+           }
 
     </style>
 </head>
 <body>
-
-<div class="box1">
-    <span>span1</span>
-    <span>span2</span>
-    <span>span3</span>
-</div>
-<div class="box2">
-    <span>span1</span>
-    <span>span2</span>
-    <span>span3</span>
-</div>
-
+    <div class="box1">
+        中国中国中国中国  English English
+        china china
+    </div>
+    <div class="box2">
+        中国中国中国中国  English English
+        china china
+    </div>
+    <div class="box3">
+        中国中国中国中国  English English
+        china china
+    </div>
+    <div class="box4">
+        中国中国中国中国  English English
+        china china
+    </div>
+    <div class="box5">
+        中国中国中国中国  English English
+        china china
+    </div>
+    <pre>
+        中国中国中国中国  English English
+        china china
+    </pre>
 </body>
-
-<script src="js/jquery-3.2.1.min.js"></script>
-<script>
-
-    //    传入选择器, 删除空格
-    function removeSpace() {
-        for (var i in arguments){
-            $(arguments[i]).contents().filter(function () {
-                // 过滤空格节点
-                return this.nodeType === 3;
-            }).remove()  // 删除空格节点
-        }
-    }
-
-    $(function () {
-        removeSpace('.box1', '.box2')
-    })
-</script>
 </html>
+
+ 

@@ -194,10 +194,11 @@
                             <span class="attr">加价购</span>
                             <span class="attr app-special">app特惠</span>
                         </p>
-                        <h3 class="name"><a href="3">24寸 纯PC "铝框" (非全吕) 拉杆箱</a></h3>
+                        <h3 class="name ellipsis"><a href="3">24寸 纯PC "铝框" (非全吕) 拉杆箱拉杆箱拉杆箱拉杆箱拉杆箱</a></h3>
                         <p class="price">
                             <span class="price-value">289元</span>
-                            <a href="#" class="brand-name">新秀丽制造商</a></p>
+                            <a href="#" class="brand-name">新秀丽制造商</a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -248,4 +249,24 @@
     <br>
 </div>
 </body>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+
+    //    传入选择器, 删除空格
+    function removeSpace() {
+        for (var i in arguments){
+            $(arguments[i]).contents().filter(function () {
+                // 过滤空格节点
+                return this.nodeType === 3;
+            }).remove()  // 删除空格节点
+        }
+    }
+
+    $(function () {
+        // 消除行内级的空格
+        removeSpace('.slider .page-list',
+                    '.product .attrs')
+    })
+</script>
 </html>

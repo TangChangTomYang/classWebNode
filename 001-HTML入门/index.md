@@ -6364,7 +6364,7 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 
 
-# 二十一 CSS 属性- vertical-align
+# 二十一. CSS 属性- vertical-align
 
 ## 1.  vertical-align 属性介绍
 
@@ -6488,4 +6488,96 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
   ```
 
   ![Snip20191203_4](Snip20191203_4.png)   
+
+
+
+
+
+
+
+
+
+# 二十三. CSS属性- 文字显示属性
+
+
+
+## 1. 显示一行文字. 超出宽度显示省略号
+
+- text-overflow 属性, 通常用来设置文字溢出时的行为
+
+  - `clip`: 溢出的内容直接裁减掉 (字符可能显示不完整)
+  - `ellipsis`: 溢出那行的结尾处用省略号表示
+
+- text-overflow 生效的前提是overflow不为visible
+
+- text-overflow 的效果受direction的影响
+
+  ```
+  p {
+    border: 1px solid #000;
+    width: 100px;
+    margin: 5px;
+  }
+  
+  /*文字永远只显示一行, 超出部分显示省略号*/
+  .ellipsis {
+      /*1. 保证文字永远显示一行(可以超出父元素显示)*/
+      white-space: nowrap;
+      /*2. 超出父元素部分隐藏*/
+      overflow: hidden;
+      /*3. 超出父元素. 隐藏掉的元素用省略号显示*/
+      text-overflow: ellipsis;
+  }
+  
+   <p>一二三四五六七八九十</p>
+   <p class="ellipsis">一二三四五六七八九十</p>
+  ```
+
+  ![Snip20191203_6](Snip20191203_6.png) 
+
+  
+
+  > 思考:
+  >
+  > 如何让一个有固定宽度的元素永远只显示一行文字, 并且溢出结尾处显示省略号
+
+   
+
+
+
+## 2. CSS属性- white-space
+
+
+
+- `white-space` 属性是用来设置空白处理和换行规则
+
+  > 一句话概括, `white-space` 就是用来设置一个标签内的文字怎么显示的一个属性
+  >
+  > eg:  多个空格是否合并, 换行和空格是否合并, 是否允许换行等
+
+  |            | New Lines(换行) | Spaces and Tabs | Text Wrapping |
+  | ---------- | --------------- | --------------- | ------------- |
+  | 'normal'   | Collapse(压缩)  | Collapse        | Collapse      |
+  | 'pre'      | Preserve(保留)  | Preserve        | No Wrap       |
+  | 'nowrap'   | Collapse        | Collapse        | No Wrap       |
+  | 'pre-wrap' | Preserve        | Preserve        | Wrap          |
+  | 'pre-line' | Preserve        | Collapse        | Wrap          |
+
+  
+  - `normal` : 合并所有连续的空白, 允许单词超屏时自动换行
+  - `nowrap`: 合并所有连续的空白, 不允许单词超屏时自动换行, **文字永远显示一行** 
+  - `pre`: **阻止** 合并所有的连续空白, 不允许单词超屏时自动换行 **标签内文字原样输出** 
+  - `pre-wrap` : **阻止** 合并所有的连续的空白, 允许单词超屏时自动换行
+  - `pre-line`: 合并所有连续的空白(但是保留换行), 允许单词超屏时自动换行
+
+> 其实以前, 我们用过一个 `pre` 标签其实就是标签的 `white-space: pre`
+
+```
+<pre>
+  中国中国中国中国  English English
+  china china
+</pre>
+```
+
+
 
