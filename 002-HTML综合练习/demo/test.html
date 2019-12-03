@@ -7,57 +7,35 @@
 
     <style>
 
-        div {
-            width: 280px;
-            height: 100px;
-            border: 1px solid #000;
-        }
+
         .box1 {
-            white-space: normal;
+            position: relative;
+            width: 300px;
+            height: 100px;
+            background-color: #f00;
+            border: 10px solid #000;
         }
+
         .box2 {
-            white-space: pre;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 10px;
+            margin-bottom: -10px;
+            background-color: orange;
         }
-        .box3 {
-            white-space: pre-wrap;
-        }
-        .box4 {
-            white-space: nowrap;
-        }
-        .box5 {
-            white-space: normal;
-        }
-           pre {
-               border: 1px solid #000;
-           }
+
 
     </style>
 </head>
 <body>
-    <div class="box1">
-        中国中国中国中国  English English
-        china china
-    </div>
+
+<div class="box1">
     <div class="box2">
-        中国中国中国中国  English English
-        china china
     </div>
-    <div class="box3">
-        中国中国中国中国  English English
-        china china
-    </div>
-    <div class="box4">
-        中国中国中国中国  English English
-        china china
-    </div>
-    <div class="box5">
-        中国中国中国中国  English English
-        china china
-    </div>
-    <pre>
-        中国中国中国中国  English English
-        china china
-    </pre>
+</div>
 </body>
 </html>
 

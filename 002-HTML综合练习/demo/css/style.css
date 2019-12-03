@@ -438,7 +438,7 @@ body {
 
 
 .new-products .product {
-
+    float: left;
     width: 265px;
     text-align: center;
 }

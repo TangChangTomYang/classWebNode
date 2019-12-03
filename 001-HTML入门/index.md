@@ -6581,3 +6581,112 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 
 
+
+
+
+
+# 二十四. 包含块尺寸
+
+在官方文档的 **可视化格式模型的细节** 里面有讲到
+
+- 宽度和边距的计算
+
+  - 常规流中的块类/ 非替换元素
+
+    `margin-left` + `border-left-width` + `padding-left` + `width` + `padding-right` + `border-right-width` +`margin-right` = **包含块的宽** 
+
+  - 绝对定位的非替换元素
+
+    `margin-left` + `border-left-width` + `padding-left` + `width` + `padding-right` + `border-right-width` +`margin-right` = **包含块的宽** 
+
+  >  上面这两个公式对于我们来说非常的有用
+  >
+  > - 有了第一个公式, 在标准流中, 我们可以工具父元素的尺寸来动态的定义子元素的宽度
+  > - 有了第二元公式, 在定位流中, 我们可以根据父元素的尺寸来定义子元素的尺寸
+
+
+
+
+
+## 1. 在标准流中根据包含块宽度, 动态决定子元素宽度
+
+> 其实, 这个公司在很多时候都会用到
+>
+> 最常用的场景就是解决, 子元素全部浮动时, 父元素不够宽导致浮动子元素换行的问题, 此时, 只要给父元素设置 `margin-right: - 100px` 
+
+
+
+```
+ <style>
+   .box1 {
+     width: 300px;
+     height: 100px;
+     padding: 30px;
+     background-color: #f00;
+   }
+   .box2 {
+     height: 100%;
+     background-color: #0f0;
+     padding-top: 10px;
+   }
+   .box3 {
+     height: 50px;
+     background-color: #00f;
+     margin-left: -20px;
+     margin-right: -25px;
+   } 
+ </style>
+```
+
+```
+<body>
+<div class="box1">
+    <div class="box2">
+        <div class="box3">
+            我是box3我是box3我是box3我是box3我是box3我是box3我是box3我是box3我是box3
+        </div>
+    </div>
+</div>
+</body>
+```
+
+![Snip20191203_7](Snip20191203_7.png) 
+
+
+
+## 2. 在定位流中, 根据定位父元素, 动态决定子元素宽高
+
+```
+<style> 
+  .box1 {
+    position: relative;
+    width: 300px;
+    height: 100px;
+    background-color: #f00;
+    border: 10px solid #000;
+  }
+
+  .box2 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 10px;
+    margin-bottom: -10px;
+    background-color: orange;
+  } 
+</style>
+```
+
+```
+<body>
+
+<div class="box1">
+    <div class="box2">
+    </div>
+</div>
+</body>
+```
+
+![Snip20191203_11](Snip20191203_11.png) 
