@@ -116,7 +116,7 @@ body {
     /*边框阴影*/
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 3px  rgba(0,0,0,.2);
+    adow: 0 0 3px  rgba(0,0,0,.2);
 }
 
 .func-nav .row {
@@ -309,7 +309,7 @@ body {
     /*背景色透明*/
     background-color: transparent;
     border: 2px solid #b4a078;
-    box-shadow: 0 0 0 3px #dfcead;
+    adow: 0 0 0 3px #dfcead;
 }
 
 /*end region*/
@@ -327,6 +327,7 @@ body {
 .brand,
 .new-products{
     margin-top: 30px;
+    padding-bottom: 60px;
 }
 
 /*通用的头部*/
@@ -436,19 +437,21 @@ body {
     right: -80px;
 }
 
+.new-products .content {
+    /*让显 div.content 比 row 的宽度还要宽 10px, 这样子元素浮动才不会挤下去*/
+    margin-right: -10px;
+}
+
 
 .new-products .product {
-    float: left;
     width: 265px;
-    text-align: center;
+    margin-right:10px;
 }
 
 .new-products .product .image {
-    position: relative;
-    display: block;
+    /*先默认这个尺寸*/
     width: 265px;
     height: 265px;
-    margin-bottom: 8px;
 }
 
 .new-products .product .cover {
@@ -459,10 +462,34 @@ body {
     top: 0;
     left: 0;
     margin-bottom: 8px;
-
 }
 
-.new-products .product .image .tag {
+.new-products  .product:hover {
+    background-color: #f4f0ea;
+    adow: 0 0 3px  rgba(0,0,0,.2);
+}
+.new-products  .product:hover .cover {
+    display: block;
+}
+
+
+/*end region*/
+
+
+/*region 产品*/
+
+.product {
+    float: left;
+    text-align: center;
+}
+
+.product .image {
+    position: relative;
+    display: block;
+    margin-bottom: 8px;
+}
+
+ .product .image .tag {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -478,18 +505,18 @@ body {
     border-radius: 5px;
 }
 
-.new-products .product .info {
+ .product .info {
     padding-bottom: 10px;
 }
 
-.new-products .product .attrs {
+ .product .attrs {
     height: 20px;
     margin-bottom: 3px;
     line-height: 20px;
 
 }
 
-.new-products .product .attr {
+ .product .attr {
     display: inline-block;
     height: 20px;
     margin:0 3px;
@@ -499,15 +526,15 @@ body {
     background-color: #e36844;
 }
 
-.new-products .product .attr.hot {
+.product .attr.hot {
     background-color: #f28f2d;
 }
 
-.new-products .product .attr.app-special {
+ .product .attr.app-special {
     background-color: #f8bc59;
 }
 
-.new-products .product .name {
+ .product .name {
     height: 20px;
     line-height: 20px;
     margin-bottom: 4px;
@@ -515,28 +542,72 @@ body {
 }
 
 
-.new-products .product .price {
+.product .price {
     font-size: 13px;
     line-height: 13px;
 }
 
-.new-products .product .price-value {
+.product .price-value {
     color: #d4282d;
 }
 
-.new-products .product .brand-name {
+.product .brand-name {
     border-left: 1px solid #999;
     padding-left: 10px;
     margin-left: 10px;
     color: #999;
 }
 
-.new-products .product:hover {
+
+/*end region*/
+
+
+
+
+/*region  人气推荐*/
+
+.popular {
+    padding: 60px 0;
     background-color: #f4f0ea;
-    box-shadow: 0 0 3px  rgba(0,0,0,.2);
 }
-.new-products .product:hover .cover {
-    display: block;
+
+
+.popular .rank {
+    float: left;
 }
+
+.popular .rank a {
+    float: left;
+    width: 70px;
+    height: 28px;
+    font-size: 14px;
+    line-height: 28px;
+    padding: 0 3px;
+    margin-right: 55px;
+    text-align: center;
+}
+
+.popular .rank a.active  {
+    color: #b4a078;
+    border-bottom: 2px solid #b4a078;
+}
+
+
+.popular .content {
+    /*让显 div.content 比 row 的宽度还要宽 10px, 这样子元素浮动才不会挤下去*/
+    margin-right: -10px;
+}
+
+.popular .product {
+    background-color: #fff;
+    width: 265px;
+    margin-right: 10px;
+    margin-bottom: 10px;;
+}
+
+.popular .product:hover {
+
+}
+
 
 /*end region*/
