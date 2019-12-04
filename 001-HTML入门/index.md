@@ -1,6 +1,8 @@
 [TOC]
 
+推荐看本书
 
+>  CSS权威指南
 
 # 一. 文档声明
 
@@ -6364,7 +6366,9 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 
 
-# 二十一. CSS 属性- vertical-align
+# 二十一. CSS 属性- vertical-align (**) 重要
+
+
 
 ## 1.  vertical-align 属性介绍
 
@@ -6452,6 +6456,216 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
  
 
 
+
+## 3. 补充 (各种盒子及高度)
+
+
+
+### 1. 网页中盒子类型的介绍
+
+- 每个HTML元素都会产生一个盒子(box)
+  - 块级元素(比如: div) 产生一个块级盒子 (block-level box)
+  - 行内级元素(比如: span)产生一个行内级盒子(inline-level box)
+  - inline-block 元素产生一个行内级盒子 (inline-level box)
+
+- 多个行内级盒子可以在同一行显示
+- vertical-align 用来设置行内级盒子 (inline-level box) 在 line box (行盒) 中的垂直位置
+  - vertical-align 用来设置行内级元素/ inline-block 元素在 line box (行盒) 中的垂直位置
+
+- 行盒子(line box)
+
+  > 一行中包含所有 inline-level box 的矩形区域叫做 line box
+
+### 2. 行内级盒子高度(inline-level box)
+
+
+
+#### 1. 行内级非替换元素,盒子高度
+
+
+
+- **行内级非替换元素(比如: span/ strong/ a), inline-level box 的高度就是 line-heigt 的高度**
+
+  ```
+  <style>
+    div{ 
+      margin: 30px;
+      width: 150px;
+      height: 100px;
+      border: 1px solid #000; 
+    }
+    span {
+      background-color: green;
+    }
+    .sp1 {
+      line-height: 40px;
+    }
+    p {
+      margin:0;
+      padding:0;
+      background-color: pink;
+    }
+  </style>
+  ```
+
+  ```
+  <div class="box1">
+     <span class="sp1"> 我是span </span>
+      <p>我是p</p>
+  </div>
+  <div class="box1">
+      <span> 我是span </span>
+      <p>我是p</p>
+  </div>
+  ```
+
+  ![Snip20191204_2](Snip20191204_3.png) 
+
+
+
+
+
+#### 2. inline-block元素, 盒子高度
+
+
+
+- `inline-block` 元素的盒子高度, 为 `margin-box` 的高度
+
+  > 什么意思? 
+  >
+  > 也就是说, inline-block 元素的盒子高度与 inline-level非替换元素的盒子高度的计算方式不一样,
+  >
+  > inline-level 非替换元素的高度直接有`line-height` 决定, 而 `line-block` 的盒子的高度是包括margin范围一起计算的, 即:
+  >
+  > - `inline-level` 非替换元素盒子高度 = 行高 `line-height` 
+  > - `inline-block` 盒子高度 = margin box 高度(即: 高度 = margin-top + padding-top + height + padding-bottom + margin-bottom)
+
+  ```
+  <style>
+    div{
+      margin: 30px;
+      width: 150px;
+      height: 100px;
+      border: 1px solid #000;
+    }
+    span {
+      background-color: green;
+      margin: 30px;
+      padding: 15px 0;
+    }
+  
+    .sp1 {
+      line-height: 40px;
+    }
+  
+    p {
+      margin:0;
+      padding:0;
+      background-color: pink;
+    } 
+    strong  {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 0;
+      background-color: #0f0;
+    }
+  </style>
+  ```
+
+  ```
+  <div class="box1">
+     <span class="sp1"> 我是span </span>
+      <p>我是p</p>
+  </div>
+  <div class="box1">
+      <span> 我是span </span>
+      <p>我是p</p>
+  </div>
+  
+  <div>
+      <strong> wo shi strong</strong>
+      <p>我是p</p>
+  </div>
+  ```
+
+  ![Snip20191204_4](Snip20191204_4.png) 
+
+
+
+#### 3. 行内级替换元素, 盒子高度 (img/ input)
+
+
+
+- 行内级替换元素(img/ input)的盒子高度, 为 `margin-box` 的高度, 和`inline-block` 元素的盒子高度计算方式一样
+
+   
+
+### 3. line-box 行盒的高度
+
+- 一行中包含所有`inline-level box` (行内级盒子) 的矩形区域叫做 **line box (行盒)** 
+- **line box 行盒** 的宽度
+  - 一般来说, line box 的左右边缘紧贴着 container block 的左右边缘
+  - 如果有浮动,  floated box 可能会夹在 container block 和 line box 的边缘之间, 导致line box 的宽度变窄
+- **line box 行盒 的高度**
+  - 当一个 `inline-level box` 的高度小于包含它的 `line box`的高度时,  `inline-level box`的垂直对齐方式由**vertical-align 决定** 
+  - `line box ` 的高度经常不一样 (比如: 有的 line box 包含了 **img 元素** , 有的 `line box`  **只包含了文本**  )
+  - `line box`  的高度由 里面包含的 `inline-level box ` 的 **最顶端 到最底端的距离** , 如下图: 
+
+![Snip20191204_5](Snip20191204_5.png) 
+
+
+
+## 4. vertical-align 取值
+
+
+
+- **baseline:**
+
+  > 默认值, 把行内级盒子的基线, 与父盒子的基线对齐, 如果没有基线,margin box  与父盒子基线对齐
+
+- **top:** 
+
+  > 将元素 `inline-level box` 的顶端与包含该元素的 `line box` 的顶端对齐
+
+- **bottom:**
+
+  > 将元素 `inline-level box` 的底端与包含该元素的 `line box` 的底端对齐
+
+- **text-top:** 
+
+  > 将元素 `inline-level box` 的顶端端与父元素内容去的顶端对齐
+
+- **text-bottom:**
+
+  > 将元素 `inline-level box` 的底端端与父元素内容去的底端对齐
+
+- **middle:**
+
+  > 将元素 `inline-level box`的垂直中点, 与父元素基线上 0.5ex处的一点对齐
+
+- **super:**
+
+  > 将元素的内容区和 `inline-level box`上移, 上移的距离未指定, 可能因用户代理的不同而不同
+
+  **与HTML元素 `<sup>上标</su>` 相对应**     
+
+  
+
+- **sub:**
+
+  > 与 super 相同, 只是元素会下移, 而不是上移
+
+  **与HTML元素 `<sub>下标</sub>` 相对应**    
+
+  
+
+- **`<percentage>`:**
+
+  > 将元素上移或者下移一定距离, 这个距离由相对于元素 `line-height` 值指定的一个百分数确定
+
+- **`<length>`:**
+
+  > 把行内级盒子提升或者下降一定的距离, `0` 意味着和baseline一样
 
 # 二十二. 行内级元素之间的空格消除
 
@@ -6690,3 +6904,37 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 ```
 
 ![Snip20191203_11](Snip20191203_11.png) 
+
+
+
+# 二十五. 浏览器私有前缀(来龙去脉) 
+
+
+
+- 有时候可能会看到有些CSS 属性名前面带有: `-o-` `-xv-` `-ms-` `mso-` `-moz-` `-webkit-`  
+
+  ![privitepre](privitepre.png) 
+
+- 上述前缀叫做浏览器私有前缀, 只有对应的浏览器才能解析是使用
+
+  - `-o-` `-xv-` : Opera 等
+  - `-ms-` `mso-` : IE等
+  - `-moz-`:  Firefox 等
+  - `-webkit-` : Safari   Chrome 等
+
+  > 官方文档给出的专业术语叫做: vendor-specific extensions (供应商特定扩展)
+
+- 为什么会有浏览器私有前缀?
+
+  - W3C提出的某项新技术  (比如: columns), 如果想要成为W3C正式标准, 需要经过复杂 漫长的审查流程
+  - 有鞋浏览器供应商不原等正式标准发布, 觉得`columns` 技术已经成熟,  就会在浏览器中添加支持`columns`
+  - 为了防止W3C 以后发布正式标准时变更名字, 就加上一个浏览器私有前缀, 比如: `-moz-columns`
+  - 等到W3C 发布正式标准后, 再让新版本浏览器直接支持使用`columns`, 不再加上浏览器私有前缀
+  - 最终结果:
+    - 旧版本浏览器使用`-moz-columns`, 新版浏览器使用`columns`, 这样新旧版本的浏览器都能支持这个功能
+
+- **所以说:**
+
+  浏览器私有前缀是浏览器对新CSS属性的一种提前支持
+
+  

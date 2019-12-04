@@ -69,13 +69,16 @@ a:hover {
 
 
 /*鼠标放在父元素上,图片有缩放效果*/
-.img-scale {
-    overflow: hidden;
-}
+
 .img-scale img {
+
+    /* 让safari支持动画 */
+    -webkit-transition: -webkit-transform 1s;
     transition: transform 1s;
 }
 .img-scale:hover img {
+    /* 让safari支持动画 */
+    -webkit-transform: scale(1.05);
     transform: scale(1.05);
 }
 
