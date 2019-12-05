@@ -6463,18 +6463,24 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 ### 1. 网页中盒子类型的介绍
 
-- 每个HTML元素都会产生一个盒子(box)
-  - 块级元素(比如: div) 产生一个块级盒子 (block-level box)
-  - 行内级元素(比如: span)产生一个行内级盒子(inline-level box)
-  - inline-block 元素产生一个行内级盒子 (inline-level box)
+- 一个HTML元素会产生一个 **盒子(box)** 
+  - 块级元素(比如: div) 产生一个 **块级盒子 (block-level box)** 
+  - 行内级元素(比如: span)产生一个 **行内级盒子(inline-level box)** 
+  - inline-block 元素产生一个 **行内级盒子 (inline-level box)** 
 
-- 多个行内级盒子可以在同一行显示
-- vertical-align 用来设置行内级盒子 (inline-level box) 在 line box (行盒) 中的垂直位置
-  - vertical-align 用来设置行内级元素/ inline-block 元素在 line box (行盒) 中的垂直位置
-
-- 行盒子(line box)
+- 一行内容会产生一个 **行盒子(line box)** 
 
   > 一行中包含所有 inline-level box 的矩形区域叫做 line box
+
+- 多个行内级盒子可以在同一行显示
+
+- vertical-align 用来设置行内级盒子 (inline-level box) 在 line box (行盒) 中的垂直位置 
+  
+-  结论:
+
+  在一个网页中主要有以下几类盒子: `块级盒子`   `行内级盒子`  `inline-block 盒子(也是行内级盒子)` `行盒子` 
+  
+  
 
 ### 2. 行内级盒子高度(inline-level box)
 
@@ -6600,7 +6606,7 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
    
 
-### 3. line-box 行盒的高度
+### 3. line-box 行盒的高度 (**) 重要
 
 - 一行中包含所有`inline-level box` (行内级盒子) 的矩形区域叫做 **line box (行盒)** 
 - **line box 行盒** 的宽度
@@ -6621,51 +6627,77 @@ HTML5标签和以前的标签的最大区别是新增了音 视频标签
 
 - **baseline:**
 
-  > 默认值, 把行内级盒子的基线, 与父盒子的基线对齐, 如果没有基线,margin box  与父盒子基线对齐
+  > 默认值, 把行`内级盒子`的基线与`父盒子`的基线对齐, 如果没有基线(inline-block 盒子)就拿`margin box`底部  与父盒子基线对齐
+  >
+  > *通常一行文字小写字母x的底部就是基线* 
+
+  ![Snip20191205_1](Snip20191205_1.png) 
+
+  - 这里说明一下, 在一个div 里面放一个 img , div 不设置宽高, img底部和div的底部默认有一个间隙, 这是因为默认情况下 img 标签的 vertical-align 是baseline 基线对齐, 如下图:
+
+    ![Snip20191205_6](Snip20191205_6.png) 
+
+    ```
+    <div>
+    	<img src="wechat.png">
+    </div>
+    ```
+
+    > 也就是说, 上面的代码, 默认情况下 div 的高度为 img 标签的 `margin-box 的高度 + div 的基线高度` 
 
 - **top:** 
 
-  > 将元素 `inline-level box` 的顶端与包含该元素的 `line box` 的顶端对齐
+  >  `inline-level box` 的顶端与 `line box` 的顶端对齐
 
 - **bottom:**
 
-  > 将元素 `inline-level box` 的底端与包含该元素的 `line box` 的底端对齐
+  >   `inline-level box` 的底端与 `line box` 的底端对齐
+
+- **middle:**    这个不一定是居中哈(坑)
+
+  >  `inline-level box`的垂直中点, 与父元素基线上 0.5ex处的一点对齐
+  >
+  > 即,拿行内级盒子的中心点 与小写字母x中心点 (即, 基线往上挪文字一半高) 对齐 
+  >
+  > 因为小写字母X中心点不一定是盒子的中心点 
+
+  ![Snip20191205_15](Snip20191205_15.png) 
+
+  
 
 - **text-top:** 
 
-  > 将元素 `inline-level box` 的顶端端与父元素内容去的顶端对齐
+  >  `inline-level box` 的**顶端**与 父元素**内容的顶端**对齐
 
 - **text-bottom:**
 
-  > 将元素 `inline-level box` 的底端端与父元素内容去的底端对齐
+  > 将元素 `inline-level box` 的底端端与父元素**内容的底端**对齐
 
-- **middle:**
-
-  > 将元素 `inline-level box`的垂直中点, 与父元素基线上 0.5ex处的一点对齐
+  ![Snip20191205_11](Snip20191205_11.png) 
 
 - **super:**
 
   > 将元素的内容区和 `inline-level box`上移, 上移的距离未指定, 可能因用户代理的不同而不同
 
-  **与HTML元素 `<sup>上标</su>` 相对应**     
-
-  
+  **与HTML元素 `<sup>上标</su>` 相对应** , 就是我们常说的数学表达式的上标
 
 - **sub:**
 
   > 与 super 相同, 只是元素会下移, 而不是上移
 
-  **与HTML元素 `<sub>下标</sub>` 相对应**    
+  **与HTML元素 `<sub>下标</sub>` 相对应**   ,就是我们常说的数学表达式的上标 
 
   
 
 - **`<percentage>`:**
 
-  > 将元素上移或者下移一定距离, 这个距离由相对于元素 `line-height` 值指定的一个百分数确定
+  > 将元素上移或者下移一定距离, 这个距离相对于元素 `line-height或者元素高度` 值的百分数确定
 
 - **`<length>`:**
 
   > 把行内级盒子提升或者下降一定的距离, `0` 意味着和baseline一样
+  
+  
 
 # 二十二. 行内级元素之间的空格消除
 
