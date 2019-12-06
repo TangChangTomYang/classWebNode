@@ -6,5 +6,440 @@
 </head>
 <body>
 
+
 </body>
+
+<!--<script>-->
+
+    <!--var str = '123';-->
+    <!--console.log(str, typeof str); // string-->
+
+    <!--var num = 123;-->
+    <!--console.log(num, typeof  num); //number-->
+
+    <!--var bl = true;-->
+    <!--console.log(bl, typeof  bl); // boolean-->
+
+    <!--// 注意哈: null 并不是一个对象, 但是通过 typeof 打印出来的时候是 object, 这是因为-->
+    <!--// js 这门语言当初在设计的时候的一个错误, 这个错误 官方在很早就已经承认了-->
+    <!--var nl = null;-->
+    <!--console.log(nl, typeof  nl); // null | (object)-->
+    <!--// 判断 nl 是否是Object 类型的对象-->
+    <!--console.log(nl instanceof Object); // false-->
+
+    <!--var a ;-->
+    <!--console.log(a, typeof a); // undefined-->
+
+    <!--// var c = 20;  其实等价于下面两句-->
+    <!--//    var c ;  // 声明-->
+    <!--//    c = 20;  // 赋值 (定义)-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var obj = {-->
+        <!--name: 'zhangsan',-->
+        <!--age:18-->
+    <!--};-->
+    <!--console.log(obj, typeof  obj);   // object-->
+
+    <!--var arr = [1,2];-->
+    <!--console.log(arr, typeof  arr);  // object-->
+    <!--// 通过 typeof 操作复杂数据类型时, 数据类型都是 object, 函数除外-->
+
+    <!--function  fn() {}-->
+    <!--console.log(typeof  fn); // function-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var str1 = '123';-->
+    <!--var str2 = '123';-->
+    <!--var num1 = 123;-->
+
+    <!--console.log(str1 == str2);      // true-->
+    <!--console.log(str1 === str2);     // true-->
+    <!--console.log(str1 == num1);      //true-->
+    <!--console.log(str1 === num1);     //false-->
+
+
+    <!--console.log(null == undefined);     //true-->
+    <!--console.log(null === undefined);    //false-->
+
+
+    <!--var arr1 = [1,2,3];-->
+    <!--var arr2 = [1,2,3];-->
+
+    <!--console.log(arr1 == arr2);  //false-->
+    <!--console.log(arr1 === arr2); //false-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--console.log(!0); // true-->
+    <!--console.log(!2); // false-->
+    <!--var arr = [1,2];-->
+    <!--console.log(!arr);  // false-->
+    <!--console.log(!null); // true-->
+    <!--console.log(!undefined); // true-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--console.log(true || false); // true-->
+    <!--console.log(false || true); // true-->
+    <!--console.log(0 || 0);    // 0-->
+    <!--console.log(0 || 1);    // 1-->
+    <!--console.log(1 || 0);    // 1-->
+    <!--console.log(1 || 1);    // 1-->
+    <!--console.log(2 || 3);    // 2-->
+    <!--console.log(null || [1, 2]);    //  [1, 2]-->
+    <!--console.log([1, 2] || null);    //[1, 2]-->
+    <!--console.log(undefined || {name: 'zhagnsan'});   // {name: "zhagnsan"}-->
+    <!--console.log({name: 'zhangsan'} || undefined );  // {name: "zhangsan"}-->
+<!--</script>-->
+
+
+
+<!--<script>-->
+    <!--var a = 10;-->
+    <!--var b = a;-->
+    <!--b = 20;-->
+    <!--console.log(a); // 10-->
+    <!--console.log(b); // 20-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var  obj = {-->
+        <!--name: 'zhangsan'-->
+    <!--}-->
+    <!--var obj1 = obj;-->
+    <!--console.log(obj.name);  // zhangsan-->
+
+    <!--obj1.name = 'lisi';-->
+    <!--console.log(obj.name);  // lisi-->
+    <!--console.log(obj1.name); // lisi-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var a = 10;-->
+    <!--function fun(num) {-->
+
+        <!--console.log(num);   // 10-->
+        <!--num = 20;-->
+        <!--console.log(num);   // 20-->
+        <!--console.log(a);     // 10-->
+    <!--}-->
+    <!--fun(a);-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {name:'zs'}-->
+    <!--function fn(obj1) {-->
+        <!--console.log(obj1.name); //zs-->
+
+        <!--obj1.name = 'ls';-->
+        <!--console.log(obj1.name); //ls-->
+        <!--console.log(obj.name);  //ls-->
+    <!--}-->
+    <!--fn(obj)-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 创建一个对象 (key - value)-->
+    <!--var obj = {-->
+        <!--name: '张三',-->
+        <!--age:18-->
+    <!--}-->
+
+    <!--// 2. 动态增加属性-->
+    <!--obj.des = '我是张三,年龄18';-->
+    <!--// 3. 动态增加方法-->
+    <!--obj.logDes = function () {-->
+        <!--console.log(this.des);-->
+    <!--}-->
+
+    <!--console.log(obj.des);-->
+    <!--obj.logDes();-->
+
+    <!--// 4. 修改属性-->
+    <!--// 通过点语法操作对象的时候, 已经存在的属性就修改, 如果不存在就添加-->
+    <!--obj.des = 'des'-->
+    <!--console.log(obj.des);-->
+
+
+    <!--// 5. 删除属性-->
+    <!--delete  obj.des;-->
+    <!--console.log(obj.des); // undefined-->
+
+    <!--delete  obj.des;-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 创建一个对象 (key - value)-->
+    <!--var obj = {-->
+        <!--name: '张三',-->
+        <!--age:18-->
+    <!--}-->
+
+    <!--// 2. 动态增加属性 | 方法-->
+    <!--obj['des'] = '我是张三,年龄18';-->
+    <!--obj['logDes'] = function () {-->
+        <!--console.log(this['des']);-->
+    <!--}-->
+
+    <!--console.log(obj['des']);-->
+    <!--obj['logDes']();-->
+
+    <!--// 3. 修改属性-->
+    <!--// 通过[]语法操作对象的时候, 已经存在的属性就修改, 如果不存在就添加-->
+    <!--obj['des'] = 'des'-->
+    <!--console.log(obj['des']);-->
+
+
+    <!--// 4. 删除属性-->
+    <!--delete  obj['des'];-->
+    <!--console.log(obj['des']); // undefined-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name: "张三",-->
+        <!--age: 18,-->
+        <!--height: 1.88-->
+    <!--}-->
+
+    <!--for (var key in obj){-->
+        <!--console.log(key, obj.key);-->
+    <!--}-->
+    <!--console.log('&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;');-->
+    <!--// 遍历属性的名字-->
+    <!--for (key in  obj){-->
+
+        <!--console.log(key, obj[key]);-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name: "张三",-->
+        <!--age: 18,-->
+        <!--height: 1.88-->
+    <!--}-->
+
+    <!--console.log('name' in obj);     // true-->
+    <!--console.log('age' in obj);      // true-->
+    <!--console.log('height' in obj);   // true-->
+    <!--console.log('test' in obj);       // false-->
+    <!--obj.name = null;-->
+    <!--console.log('name' in obj);     // true-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var arr1 = ['a','b','c','d','e','f']-->
+    <!--// 判断索引1位置是否有值-->
+    <!--console.log(1 in arr1);     // true-->
+    <!--console.log('a' in arr1);   // false-->
+
+    <!--var arr2 = [1,,3,4,5,6,7]-->
+    <!--console.log(1 in arr2);     // false-->
+    <!--console.log(arr2[1]);       // undefined-->
+    <!--console.log(2 in arr2);     // true-->
+    <!--console.log(arr2[2]);       // 3-->
+
+    <!--var arr3 = [1,2,3,4,5,6,7]-->
+    <!--console.log(1 in arr3);     // true-->
+    <!--arr3[2] = null;-->
+    <!--console.log(arr3[2]);       // null-->
+    <!--console.log(2 in arr3);     // true-->
+
+
+    <!--delete  arr3[3]-->
+    <!--console.log(arr3[3]);       // undefined-->
+    <!--console.log(3 in arr3);     // false-->
+
+    <!--for (var i = 0; i < array.length; i++) {-->
+        <!--var obj = array[i];-->
+        <!---->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--// 在正常的情况下, 程序在执行过程中, 如果出现了错误或者异常, 后面的代码都不会被执行-->
+
+    <!--function  demo() {-->
+        <!--console.log('demo');-->
+    <!--}-->
+    <!--var a = 10;-->
+    <!--try{-->
+        <!--// try 里面书写可能出现错误的代码-->
+        <!--a();  // 这一行会报错-->
+    <!--}-->
+    <!--catch (e){-->
+        <!--// 如果 try 里面的代码出现了错误, 就会执行这个大括号-->
+        <!--// 一般这里需要对错误进行一些处理-->
+        <!--console.log(e);-->
+    <!--}-->
+
+    <!--demo();-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--try {-->
+        <!--var a ;-->
+        <!--// 使用throw 手动抛出异常-->
+        <!--//throw 'a 未定义';-->
+    <!--}-->
+    <!--catch (e) {-->
+        <!--console.log(e);-->
+    <!--}-->
+    <!--finally {-->
+        <!--// 不论前面是否抛出异常, finally 中的代码都会被执行-->
+        <!--console.log('finally 中的代码被执行了');-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name: 'zhangsna',-->
+        <!--age: 18-->
+    <!--}-->
+    <!--for(var key in obj){-->
+        <!--console.log(key);-->
+    <!--}-->
+
+    <!--for(var i=0; i< 10; i++){-->
+        <!--console.log(i);-->
+    <!--}-->
+
+    <!--var a = 10;-->
+    <!--while (a > 0){-->
+        <!--a &#45;&#45;;-->
+        <!--console.log(a);-->
+    <!--}-->
+
+    <!--do {-->
+        <!--a++;-->
+        <!--console.log(a);-->
+    <!--}while(a < 10)-->
+
+
+
+    <!--if (a > 0){-->
+
+    <!--}-->
+    <!--else{-->
+
+    <!--}-->
+
+    <!--switch (b){-->
+        <!--case 0:-->
+            <!--console.log('00');-->
+            <!--break;-->
+        <!--case 1:-->
+            <!--console.log('11');-->
+            <!--break;-->
+        <!--default:-->
+            <!--break;-->
+    <!--}-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--// 1. 创建一个div标签-->
+    <!--var div = document.createElement('div');-->
+
+    <!--// 2. 设置标签的样式-->
+    <!--div.innerHTML = '我是一个div';-->
+    <!--div.style.width = '200px';-->
+    <!--div.style.height = '200px';-->
+    <!--div.style.background = 'red';-->
+
+    <!--// 3. 添加到页面-->
+    <!--document.body.appendChild(div);-->
+
+    <!--// 4. 获取到新创建的div标签-->
+    <!--var div1 = document.querySelector('div');-->
+
+    <!--// 5. 删除这个标签-->
+    <!--document.body.removeChild(div1);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function  函数名(形参1, 形参2...) {-->
+
+    <!--}-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--var fun1 = function () {-->
+
+    <!--}-->
+
+    <!--var fun2 = function demo(){-->
+
+        <!--console.log('demo');-->
+    <!--}-->
+    <!--fun2();-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var fun = new Function();-->
+    <!--// 相当于-->
+    <!--function  fun() {-->
+
+    <!--}-->
+<!--</script>-->
+
+
+<script>
+    var fun = new Function("{console.log('使用Function构造函数'); return 20 ;}");
+    fun();
+
+//function fun() {
+//    console.log('使用Function构造函数')
+//}
+
+</script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
