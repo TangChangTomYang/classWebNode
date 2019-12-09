@@ -184,18 +184,117 @@
 <!--</script>-->
 
 
+<!--<script>-->
+    <!--function Person(name, age){-->
+        <!--console.log(this);-->
+        <!--this.name = name-->
+        <!--this.age = age-->
+    <!--}-->
+
+    <!--var p = new Person('zhangsan', 18)    // this = p-->
+    <!--var p = Person('lisi', 20)  // this = window-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--function  Person(name) {-->
+        <!--this.name = name;-->
+        <!--this.play = function () {-->
+            <!--console.log(this.name + '在play');-->
+        <!--}-->
+    <!--}-->
+
+    <!--var p1 = new Person("zhagnsan")-->
+    <!--var p2 = new Person("lisi")-->
+
+    <!--console.log(p1.play == p2.play); // false-->
+    <!--console.log(p1.play);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person (name){-->
+        <!--// 1. 属性设置在构造函数内部-->
+        <!--this.name = name;-->
+
+    <!--}-->
+
+    <!--// 2. 方法设置在构造函数的原型上-->
+    <!--Person.prototype.show = function () {-->
+        <!--console.log(this.name);-->
+    <!--}-->
+
+    <!--var p1 = new Person('zhangsan')-->
+    <!--var p2 = new Person('lisi')-->
+
+    <!--p1.show();  // zhangsan-->
+    <!--p2.show();  // lisi-->
+
+    <!--console.log(p1.show == p2.show); // true-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+
+    <!--}-->
+    <!--Person.prototype.des = 'des'-->
+    <!--Person.prototype.test = 'test'-->
+    <!--Person.prototype.log = 'log'-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person() {-->
+
+    <!--}-->
+
+    <!--var p1 = new Person()-->
+<!--//    Person.prototype.des = 'des'-->
+    <!--var obj =  {des: 'des'}-->
+    <!--Person.prototype= obj-->
+    <!--var p2 = new Person()-->
+
+
+    <!--console.log(p1.des);-->
+    <!--console.log(p2.des);-->
+
+
+    <!--console.log(p1.constructor == p2.constructor);-->
+
+    <!--console.log(p1.constructor);-->
+    <!--console.log(p2.constructor);-->
+
+
+    <!--console.log(p1.constructor == Person);-->
+    <!--console.log(p2.constructor == obj.constructor);-->
+
+
+<!--</script>-->
+
+
 <script>
-    function Person(name, age){
-        console.log(this);
-        this.name = name
-        this.age = age
+    function Person() {
+
     }
 
-    var p = new Person('zhangsan', 18)    // this = p
-    var p = Person('lisi', 20)  // this = window
+    var p1 = new Person()
+    var obj =  {des: 'des'}
+    Person.prototype= obj
+    var p2 = new Person()
+
+    console.log(p1.constructor);
+    console.log(p2.constructor);
+
+    console.log(p1.constructor == Person);
+    console.log(p2.constructor == obj.constructor);
+    console.log(p2.constructor == Object);
+
+    console.log(p1.des);
+    console.log(p2.des);
+
 
 </script>
-
-
 </body>
 </html>

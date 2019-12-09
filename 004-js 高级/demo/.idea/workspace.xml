@@ -36,8 +36,8 @@
       <file leaf-file-name="02-js高级(面向对象).html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/02-js高级(面向对象).html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="196" selection-end-column="9" />
+            <state relative-caret-position="418">
+              <caret line="276" column="0" selection-start-line="276" selection-start-column="0" selection-end-line="297" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -67,8 +67,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="800" />
-    <option name="y" value="73" />
+    <option name="x" value="514" />
+    <option name="y" value="23" />
     <option name="width" value="1036" />
     <option name="height" value="961" />
   </component>
@@ -199,15 +199,15 @@
       <updated>1575530553449</updated>
       <workItem from="1575530554829" duration="3264000" />
       <workItem from="1575595619817" duration="14369000" />
-      <workItem from="1575859879944" duration="6334000" />
+      <workItem from="1575859879944" duration="12939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23967000" />
+    <option name="totallyTimeSpent" value="30572000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="800" y="73" width="1036" height="961" extended-state="1" />
+    <frame x="514" y="23" width="1036" height="961" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21871921" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -270,8 +270,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/02-js高级(面向对象).html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="186" column="0" selection-start-line="186" selection-start-column="0" selection-end-line="196" selection-end-column="9" />
+        <state relative-caret-position="418">
+          <caret line="276" column="0" selection-start-line="276" selection-start-column="0" selection-end-line="297" selection-end-column="9" />
           <folding />
         </state>
       </provider>

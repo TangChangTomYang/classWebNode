@@ -1585,7 +1585,7 @@ try {
 
 
 
-## 1、 面向对象的三大特性
+## 一、 面向对象的三大特性
 
 所有的面向对象的语言都有这三大特性
 
@@ -1684,7 +1684,7 @@ try {
 
 
 
-## 2、javaScript 中创建对象的方式(4类)
+## 二、javaScript 中创建对象的方式(4类)
 
 
 
@@ -1987,4 +1987,454 @@ try {
   >
   >- `new`: 创建对象, 返回对象
   >- `构造函数`: 对 对象进行初始化设置
+
+
+
+
+
+####3、 自定义构造函数的问题
+
+虽然我们通过自定义构造函数, 可以解决`字面量对象` 和`内置构造函数`  代码冗余的问题, 解决了`工厂函数` 对象不能判断类型的问题, 但是自定义构造函数仍然有问题, 什么问题呢? 
+
+> 自定义构造函数, 多个对象内的同名函数, 各个函数是独立不同的, 造成代码冗余
+>
+> 每个对象都有一个函数, 这样内存多浪费啊
+
+```
+<script>
+    function  Person(name) {
+        this.name = name;
+        // 每个对象内都有一个新的 play 方法
+        this.play = function () {
+            console.log(this.name + '在play');
+        }
+    }
+
+    var p1 = new Person("zhagnsan")
+    var p2 = new Person("lisi")
+
+    console.log(p1.play == p2.play); // false
+
+</script>
+```
+
+> 通过自定义构造函数创建的对象, 可能会造成, 资源重复浪费的情况
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 三、 知识回顾总结
+
+1、 面向对象的三大特定
+
+​	封装: 使用对象封装(包裹)一些变量和函数
+
+​	继承: 一个类(对象)获取另外一个类(对象) 的属性和方法 (混入式继承)
+
+​	多态: 对于同一个操作, 不同的对象有不同的行为. (函数作为构造函数的参数实现)
+
+2、创建对象的方式
+
+​	字面量创建, 代码重复,冗余
+
+​	内置构造函数, 代码重复冗余
+
+​	工厂函数, 解决了代码冗余, 对象类型不能判断
+
+​	自定义构造函数, 解决了代码冗余, 对象类型判断, 但是新增了,方法冗余的问题
+
+
+
+
+
+
+
+
+
+## 四、构造函数的原型对象
+
+
+
+### 1、什么是构造函数的原型
+
+- 构造函数在创建出来的时候, 系统默认就会创建一个对象与之相关联, 这个对象就称为构造函数的原型对象
+
+  > 原型对象是系统创建的
+
+- 约定:
+
+  > - 该对象 构造函数的原型对象那个
+  > - 构造函数的原型
+  > - 构造函数的原型对象
+  > - 对象的原型对象
+  > - 对象的原型
+  >
+  > 以上几种说法, 说都都是一个意思
+
+### 2、原型对象的作用
+
+- 通过构造函数创建出来的对象, 默认就可以使用原型对象的属性和方法
+
+
+
+### 3、访问原型对象
+
+- 使用构造函数的 `prototype` 属性访问构造函数的原型对象
+
+  ```
+  <script>
+      function  Person(name) {
+          this.name = name;
+          this.play = function () {
+              console.log(this.name + '在play');
+          }
+      } 
+      // 访问构造函数的 原型对象
+      console.log(Person.prototype); 
+  </script>
+  ```
+
+
+
+### 4、设置原型对象(2种)
+
+- 原型对象的本质就是一个对象, 利用对象的动态特性设置原型对象
+- 替换原型
+
+
+
+
+
+## 五、使用原型对象解决自定义构造函数创建对象的问题
+
+- 属性 设置在构造函数内部
+
+- 方法设置在原型对象上
+
+  ```
+  <script>
+      function Person (name){
+          // 1. 属性设置在构造函数内部
+          this.name = name;
+      }
+      
+      // 2. 方法设置在构造函数的原型上
+      Person.prototype.show = function () {
+          console.log(this.name);
+      }
+      
+      var p1 = new Person('zhangsan')
+      var p2 = new Person('lisi')
+      
+      p1.show();  // zhangsan
+      p2.show();  // lisi
+  
+      console.log(p1.show == p2.show); // true   
+  </script>
+  ```
+
+  
+
+
+
+## 六、实例化和实例 
+
+
+
+- 实例化
+  - 通过构造函数创建对象的过程, 称为实例化
+
+- 实例:
+
+  - 通过构造函数创建出来的对象就是一个实例. 一般说实例时要说明是哪一个构造函数的实例
+
+    > 比如: 你可以说  xxx实例 是XXX构造函数的实例
+
+> 一句话, 实例化是一个过程, 实例是一个对象
+
+
+
+## 七、原型的使用方法
+
+
+
+### 1、 利用对象的动态特性设置原型对象
+
+- 构造函数的原型对象是构造函数创建后, 系统自动添加的对象
+
+- 只有通过构造函数才能访问原型对象, 通过构造函数的实例不能访问构造函数的原型对象, 但是通过实例对象能访问到构造函数的原型对象的属性和方法
+
+- 构造函数原型对象中的属性和方法, 只能通过构造函数修改, 不能 通过实例修改, 实例只能访问属性和方法
+
+  ```
+  <script>
+      // 利用对象的动态特性, 我们可以给构造函数的原型对象 增加 删除 修改 属性和方法
+  
+      function Person (){
+      }
+  
+  
+  
+  
+      // 1. 为构造函数的原型对象 动态增加属性和方法
+      Person.prototype.des = 'des'
+      Person.prototype.logDes = function () {
+          console.log(this.des);
+      }
+  
+      // 2. 实例化 对象, 通过对象访问构造函数的原型对象的属性和方法
+      var p1 = new Person();
+      console.log(p1.des);
+      p1.logDes();
+  
+      // 3. 修改构造函数原型对象 中的方法 和 实例
+      Person.prototype.des = '修改后的 des'
+      Person.prototype.logDes = function () {
+          console.log('修改后的' +  this.des);
+      }
+      console.log('--修改后-------');
+      console.log(p1.des);
+      p1.logDes();
+  
+  
+      // 4. 删除构造函数的原型对象中的属性和方法
+      
+      
+      delete Person.prototype.des;
+      delete Person.prototype.logDes;
+  
+      console.log('--删除后-------');
+      console.log(p1.des);
+      p1.logDes();
+  
+  
+  </script>
+  ```
+
+  >
+  >
+  >构造函数才有原型对象
+  >
+  >实例对象没有原型对象
+  >
+  >构造函数可以直接访问原型对象
+  >
+  >实例对象不能访问原型对象, 但是能访问原型对象的  属性和方法
+
+
+
+### 2、替换原型
+
+1、 为甚么我们要有替换原型的需求呢? 
+
+如下代码段, 当我们要个构造函数的原型添加很多的属性和方式时, 每次都要一个个的添加太麻烦而且容易出错
+
+```
+<script>
+    function Person(){
+        
+    }
+    Person.prototype.des = 'des'
+    Person.prototype.test = 'test'
+    Person.prototype.log = 'log'
+    // 一直这样写下去, 好繁琐
+</script>
+```
+
+- 原型替换示例
+
+  > 替换原型的使用场合:
+  >
+  > 需要设置的属性 和 方法很多时, 通常我们会使用原型替换
+
+  ```
+  // 自定义构造函数
+  function Person (){
+  }
+  
+  // 自定义对象
+  var obj = {
+  	des: 'des',
+  	test: 'test',
+  	log: 'log'
+  }
+  
+  // 替换原型
+  Person.prototype = obj
+  ```
+
+  
+
+
+
+### 3、替换原型的注意点
+
+- **修改** 原型前和修改原型后, 创建的实例对象的对比
+
+  ```
+  <script>
+      function Person() {
+  
+      }
+  
+      var p1 = new Person()
+      // 修改原型对象
+      Person.prototype.des = 'des'
+      var p2 = new Person()
+  
+      console.log(p1.des);  // des
+      console.log(p2.des);  // des
+      
+      console.log(p1.constructor == p2.constructor); // true
+  
+  </script>
+  ```
+
+  > 修改原型前后修改原型后, 不同实例对象访问的原型对象是同一个
+
+  
+
+- **替换** 构造函数的原型对象之前和之后, 原型对象不是同一个
+
+  ```
+  <script>
+      function Person() {
+  
+      }
+  
+      var p1 = new Person()
+      // 替换原型对象
+      Person.prototype= {
+      	des:'des'
+      }
+      var p2 = new Person()
+  
+      console.log(p1.des);  // undefine
+      console.log(p2.des);  // des
+      
+      // 当访问对象的 constructor 属性时, 真实是访问的是原型对象的constructor属性
+      console.log(p1.constructor == p2.constructor); // false
+  
+  </script>
+  ```
+
+  > 替换原型之前和替换原型之后, 不同的对象访问的不是同一个原型对象
+
+
+
+- 结论: 
+
+  > 为了不引起意向不到的错误
+  >
+  > - 尽量避免, 创建对象后替换原型对象
+  > - 原型对象的替换, 尽可能在创建对象之前
+
+
+
+### 4、对象的constructor 属性
+
+- 当我们在访问一个 对象的`construtor` 属性时, 默认访问的其实是其内部原型的 `constructor` 属性
+
+- 当一个构造函数的`prototype` 原型对象是默认的原型对象时(即, 没有替换过构造函数的原型对象), 原型对象的`construtor` 指向的就是构造函数本身
+
+- 当一个构造函数的`prototype` 原型对象被替换过, 那么对象的`constructor` 指向的就是, 替换的原型对象的`constructor` 对象
+
+  ```
+  <script>
+      function Person() {
+  
+      }
+  
+      var p1 = new Person() 
+      var obj =  {des: 'des'}
+      Person.prototype= obj
+      var p2 = new Person()
+   
+      console.log(p1.constructor);
+      console.log(p2.constructor);
+   
+      console.log(p1.constructor == Person);
+      console.log(p2.constructor == obj.constructor);
+  
+  
+  </script>
+  ```
+
+  ![Snip20191209_3](Snip20191209_5.png)  
+
+  
+
+  ![Snip20191209_4](Snip20191209_4.png) 
+
+  > 一句话, 默认的原型对象有`constructor` 属性, 就是构造函数本身.
+  >
+  > 替换原型对象后的`construtor` 属性, 通过替换原型对象一层层的找.
+  >
+  > 对象没有`constructor` 属性, 通过原型对象层层的找
+
+
+
+#### 1 、替换原型对象后, 我们要修正 `constructor` 属性
+
+
+
+```
+<script>
+    function Person() {
+
+    }
+
+    var p1 = new Person()
+    //替换原型对象后, 手动修正 `constructor` 属性
+    var obj =  {
+    			des: 'des',
+			    constructor:Person}
+    Person.prototype= obj
+    var p2 = new Person()
+
+    console.log(p1.constructor);
+    console.log(p2.constructor);
+
+    console.log(p1.constructor == p2.constructor);  // true
+
+</script>
+```
+
+
+
+
+
+### 5、 构造器属性
+
+- 构造器属性, 指向对象的构造函数
+
+  ```
+  <script>
+      function Person() {
+  
+      } 
+      var p1 = new Person() 
+      console.log(p1.constructor);  // Person
+  
+  </script>
+  ```
+
+  > 访问对象的构造器属性, 其实访问的是原型对象的构造器属性
+
+
+
+
+
+###6、使用原型的注意点
 
