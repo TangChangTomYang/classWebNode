@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+
+
+    <!--var name = "一出好戏"-->
+    <!--var actors = ['黄渤', '王宝强', '王迅']-->
+    <!--var type = "喜剧"-->
+    <!--var showTime = "2018"-->
+    <!--var play = function () {-->
+        <!--console.log('播放一出好戏');-->
+    <!--}-->
+
+    <!--// 下面的就是封装-->
+
+    <!--var film = {-->
+        <!--name: "一出好戏",-->
+        <!--actors: ['黄渤', '王宝强', '王迅'],-->
+        <!--type: "喜剧",-->
+        <!--showTime: "2018",-->
+        <!--play: function () {-->
+            <!--console.log('播放一出好戏');-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var obj1 = {-->
+        <!--name : "张三",-->
+        <!--age: 18,-->
+        <!--des:"姓名:张三, 年龄:18"-->
+    <!--}-->
+    <!--var obj2 = {};-->
+    <!--// obj2 想要获取obj1 的属性和方法-->
+    <!--// 属性拷贝 (混入式继承)-->
+    <!--for (var key in  obj1){-->
+        <!--obj2[key] = obj1[key];-->
+    <!--}-->
+
+    <!--console.log(obj2);-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var obj = {-->
+        <!--name: "zhangsan",-->
+        <!--age:18,-->
+        <!--paly:function () {-->
+            <!--console.log("玩耍");-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var stu1 = new Object(); // 等价于  var stu = {}-->
+    <!--stu1.name = "zhangsan";-->
+    <!--stu1.age = 18-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--// 提供一个函数把创建对象的过程封装起来-->
+    <!--function  createStu(name, age) {-->
+        <!--var obj = new Object();-->
+        <!--obj.name = name;-->
+        <!--obj.age = age;-->
+        <!--study = function () {-->
+            <!--console.log(this.name);-->
+        <!--}-->
+        <!--return obj;-->
+    <!--}-->
+
+    <!--function  createDog(name, age) {-->
+        <!--var obj = new Object();-->
+        <!--obj.name = name;-->
+        <!--obj.age = age;-->
+        <!--run = function () {-->
+            <!--console.log(this.name + '在跑' );-->
+        <!--}-->
+        <!--return obj;-->
+    <!--}-->
+
+    <!--var s1 = createStu('张三', 18)-->
+    <!--var d1 = createDog('wangcai', 1)-->
+    <!--console.log(s1);-->
+    <!--console.log(d1);-->
+
+
+    <!--console.log(typeof s1); //object-->
+    <!--console.log(typeof d1); //object-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function  Person(name, age) {-->
+        <!--// 通过this给狗仔函数设置属性 和 方法-->
+        <!--this.name = name;-->
+        <!--this.age = age;-->
+        <!--this.des = function () {-->
+            <!--console.log("姓名:" + this.name + ",年龄: " + this.age);-->
+        <!--}-->
+        <!--// 构造函数内不需要调用 return-->
+    <!--}-->
+
+    <!--var p1 = new Person('zhangsan', 18)-->
+    <!--var p2 = new Person('lisi', 19)-->
+    <!--console.log(p1);-->
+    <!--console.log(p2);-->
+
+    <!--console.log(typeof  p1);-->
+    <!--console.log(typeof  p2);-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 函数作为构造函数的参数-->
+    <!--// 体现javaScript 的多态特性-->
+    <!--function  Person(name, age, show) {-->
+        <!--this.name  = name;-->
+        <!--this.age = age;-->
+        <!--this.show = show;-->
+    <!--}-->
+
+    <!--var p1 = new Person('zhagnsan', 18, function () {-->
+        <!--console.log(this.name);-->
+    <!--})-->
+
+    <!--var p2 = new Person('lisi', 20, function () {-->
+        <!--console.log(this.age);-->
+    <!--})-->
+
+    <!--// javaScript 的多态特性-->
+    <!--p1.show();  // zhangsan-->
+    <!--p2.show();  // 20-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(name, age){-->
+        <!--this.name = name-->
+        <!--this.age = age-->
+    <!--}-->
+
+    <!--function Dog(name, age){-->
+        <!--this.name = name-->
+        <!--this.age = age-->
+    <!--}-->
+
+    <!--var p1 = new Person('zhagnsan', 18)-->
+    <!--var d1 = new Dog('wangcai', 2)-->
+
+    <!--console.log(typeof p1);-->
+    <!--console.log(typeof d1);-->
+    <!--console.log(p1 instanceof Person);-->
+    <!--console.log(p1 instanceof Dog);-->
+    <!--console.log(d1 instanceof Dog);-->
+    <!--console.log(d1 instanceof Person);-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--function Person(name, age){-->
+        <!--this.name = name-->
+        <!--this.age = age-->
+    <!--}-->
+
+    <!--var p = new Person('zhangsan', 18)-->
+    <!--console.log(p.constructor);-->
+
+    <!--var obj = {}-->
+    <!--console.log(obj.constructor);-->
+
+<!--</script>-->
+
+
+<script>
+    function Person(name, age){
+        console.log(this);
+        this.name = name
+        this.age = age
+    }
+
+    var p = new Person('zhangsan', 18)    // this = p
+    var p = Person('lisi', 20)  // this = window
+
+</script>
+
+
+</body>
+</html>

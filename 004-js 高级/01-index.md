@@ -218,7 +218,7 @@ fn()
 
 
 
-# javaScript 高级
+# javaScript 高级(js入门介绍)
 
 快捷键
 
@@ -299,19 +299,36 @@ window.open('https://baidu.com'); // 打开百度页面
 
 ### 3、 判断数据类型
 
-#### 1、判断数据类型的方法
+#### 1、判断数据类型的方法(2种情况)
 
- 我们通过关键字 **typeof** 判断一个变量 或者一个数据的数据类型, 其语法格式如下:
+-  关键字 **typeof**  获取一个变量 或者一个数据的数据类型(返回值是string), 其语法格式如下:
 
-```
-typeof 变量\数据
-```
+  ```
+  // 格式: 
+  typeof 变量\数据
+  // 示例:
+  console.log(typeof "abc"); // 获取 "abc" 的数据类型
+  ```
 
-> typeof 判断返回的值的类型是 `string` 基本数据类型
+  > typeof 判断返回的值的类型是 `string` 基本数据类型
+
+- 关键字 **instanceof** 判断一个数据是否是某个类型(返回值是 布尔)
+
+  ```
+  // 格式: 
+  nl instanceof type;
+  
+  // 示例:
+  console.log(@"abc" instanceof string); // true
+  ```
+
+  
 
 
 
 #### 2、基本数据类型的判断 (有坑)
+
+> null 是基本数据类型, 但是通过 typeof 判断出的结果却是 object 类型, 这是官方承认的错误
 
 ```
 <script>
@@ -345,7 +362,7 @@ typeof 变量\数据
 
 ![Snip20191206_2](Snip20191206_2.png) 
 
-#### 3、复杂数据类型的判断
+#### 3、复杂数据类型的判断(有坑)
 
 ```
 <script>
@@ -374,7 +391,7 @@ typeof 变量\数据
 
 
 
-### 1、等于和全等说明
+### 1、等于(==)和全等(===)说明
 
 - 赋值号: `=` 
 
@@ -830,7 +847,7 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 
 
 
-## 八、关键字
+## 八、关键字- in、delete
 
 
 
@@ -843,7 +860,7 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 
 
 
-### 2、  in 关键字 具体使用
+### 2、 in 关键字 具体使用(有坑)
 
 #### 1、for … in... 遍历对象中所有的key(属性名)
 
@@ -907,6 +924,7 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 >
 > - `key in obj` 在操作` (key - value) 的对象`时, 判断的是 obj 这个对象中是否存在名字为 key 的属性, `key` 必须是字符串, `obj` 必须是一个 `{name: value}` 的对象
 > - `key in obj` 只判断对象中是否有这个名字的属性, 与具体的属性值是`null` 或 `undefined` 无关
+> - 返回值是boolean
 
 
 
@@ -917,8 +935,8 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 
 
 > - 通过 `index in array` 判断数组中指定索引位置是否有值, index 只能是正数
->
-> - 只要索引 `index` 对应的位置有值, 不论是`undefined`  还是`null` 还是其它都为 true, 只有该位置的元素被删除了或根本没元素才为 false
+>- 只要索引 `index` 对应的位置有值, 不论是`undefined`  还是`null` 还是其它都为 true, 只有该位置的元素被删除了或根本没元素才为 false
+> - 返回值是boolean
 
 ```
 <script> 
@@ -954,7 +972,7 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 
 
 
-#### 1、 delete 关键字删除对象某个属性
+#### 1、delete 关键字删除对象某个属性
 
 ```
 <script>
@@ -994,6 +1012,7 @@ js中的对象, 既可以使用点语法`.`访问属性, 也可以使用方括�
 > - 未使用 var 声明的变量被delete 关键字删除掉后再次被访问会直接报错
 > - 访问使用 delete关键字删除掉的对象属性时, 返回值是undefined
 > - 有返回值, 是布尔类型, 删除成功 true , 删除失败 false 
+> - 使用 delete 删除 不存在的属性, 返回值也是true
 
 
 
@@ -1297,7 +1316,7 @@ try {
 
 
 
-#### 1、声明函数
+#### 1、方式一(声明函数)
 
 - 使用function 关键字声明函数
 
@@ -1320,7 +1339,7 @@ try {
   </script>
   ```
 
-#### 2、函数表达式(方式)
+#### 2、方式二(函数表达式)
 
 - 函数表达式 创键函数
 
@@ -1339,7 +1358,7 @@ try {
   </script>
   ```
 
-#### 3、使用Function 构造函数, 创建函数
+#### 3、方式三(使用Function 构造函数, 创建函数) 
 
 - Function 构造函数 
 
@@ -1412,5 +1431,560 @@ try {
 
 
 
+## 十五、面向对象编程的相关概念
 
+ 
+
+
+
+1. 什么是对象?
+
+   什么都是对象, 万物皆对象
+
+   一般的对象指的是具体的事物
+
+2. 静态的描述信息
+
+   姓名/ 性别/ 身高/ 头发颜色
+
+3. 动态的行为特征
+
+   睡觉/ 吃饭/ 打游戏
+
+4. 现实生活中的对象 和  js中的对象
+
+   静态的描述信息  <---> 属性 (定义在对象中的变量)
+
+   动态的行为特征 <—> 方法 (定义在对象中的函数)
+
+
+
+
+
+## 十六、前面知识复习
+
+
+
+1、JS 组成: DOM、BOM、ESMAJavaScript
+
+2、数据类型:
+
+​	基本数据类型: string number boolean null undefined
+
+​	复杂数据类型: object Array Function Number String Boolean Date ...
+
+3、获取数据类型: typeof
+
+​	typeof null —> object
+
+​	typeof 函数 —> function
+
+​	返回值是 boolean
+
+4、 判断数据类型 instanceof
+
+​	"abc" instanceof string  —> true
+
+5、
+
+​	等于==, 判断值
+
+​	全等===, 判断值 和 类型
+
+6、 逻辑运算
+
+​	逻辑非 (!),  !表达式  —> 取反, 结果为boolean
+
+​	逻辑或(||), 短路或
+
+​		表达式1 || 表达式2, 表达式1为true,返回表达式1, 否则返回表达式2
+
+​	逻辑与(&&), 短路与
+
+​		表达式1 && 表达式2, 表达式1为false, 返回表达式1, 否则返回表达式2
+
+7、 
+
+​	值类型: 基本数据类型
+
+​	引用类型: 复杂数据类型
+
+​	区别: 存储的信息不一样, 值类型存储的是值, 引用类型存储的是地址
+
+​	
+
+​	值类型的赋值, 简单的数据复制, 相互独立不影响
+
+​	引用类型赋值: 引用地址复制, 会共用一份数据, 相互关联影响
+
+
+
+8、函数调用
+
+​	默认把实参的数据复制给形参
+
+​	值类型作为函数参数: 实参和形参是独立的
+
+​	引用类型作为函数的参数: 实参和形参共用一份数据
+
+9、对象的动态特定
+
+​	可以为已经创建好的对象, 增加、 删除、 修改属性
+
+10、 属性的访问
+
+​	点语法
+
+​	[]语法
+
+​	点语法和[]语法基本用法差不多, 只是在使用场景上有差异
+
+11、关键字 in
+
+ 	for … in,遍历所有的属性名,通过属性名只能使用[]语法访问属性
+
+​	 判断对象{}是否有对应名字的属性, 属性名 in obj
+
+​	 判断数组指定缩影是否有值, index in arr
+
+​	 返回值是 boolean
+
+12、
+
+​	 删除对象的某个属性, delete 对象.属性 或者 delete 对象[属性名]
+
+​	delete 可以直接删除未使用 var 声明的变量
+
+​	不能删除使用var 声明的属性, 但是可以使用 delete window.属性
+
+​	返回值是boolean
+
+​	使用delete 删除根本不存在的属性, 返回值也是true
+
+13、异常处理
+
+​	try{// 写可能异常的代码}catch(e){// 异常发生会来这里}finally{// 无论有误异常都会执行这句}
+
+ 	异常的处理,就是为了保证程序发生异常后仍然执行, 而不是终止执行
+
+​	finally{} 块的目的是释放一些资源
+
+
+
+
+
+
+
+
+
+
+
+# javaScript 高级 (面向对象)
+
+
+
+
+
+## 1、 面向对象的三大特性
+
+所有的面向对象的语言都有这三大特性
+
+- 封装
+- 继承
+- 多态
+
+
+
+### 1、javaScript 中的封装
+
+-  在js封装的实现, 就是使用一个对象把一些`变量`和`函数` 包裹起来, 就称为**封装**  
+
+- 封装的作用: 提高代码的复用性, 便于代码维护, 隐藏细节
+
+  ```
+  <script> 
+      var name = "一出好戏"
+      var actors = ['黄渤', '王宝强', '王迅']
+      var type = "喜剧"
+      var showTime = "2018"
+      var play = function () {
+          console.log('播放一出好戏');
+      }
+  
+      // 下面操作就是对上面的封装
+  
+      var film = {
+          name: "一出好戏",
+          actors: ['黄渤', '王宝强', '王迅'],
+          type: "喜剧",
+          showTime: "2018",
+          play: function () {
+              console.log('播放一出好戏');
+          }
+      }
+  </script>
+  ```
+
+
+
+### 2、javaScript中的继承
+
+- 程序中的继承: 
+
+  - 一个类(对象)获取另外一个类(对象)的属性和方法
+
+    >面向对象语言的一个判断重要判断依据: 有没有类的概念
+    >
+    >- 一般来说我们根据一个语言有没有类的概念来判断它是不是面向对象的语言, 比如: (C++, Java, OC…) 这几个语言都是有累的概念, 因此我们称他们是面向对象的语言.  但是传统的javaScript 语言它并没有类的概念, 从这个角度来说的话, 你可以说javaScript不是面向对象的语言. 因为它没有类的概念.  但是javaScript 它有真实的 `封装` `继承` 和 `多态` 的概念(面向对象的三大特性), 从面向对象三大特性来说javaScript 又是面向对象的语言, 所以说看一个问题,要看你从哪个角度去看, 不同的角度有不同的结果
+    >
+    >因此,我们说 javaScript 是面向对象的语言 (有三大特性)
+
+  - 属性拷贝继承 (混入式继承)
+
+    ```
+    <script> 
+        var obj1 = {
+            name : "张三",
+            age: 18,
+            des:"姓名:张三, 年龄:18"
+        }
+        var obj2 = {};
+        // obj2 想要获取obj1 的属性和方法
+        // 属性拷贝 (混入式继承)
+        for (var key in  obj1){
+            obj2[key] = obj1[key];
+        } 
+        console.log(obj2);
+    </script>
+    ```
+
+    
+
+  
+
+
+
+### 3、javaScript 中的多态
+
+- 多态:
+
+  - 对于同一个操作, 不同的对象有不同的行为
+
+  - JS 天生就具备多态的特性(弱类型语言)
+
+    > javaScript 是弱类型语言
+    >
+    > 具体javaScript 中的多态是什么, 我们在讲函数传参的时候就明白了
+
+
+
+
+
+
+
+
+
+## 2、javaScript 中创建对象的方式(4类)
+
+
+
+### 1、字面量方式创建对象(代码冗余,无法区分类型)
+
+- 字面量创建对象 (json对象)
+
+  > 特点: 创建好的对象,无法附庸, 有大量的重复代码 (代码冗余度过高) 
+  >
+  > 只需要创建简单的对象是, 很快捷
+
+  ```
+  <script> 
+      var obj = {
+          name: "zhangsan",
+          age:18,
+          paly:function () {
+              console.log("玩耍");
+          }
+      }
+  </script>
+  ```
+
+  
+
+ 
+
+### 2、内置的构造函数创建对象(代码冗余,无法区分类型)
+
+- 什么是内置构造函数?
+
+  > 所谓的内置构造函数就是说, 这个构造函数是系统提供的, 不是你自己写的.  有代表性的内置构造函数如下:
+  >
+  > `Object` `Array` `Date` `Function` `String` `Number` `Boolean` 
+
+- 使用内置构造函数创建对象 (示例)
+
+  > 内置构造函数和字面量创建对象的特点都差不多, 代码无法复用
+
+  ```
+  <script> 
+      var stu1 = new Object(); // 等价于  var stu = {}
+      stu1.name = "zhangsan";
+      stu1.age = 18
+  </script>
+  ```
+
+   
+
+### 3、 简单的工厂函数创建对象(无法区分类型)
+
+- 提供一个函数把创建对象的过程封装起来
+
+  > 解决 了 `字面量创建对象 和 内置构造函数创建对象` 代码无法复用的代码
+
+  ```
+  <script>
+      // 提供一个函数把创建对象的过程封装起来
+       function  createStu(name, age) {
+           var obj = new Object();
+           obj.name = name;
+           obj.age = age;
+           study = function () {
+               console.log(this.name);
+           }
+           return obj;
+       }
+       
+        function  createDog(name, age) {
+           var obj = new Object();
+           obj.name = name;
+           obj.age = age;
+           run = function () {
+               console.log(this.name + '在跑' );
+           }
+           return obj;
+       }
+  
+       var s1 = createStu('张三', 18)
+       var d1 = createDog('wangcai', 1)
+       console.log(s1);
+       console.log(d1);
+       
+       
+       console.log(typeof s1); //object
+       console.log(typeof d1); //object
+  </script>
+  ```
+
+  ![Snip20191209_1](Snip20191209_1.png) 
+
+  > 简单工厂函数创建对象的方式, 虽然解决了代码复用性的问题, 但是依然引入了一个问题:
+  >
+  > 通过简单工厂函数方式创建的不同的对象都是一个类型 (object)类型, 无法更详细的判断详细类型(人 狗 不分), 在以后的开发中, 我们无法根据具体的类型来做对应的事情
+
+​		
+
+
+
+
+
+### 4、 自定义构造函数创建对象(有坑)(重点)
+
+- 提供一个构造函数(自己写的) 
+
+  > 构造函数首字母大写(规范) 
+  >
+  > 构造函数内不需要使用return
+
+- 通过`this`设置对象的属性和方法
+
+- 使用`new`构造函数创建对象 
+
+  ```
+  <script>
+      function  Person(name, age) {
+          // 通过this给狗仔函数设置属性 和 方法
+          this.name = name;
+          this.age = age;
+          this.des = function () {
+              console.log("姓名:" + this.name + ",年龄: " + this.age);
+          } 
+          // 构造函数内不需要调用 return
+      }
+  
+      var p1 = new Person('zhangsan', 18)
+      var p2 = new Person('lisi', 19)
+      console.log(p1);
+      console.log(p2);
+  
+      console.log(typeof  p1);
+      console.log(typeof  p2); 
+  </script>
+  ```
+
+  - 自定义构造函数和工厂函数的区别
+
+    - 首字母大写
+
+    - 需要使用new 关键字 调用构造函数 (工厂函数不需要)
+
+    - 默认会自动创建一个对象, 不需要手动创建 (工厂函数需要)
+
+    - 默认会自动返回这个对象 (工厂函数需要手动返回)
+
+      - 如果主动使用return 返回简单的数据类型会被忽略, 还是默认返回的构造对象
+
+        ```
+        function  Person(name, age) {
+          // 通过this给狗仔函数设置属性 和 方法
+          this.name = name;
+          this.age = age; 
+          // 返回的任然是 Person
+          return "abc";
+        }
+        ```
+
+      - 如果主动使用return 返回复杂数据类型, 那么默认返回的构造对象会被覆盖
+
+        ```
+        function  Person(name, age) {
+          // 通过this给狗仔函数设置属性 和 方法
+          this.name = name;
+          this.age = age; 
+          // 返回的任然是 [1,2,3]
+          return [1,2,3];
+        }
+        ```
+
+        
+
+
+
+#### 1 、自动一构造函数注意项1(函数传值&对象类型&构造器属性)
+
+
+
+##### 1、函数传值 (多态特性)
+
+- 把一个函数作为构造函数的参数
+
+  > 这也就体现了 javaScript 的多态特性 (不同的对象, 调用同一个方法. 表现出不同的结果)
+  >
+  > 这就是为什么我们说, javaScript 天生就具备多态特性
+
+  ```
+  <script>
+      // 函数作为构造函数的参数 
+      // 体现javaScript 的多态特性
+      function  Person(name, age, show) {
+          this.name  = name;
+          this.age = age;
+          this.show = show;
+      }
+      
+      var p1 = new Person('zhagnsan', 18, function () {
+          console.log(this.name);
+      })
+      
+      var p2 = new Person('lisi', 20, function () {
+          console.log(this.age);
+      })
+      
+      // javaScript 的多态特性
+      p1.show();  // zhangsan
+      p2.show();  // 20
+  </script>
+  ```
+
+  
+
+##### 2、判断对象的类型
+
+- 通过 `对象  instanceof  构造函数` 可以判断对象是否是通过指定构造函数创建出来的
+
+  > 注意:
+  >
+  > 虽然通过`对象  instanceof  构造函数`可以判断,某个对象是否是通过指定构造函数创建出来的
+  >
+  > 但是, 通过 `typeof 对象` 获取到的仍然是 `object` 类型
+
+  ```
+  <script>
+      function Person(name, age){
+          this.name = name
+          this.age = age
+      }
+  
+      function Dog(name, age){
+          this.name = name
+          this.age = age
+      }
+  
+      var p1 = new Person('zhagnsan', 18)
+      var d1 = new Dog('wangcai', 2)
+  
+      console.log(typeof p1);	//object
+      console.log(typeof d1); //object
+      
+      console.log(p1 instanceof Person);  // true
+      console.log(p1 instanceof Dog);			// false
+      
+      console.log(d1 instanceof Dog);			// true
+      console.log(d1 instanceof Person);	// false
+  
+  </script>
+  ```
+
+
+
+##### 3、获取对象的类型 (构造器属性) 
+
+- 对象有一个`constructor` 属性, 可以获取它的构造函数
+
+  ```
+  <script>
+      function Person(name, age){
+          this.name = name
+          this.age = age
+      }
+  
+      var p = new Person('zhangsan', 18)
+      console.log(p.constructor);
+  
+      var obj = {}
+      console.log(obj.constructor);
+  
+  </script>
+  ```
+
+  ![Snip20191209_2](Snip20191209_2.png) 
+
+
+
+
+
+#### 2、构造函数注意事项2(函数调用 & this)
+
+- 通过new 去调用构造函数时, 构造函数的 `this` 就是新创建的对象
+
+- 直接调用构造函数`(不使用new 调用)`, 构造函数内部是不会创建对象的, 此时, 构造函数内的`this`为`window`
+
+  ```
+  <script>
+      function Person(name, age){
+          console.log(this);
+          this.name = name
+          this.age = age
+      }
+  
+      var p = new Person('zhangsan', 18)    // this = p
+      // 不建议这样直接调用构造函数, 因为此时的this代表的是window
+      // 可能就不小心修改了window的属性和方法了, 可能会出现误操作
+      var p = Person('lisi', 20)  // this = window
+  
+  </script>
+  ```
+
+  >其实哈, `new` 和构造函数是有分工的.
+  >
+  >- `new`: 创建对象, 返回对象
+  >- `构造函数`: 对 对象进行初始化设置
 
