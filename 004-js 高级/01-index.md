@@ -230,7 +230,28 @@ fn()
   }
   ```
 
-  
+
+# 问题:
+
+1、面向对象的三大特性, 分别说明
+
+2、为什么要使用面向对象编程
+
+3、构造函数和原型对象的关系
+
+4、说明自定义构造函数的执行过程
+
+5、面向对象和面向过程的区别
+
+6、构造函数的原型对象的作用
+
+7、如何获取构造函数的原型对象
+
+8、简单介绍 创建对象的几种方式, 并说明优缺点
+
+9、说明实例和实例化
+
+10、请画出下面代码的结构关系图 (包含__proto__ 和 constructor)
 
 
 
@@ -2114,6 +2135,28 @@ try {
 
 
 
+### 3、__proto__ 属性
+
+- 我们可以通过一个构造函数的`prototype`属性, 获取构造函数的原型对象
+- 我们也可以通过构造函数的实例化对象的`__proto__` 属性, 获取构造函数的原型对象
+- `.prototype` 和 `.__proto__` 这两种方式获取到的原型对象是同一个对象
+
+```
+<script>
+    function Person(){
+
+        }
+    var p = new Person()
+    console.log(Person.prototype);
+    console.log(p.__proto__); 
+    
+    console.log(Person.prototype == p.__proto__); // true
+    console.log(Person.prototype === p.__proto__); // true
+</script>
+```
+
+
+
 
 
 ## 五、使用原型对象解决自定义构造函数创建对象的问题
@@ -2153,8 +2196,9 @@ try {
 
 
 - 实例化
-  - 通过构造函数创建对象的过程, 称为实例化
-
+  
+- 通过构造函数创建对象的过程, 称为实例化
+  
 - 实例:
 
   - 通过构造函数创建出来的对象就是一个实例. 一般说实例时要说明是哪一个构造函数的实例
@@ -2436,5 +2480,761 @@ try {
 
 
 
+
+
+
+
+
+
 ###6、使用原型的注意点
 
+
+
+#### 1、访问原型对象的属性和方法注意点
+
+
+
+```
+<script>
+    function Person() {
+
+    }
+
+    Person.prototype.des = 'des';
+    var p = new Person();
+    console.log(p.des);	// des
+    console.log(Person.prototype.des); // des
+ 
+</script>
+```
+
+- 访问原型对象的属性和方法
+
+  - 可以通过 `对象.属性` 或`对象.方法()`  访问
+  - 可以通过 `构造函数.prototype.属性` 或 `构造函数.prototype.方法()` 访问
+
+- 属性和方法的访问原则
+
+  - 通过`对象.属性` 或 `对象.方法()` 访问属性或方法时, 首先会查找对象自己有没有这个`属性` 或`方法`, 如果有就直接使用.
+
+    如果没有就找原型对象的属性 或者 方法, 如果找到就使用.
+
+    如果没有找到就返回`undefined`(属性) 或者`报错` (方法)
+
+    
+
+#### 2、设置原型属性和方法注意点(坑)
+
+
+
+##### 坑点1
+
+
+
+```
+<script>
+    function Person() {
+
+    }
+
+    Person.prototype.des = 'des';
+    var p = new Person();
+    p.des = 'abc'
+    
+    console.log(p.des);	// abc
+    console.log(Person.prototype.des); // des
+
+</script>
+```
+
+- 通过 `对象.属性` 或 `对象.函数` 设置属性和方法时,如果该对象不存在这个属性或者方法就给该对象添加属性或者方法, 如果有就修改
+
+  >  换句话说, 通过`对象.属性` 或` 对象.方法` 是不能影响到 原型对象中的属性和方法的  
+
+- 如果要改变原型对象中的`属性` 和`函数` 时, 只能通过`构造函数.prototype.属性` 或者 `构造函数.prototype.函数` 来修改, 或者通过原型替换来修改.
+
+  
+
+
+
+##### 坑点2
+
+```
+<script>
+    function Person() {
+
+    }
+
+    Person.prototype.dog= {
+    	name:'旺财',
+    	color:'白色'
+    };
+    var p = new Person();
+    p.dog.name = '小旺财'
+    
+    console.log(p.dog.name);	// '小旺财'
+    console.log(Person.prototype.des); // '小旺财'
+
+</script>
+```
+
+- 通过`对象.属性` 或者 `对象.函数` 不能直接影响修改到原型内的属性和函数
+
+- 但是, 通过`对象.属性.属性` 或者 `对象.属性.函数`  可以修改到到原型对象内的属性和方法
+
+  > 这就像我定义一个 const 的对象一样, 我不能修改这个对象, 但是我可以修改对象内的属性和方法
+
+
+
+
+
+
+
+### 7、hasOwnProperty 属性
+
+- 判断对象是否存在指定的属性
+
+  - 格式: `对象.hasOwnproperty('属性名')`
+
+  > 以前学过, 通过关键字 **in**  也可以判断 某个对象是否有某个属性
+  >
+  > 格式: `var  exists = '属性名' in 对象`
+
+  ```
+  <script>
+      function Person(name) {
+          this.name = name
+      } 
+      
+      Person.prototype.des = 'des';
+      var p = new Person('zhangsan'); 
+      
+      console.log('name' in p);       // true
+      console.log(p.hasOwnProperty('name')); // true 
+      
+      console.log('des' in p); // true
+      console.log(p.hasOwnProperty('des')); // false 
+  </script>
+  
+  ```
+
+  - 不管是自己的还是原型的属性, 通过 关键字`in`  , 返回结果都为 true
+  - 通过`hasOwnProperty` 只检查对象的属性, 不检查原型
+
+
+
+- 判断一个属性是否是原型属性
+  - 对象有属性 `属性名  in  对象 == true` 
+  - 对象自己没有这个属性`对象.hasOwnProperty(属性名) == false`
+
+
+
+
+
+### 8、isPrototypeof 属性
+
+- `isPropertyOf` 判断一个对象, 是否是指定对象的原型对象
+
+- `instanceof` 判断一个对象是否是指定构造函数的实例对象
+
+  ```
+  <script>
+      function Person() {
+      }
+  
+      var obj = {
+          name:'zhangsan'
+      }
+      Person.prototype = obj;
+      var p = new Person('zhangsan');
+  
+  		// 判断对象 obj  是否是 p 的原型对象
+      console.log(obj.isPrototypeOf(p));  // true
+  		// 判断对象 p 是否是 构造函数 Person 的实例
+      console.log(p instanceof Person);		// true
+  
+  </script>
+  ```
+
+
+
+
+
+
+
+
+
+
+
+# javaScript 继承
+
+
+
+## 一、javaScript 继承的实现
+
+### 1、javaScript  中实现继承的主要方式(7种)
+
+- 属性拷贝(混入式继承)
+- 原型是继承
+
+- 原型链继承
+- Object.create()
+- 借用构造函数继承
+- 组合继承
+- 完全拷贝
+
+> 在javaScript 中继承有很多中, 我们这里重点介绍这7种
+
+
+
+### 2、属性拷贝继承 (混入式继承)
+
+- 实现方式2种:  `for … in ` 拷贝属性 和 `Object.assign() `函数 拷贝 
+  - 方式1:  `for … in ` 拷贝属性继承
+
+    ```
+     var obj1 = {
+            name: 'zhangsan',
+            age: 18,
+            friend: ['王五', '赵六']
+        }
+    
+        var obj2 = {}
+        // 1. 属性拷贝 (obj2可以获取到obj1 所有的属性和方法)
+        for (var key in obj1){
+            obj2[key] = obj1[key]
+        }
+        console.log(obj2);
+    
+        obj2.friend.push('老王');
+        console.log(obj2.friend); // ['王五', '赵六', '老王']
+        console.log(obj1.friend); // ['王五', '赵六', '老王']
+        // 这种继承的特点:
+        // 如果属性是引用类型的数据, 那么子对象和父对象会共用一分数据, 修改其中一个会影响另外一个
+    ```
+
+    
+
+  - 方式2: `函数` 拷贝继承 (ES6 中才支持这种方式)
+
+    ```
+      var obj1 = {
+        name: 'zhangsan',
+        age: 18,
+        friend: ['王五', '赵六']
+      } 
+      var obj2 = {}
+      // 函数拷贝, 将所属性拷贝给另外一个对象
+      // 参数1, 目标对象
+      // 参数2, 源对象
+      Object.assign(obj2, obj1)
+      console.log(obj2);
+    ```
+
+    > 方式2和方式1 本质上是一样的, 只是方式2是利用系统的 `Object.assign(target, source)` 帮助我们拷贝, 不用手动 for in 拷贝而已
+    >
+    > 补充:
+    >
+    > Object.assign() 这个方法可以同时拷贝多个对象的属性到 一个方法中
+    >
+    > eg: `Object.assign(target, source1, source2 …)`
+
+- 缺点:
+
+  > 如果属性是引用类型的数据, 那么子对象和父对象会共用一分数据, 修改其中一个会影响另外一个
+
+
+
+
+
+
+
+### 3、原型式继承(替换原型对象)
+
+- 使用父构造函数的原型对象替换子构造函数的原型对象, 我们称为原型式继承
+
+  > 原型式继承的特点:
+  >
+  > - 子构造函数自能继承父构造函数的原型对象的属性和方法
+  > - 无法修改子对象的构造器(如果修改了父构造器也会相应的改变)
+
+```
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age = 18
+    }
+    Person.prototype.des = 'des'
+
+    function  Stu(){
+    }
+
+    // 原型式继承: 设置自构造函数的原型对象为父构造函数的原型对象
+    Stu.prototype = Person.prototype;
+    // 修改子类的原型对象的构造函数
+    Stu.prototype.constructor = Stu;
+
+
+    var s1 = new Stu();
+    console.log(s1.name);   // undefined
+    console.log(s1.age);    // undefined
+    console.log(s1.des);    // des
+
+		// 访问对象的构造器, 默认访问的是原型对象的构造器
+    console.log(s1.constructor);    // Stu
+    var p = new Person()
+    console.log(p.constructor);       // Stu
+
+</script>
+```
+
+![Snip20191210_1](Snip20191210_1.png) 
+
+
+
+
+
+### 4、扩展内置对象
+
+
+
+#### 1 、内置对象和扩展内置对象介绍
+
+
+
+1、什么是内置对象? 
+
+通过内置构造器创建出来的对象, 就称为内置对象. 常见的内置构造器有: `Object` `Array` `Date` `Function` `String` 
+
+
+
+2、什么是扩展内置对象呢? 
+
+所谓的扩展内置对象, 就是给内置对象增加一些属性, 增加一些方法, 我们就称为扩展内置对象. 
+
+
+
+#### 2 、修改内置构造器的原型对象(扩展内置对象) 不推荐
+
+- 我们可以通过给内置的构造器的原型对象增加属性或者方法的方式来扩展内置对象, 这样扩展以后, 所有通过内置构造函数创建出来的内置对象就都有了这个属性和方法
+
+  > 但是不推荐这样做
+
+  ```
+  <script>
+      Array.prototype.des = '给内置对象扩展的属性des'
+      var arr = [1,2,3]
+      console.log(arr.des); //'给内置对象扩展的属性des'
+  </script>
+  ```
+
+  > 为什么不推荐使用这种方式呢?
+  >
+  > 特别是在大型的项目中, 如果我们都这样做, 很有可能就把别人的属性方法覆盖了.
+  >
+  > 都这样做, 就乱套了
+
+
+
+
+
+#### 3 、安全的扩展内置对象(内置对象替换原型)
+
+- 提供一个构造函数
+
+- 设置这个构造函数的原型对象是内置构造函数的一个实例 (内置对象)
+
+- 给这个内置对象(替换后的原型对象)添加属性和方法, 后面的实例就都有了
+
+  >  换句话说, 如果我要扩展数组, 我就自己写一个数组, 然后自己扩展
+
+  ```
+  <script>
+      // 1. 提供一个构造函数
+      function  MyArray() {
+  
+      }
+      // 2. 设置这个构造函数的原型对象是内置构造函数的一个实例
+      // 这样自己提供的构造函数创建出来对象, 就有了系统提供的方法了
+      MyArray.prototype = new Array();
+      MyArray.prototype.des = '我是一个扩展属性des'
+  
+  
+      // 3. 使用自己的构造函数, 创建对象
+      var arr = new  MyArray();
+      arr.push('xiaoming')
+      console.log(arr);
+      console.log(arr.des);
+  
+  </script>
+  ```
+
+  ![Snip20191210_2](Snip20191210_2.png)  
+
+  > 这样的好处, 无论怎们改, 都是自己改自己的, 不会影响别人
+
+- 下面我们来分析一下, 为什么这样扩展后的构造函数创建出来的对象, 具备内置对象的功能呢? 
+
+  - 我们使用`内置对象` 替换了自己的构造函数的 `prototype` 原型对象, 首先内置对象具备包含有系统提供的属性和方法
+  - 当我们通过自己的构造函数创建出来的实例对象方位系统的属性或者方法时, 对象自己没有这个方法或这个属性, 就会去原型对象中查找, 一查就查到内置对象身上了, 就查找到了
+
+- 这个使用内置对象替换自定义构造函数原型对象的方法, 还是有一个缺点
+
+  - 通过这样的对象访问系统的属性和方法是没有问题的, 也就是说属性和方法的读取是没有任何问题的
+  - 去修改系统属性和方法时就会出问题,  这个问题是由于对象的动态特性造成的, 一设置系统的属性和方法, 发现自己没有, 就给自己加上了, 系统的是改不了的.  
+
+
+
+
+
+### 5、 原型链
+
+
+
+#### 1、原型链介绍
+
+
+
+- 每一个对象都是由构造函数创建的
+- 每一个构造函数都有对应的原型对象
+- 原型对象也是一个对象, 也是由构造函数创建的
+- 原型对象的构造函数也有对应的原型对象, 这个原型对象也是由构造函数创建出来的
+
+以上就形成了一个链式结构, 这就称为原型链
+
+> 原型链的顶端是 Object的原型对象(Object.prototype)
+>
+> `Object.prototype.__proto__ = null`
+
+```
+<script>
+    console.log(Object.prototype.__proto__);     // null 
+</script>
+```
+
+
+
+
+
+#### 2、原型链的搜索规则
+
+- 在访问一个属性的时候, 首先会查找自己有没有这个属性, 如果有就直接调用
+- 如果没有, 会查找原型对象有没有这个属性或方法, 如果有就直接使用. 
+- 如果还没有, 会继续查找原型对象的原型对象, 如果有就直接使用
+- 如果还没有, 就会沿着原型链继续查找, 直到 Object.prototype
+- 如果还没有就返回undefined(属性) 或 报错 (方法)
+
+
+
+
+
+### 6、原型链继承
+
+
+
+#### 1、原型链继承实现
+
+
+
+- 原型链继承和原型继承很相似,但是不同
+
+  > - 原型链继承是设置子构造函数的原型对象为父构造函数的一个实例
+  > - 原型链继承相较于原型继承, 可以修正子构造函数的构造器
+
+  ```
+  <script>
+      function Person(){
+          this.name = 'person name'
+      }
+      
+      function  Stu() {
+          this.des = 'stu des'
+      }
+      // 原型链继承:
+      // 替换子构造函数的原型对象为 父构造对象的一个实例
+      Stu.prototype = new Person()
+      // 修正子构造函数的原型对象的构造器
+      Stu.prototype.constructor = Stu;
+      
+      var s = new Stu()
+      console.log(s.name);  // person name
+      console.log(s.des);   // stu des
+  
+      console.log(s.constructor); //Stu
+      var p = new Person()
+      console.log(p.constructor); // Person
+  
+  </script>
+  ```
+
+
+
+
+
+#### 2、复杂的原型链示例 
+
+```
+<script>
+    // 动物(color, run) -> 人 (姓名, useTool) --> 学生 (学号, study) --> 男学生 (性别, 打游戏)
+
+    // 1. 提供构造函数
+    // 2. 设置属性和方法 (属性写在构造函数里, 方法写在原型对象上)
+    // 3. 实现原型链继承
+    // 4. 修正构造器的执行   
+
+
+    function Animal() {
+        this.color = '黑色'
+    }
+    Animal.prototype.run = function () {
+        console.log('Animal run');
+    }
+
+
+    function Person() {
+        this.name = '张三'
+    }
+    Person.prototype = new Animal()
+    Person.prototype.constructor = Person;
+    Person.prototype.useTool = function () {
+        console.log('person use tool');
+    }
+
+    function Stu() {
+        this.num = 1005
+    }
+    Stu.prototype = new Person()
+    Stu.prototype.constructor = Stu;
+    Stu.prototype.study = function () {
+        console.log('stu study');
+    }
+
+    function BoyStu() {
+        this.sex = 'male'
+    }
+    BoyStu.prototype = new Stu()
+    BoyStu.prototype.constructor = BoyStu;
+    BoyStu.prototype.paly = function () {
+        console.log('BoyStu play');
+    }
+
+
+
+    var boy = new BoyStu()
+    console.log(boy);
+
+
+</script>
+```
+
+![Snip20191210_3](Snip20191210_3.png) 
+
+
+
+
+
+#### 3 、原型链继承注意点
+
+- 必须在完成继承后再设置原型对象的属性和方法, 否则被继承覆盖
+- 完成继承后只能利用对象的动态特性设置原型对象的属性和方法, 不能使用原型替换, 否则被覆盖
+- 完成继承后再修正构造器属性的指向, 否则被覆盖
+
+
+
+
+
+
+
+#### 4、原型链继承的问题
+
+
+
+- 无法传递参数给父构造器函数
+
+  > 就是说, 通过原型链继承, 子构造器的实例对象只可以访问父构造器中的属性和方法
+  >
+  > 但是无法修改
+
+- 继承过来的引用类型属性是共用的
+
+  
+
+  ```
+  <script>
+      function Person(){
+          this.name = '张三',
+          this.friends = ['小明', 小红]
+      }
+      
+      function Stu(num) {
+          this.num = num 
+      }
+      
+      
+      Stu.prototype = new Person()
+      Stu.prototype.constructor = Stu;
+      
+      var s1 = new Stu(10054)
+      s1.friends.push('小华')
+  		var s2 = new Stu(10052)
+      console.log(s1.num, s1.name, s1.friends);
+      console.log(s2.num, s2.name, s2.friends);
+      
+      //    s.name = 'lisi'  不能修改父构造函数中的name 属性
+   
+  </script>
+  ```
+
+  
+
+### 7、Object.create() 方法继承 
+
+
+
+- `Object.create()` 方法的作用 (ES5之后才支持)
+
+  > 创建一个新的对象, 并设置这个对象的原型对象
+
+  ```
+  <script>
+       var obj = {name:'zhangsan', age:18}
+       // 创建一个新的obj1对象, 并设置obj对象为 obj1 的原型对象
+       var obj1 = Object.create(obj);
+  </script>
+  
+  // 兼容写法
+  <script>
+  
+  		if(Object.create){
+        var obj = {name:'zhangsan', age:18}
+         // 创建一个新的obj1对象, 并设置obj对象为 obj1 的原型对象
+         var obj1 = Object.create(obj);
+  		}
+  		else{
+  			var obj = {name:'zhangsan', age:18}
+  			// var obj2 = new Object()
+  			// obj2.__proto__ = obj
+  			function F(){}
+  			F.prototype = obj;
+  			var obj = new F();
+  		}
+       
+  </script>
+  
+  ```
+
+  - 兼容性写法2
+
+    ```
+    <script>
+    		// 如果系统没这个方法,我们就给他添加这个方法
+    		if(! Object.create){
+          Object.create= function (obj){
+          	function F(){}
+          	F.prototype = obj
+          	return new F();
+          }
+    		} 
+    		
+    		// 后面就放心大胆的使用了
+    </script>
+    ```
+
+    
+
+
+
+### 8、call  和 apply 函数
+
+
+
+- 在ES3, 系统给 Function的原型对象添加了2个方法`call`  `apply` 
+
+- 作用:
+
+  > 借用其它对象的方法,调用
+
+  
+
+#### 1、 call 借用其它对象的方法
+
+
+
+- 使用方法
+
+  > obj.fun.call(obj2, 参数1, 参数2)
+  >
+  > - obj2 并没有 fun方法, 但是可以通过call 借调 obj中的fun方法
+  >
+  > - 参数1, 参数2 是传递个fun的参数
+  > - call 方法在调用时, 会使用 obj2 替换调用 fun方法内的this
+
+  ```
+  <script>
+      var zs = {
+          des : '我是一个老实人: ',
+          showDes : function (param1, param2) {
+              console.log(this.des + param1 + param2);
+  
+          }
+      }
+  
+      var ls = {
+          des : '我是一个聪明人: '
+      }
+  
+      zs.showDes('憨厚', '耿直') // 我是一个老实人: 憨厚耿直
+  
+      // ls 没有zs 里面的 showDes 方法, 不能直接调用会报错
+      // 但是在 ES3 之后系统增加了 Function 构造函数的原型新增了 call 方法, 可以用来借调其它方法
+      // ls.showDes('智商高', '情商低') 不能这样直接调用报错
+  
+  
+      // 使用 call 借用 zs 的showDes 方法
+      // zs.showDes 表示实际被借调的方法
+      // call的第一个参数: ls 指明那个对象要借调方法
+      // '智商高', '情商低' 参数是传递个 zs.showDes 方法的参数
+      zs.showDes.call(ls, '智商高', '情商低') //我是一个聪明人: 智商高情商低
+  
+  
+  </script>
+  ```
+
+
+
+
+
+#### 2、apply 借用其它对象的方法
+
+- apply 的用法和call 的用法都是一样的, 都是用来借调其它对象的方法, 唯一的差异是, 被调用方法传参的方式不同
+
+  - call 借调用方法是, 使用的是 `参数1` `参数2` ...
+
+  - apply 借调用方法是, 传递的方法要使用数组包装
+
+    > 第一个参数都是一样的 
+
+  ```
+  <script>
+      var zs = {
+          des : '我是一个老实人: ',
+          showDes : function (param1, param2) {
+              console.log(this.des + param1 + param2);
+  
+          }
+      }
+  
+      var ls = {
+          des : '我是一个聪明人: '
+      }
+  
+      zs.showDes('憨厚', '耿直') // 我是一个老实人: 憨厚耿直
+  
+      // 传递给 showDes 的参数使用 数组包装
+      zs.showDes.call(ls, ['智商高', '情商低']) //我是一个聪明人: 智商高情商低
+  
+  </script>
+  
+  ```
+
+  

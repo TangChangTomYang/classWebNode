@@ -274,27 +274,100 @@
 <!--</script>-->
 
 
+<!--<script>-->
+    <!--function Person() {-->
+
+    <!--}-->
+
+    <!--var p1 = new Person()-->
+    <!--var obj =  {des: 'des'}-->
+    <!--Person.prototype= obj-->
+    <!--var p2 = new Person()-->
+
+    <!--console.log(p1.constructor);-->
+    <!--console.log(p2.constructor);-->
+
+    <!--console.log(p1.constructor == Person);-->
+    <!--console.log(p2.constructor == obj.constructor);-->
+    <!--console.log(p2.constructor == Object);-->
+
+    <!--console.log(p1.des);-->
+    <!--console.log(p2.des);-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person() {-->
+
+    <!--}-->
+
+    <!--Person.prototype.des = 'des';-->
+    <!--var p = new Person();-->
+    <!--console.log(p.des);-->
+    <!--console.log(Person.prototype.des);-->
+
+    <!--p.des = 'abc';-->
+    <!--console.log(p.des);-->
+    <!--console.log(Person.prototype.des);-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person() {-->
+
+    <!--}-->
+
+    <!--Person.prototype.des = 'des';-->
+    <!--var p = new Person();-->
+    <!--p.des = 'abc'-->
+
+    <!--console.log(p.des);	// abc-->
+    <!--console.log(Person.prototype.des); // des-->
+
+<!--</script>-->
+
+
+
+<!--<script>-->
+    <!--function Person(name) {-->
+        <!--this.name = name-->
+    <!--}-->
+
+    <!--Person.prototype.des = 'des';-->
+    <!--var p = new Person('zhangsan');-->
+
+    <!--console.log('name' in p);       // true-->
+    <!--console.log(p.hasOwnProperty('name')); // true-->
+
+
+    <!--console.log('des' in p); // true-->
+    <!--console.log(p.hasOwnProperty('des')); // false-->
+
+
+
+<!--</script>-->
+
+
 <script>
     function Person() {
-
     }
 
-    var p1 = new Person()
-    var obj =  {des: 'des'}
-    Person.prototype= obj
-    var p2 = new Person()
+    var obj = {
+        name:'zhangsan'
+    }
+    Person.prototype = obj;
+    var p = new Person('zhangsan');
 
-    console.log(p1.constructor);
-    console.log(p2.constructor);
+    console.log(obj.isPrototypeOf(p)); // true
 
-    console.log(p1.constructor == Person);
-    console.log(p2.constructor == obj.constructor);
-    console.log(p2.constructor == Object);
-
-    console.log(p1.des);
-    console.log(p2.des);
-
+    console.log(p instanceof Person);
 
 </script>
+
+
 </body>
 </html>

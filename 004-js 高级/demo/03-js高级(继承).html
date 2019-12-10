@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+
+<!--//    - 属性拷贝(混入式继承)-->
+<!--//    - 原型是继承-->
+<!--//-->
+<!--//    - 原型链继承-->
+<!--//    - 借用构造函数继承-->
+<!--//    - 组合继承-->
+<!--//    - Object.create()-->
+<!--//    - 完全拷贝-->
+
+
+
+
+    <!--var obj1 = {-->
+        <!--name: 'zhangsan',-->
+        <!--age: 18,-->
+        <!--friend: ['王五', '赵六']-->
+    <!--}-->
+
+    <!--var obj2 = {}-->
+    <!--// 1. 属性拷贝 (obj2可以获取到obj1 所有的属性和方法)-->
+<!--//    for (var key in obj1){-->
+<!--//        obj2[key] = obj1[key]-->
+<!--//    }-->
+<!--//    console.log(obj2);-->
+<!--//-->
+<!--//    obj2.friend.push('老王');-->
+<!--//    console.log(obj2);-->
+<!--//    console.log(obj1);-->
+    <!--// 这种继承的特点:-->
+    <!--// 如果属性是引用类型的数据, 那么子对象和父对象会共用一分数据, 修改其中一个会影响另外一个-->
+
+    <!--// 函数拷贝, 将所属性拷贝给另外一个对象-->
+    <!--// 参数1, 目标对象-->
+    <!--// 参数2, 源对象-->
+    <!--Object.assign(obj2, obj1)-->
+    <!--console.log(obj2);-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'zs'-->
+        <!--this.age = 18-->
+    <!--}-->
+    <!--Person.prototype.des = 'des'-->
+
+    <!--function  Stu(){-->
+    <!--}-->
+
+    <!--// 原型式继承: 设置自构造函数的原型对象为父构造函数的原型对象-->
+    <!--Stu.prototype = Person.prototype;-->
+    <!--// 修改子类的原型对象的构造函数-->
+    <!--Stu.prototype.constructor = Stu;-->
+
+
+    <!--var s1 = new Stu();-->
+    <!--console.log(s1.name);   // undefined-->
+    <!--console.log(s1.age);    // undefined-->
+    <!--console.log(s1.des);    // des-->
+
+
+    <!--console.log(s1.constructor);    // Stu-->
+    <!--var p = new Person()-->
+    <!--console.log(p.constructor);       // Stu-->
+
+<!--</script>-->
+
+
+
+<!--<script>-->
+    <!--Array.prototype.des = '给内置对象扩展的属性des'-->
+    <!--var arr = [1,2,3]-->
+    <!--console.log(arr.des);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 提供一个构造函数-->
+    <!--function  MyArray() {-->
+
+    <!--}-->
+    <!--// 2. 设置这个构造函数的原型对象是内置构造函数的一个实例-->
+    <!--// 这样自己提供的构造函数创建出来对象, 就有了系统提供的方法了-->
+    <!--MyArray.prototype = new Array();-->
+    <!--MyArray.prototype.des = '我是一个扩展属性des'-->
+
+
+
+
+
+    <!--// 3. 使用自己的构造函数, 创建对象-->
+    <!--var arr = new  MyArray();-->
+    <!--arr.push('xiaoming')-->
+    <!--console.log(arr);-->
+    <!--console.log(arr.des);-->
+
+
+    <!--console.log(MyArray.prototype);-->
+    <!--arr.__proto__ = {des:'des'}-->
+    <!--console.log(MyArray.prototype);-->
+    <!--console.log(arr.__proto__);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+<!--//    function Person(){-->
+<!--//-->
+<!--//    }-->
+<!--//    var obj = {name: 'zhangsan', age:18}-->
+<!--//-->
+<!--//    Person.prototype = obj-->
+<!--//-->
+<!--//    var p1 = new Person();-->
+<!--//-->
+<!--//    console.log(p1.name, p1.age);-->
+<!--//    p1.__proto__.name = 'wangwu'-->
+<!--//-->
+<!--//    console.log('-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;change&#45;&#45;&#45;&#45;&#45;&#45;');-->
+<!--//    console.log(p1.name, p1.age);-->
+<!--//    var p2 = new Person();-->
+<!--//    console.log(p2.name, p2.age);-->
+
+
+
+<!--//</script>-->
+
+
+<!--<script>-->
+    <!--console.log(Object.prototype.__proto__);-->
+    <!--function Person(){-->
+
+        <!--}-->
+    <!--var p = new Person()-->
+    <!--console.log(Person.prototype);-->
+    <!--console.log(p.__proto__);-->
+
+    <!--console.log(Person.prototype == p.__proto__);-->
+    <!--console.log(Person.prototype === p.__proto__);-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'person name'-->
+    <!--}-->
+
+    <!--function  Stu() {-->
+        <!--this.des = 'stu des'-->
+    <!--}-->
+    <!--// 原型链继承:-->
+    <!--// 替换子构造函数的原型对象为 父构造对象的一个实例-->
+    <!--Stu.prototype = new Person()-->
+    <!--// 修正子构造函数的原型对象的构造器-->
+    <!--Stu.prototype.constructor = Stu;-->
+
+    <!--var s = new Stu()-->
+    <!--console.log(s.name);  // person name-->
+    <!--console.log(s.des);   // stu des-->
+    <!--s.name= '王五'-->
+    <!--var s2 = new Stu()-->
+    <!--console.log(s2.name);-->
+
+    <!--console.log(s.constructor); //Stu-->
+    <!--var p = new Person()-->
+    <!--console.log(p.constructor); // Person-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 动物(color, run) -> 人 (姓名, useTool) &ndash;&gt; 学生 (学号, study) &ndash;&gt; 男学生 (性别, 打游戏)-->
+
+    <!--// 1. 提供构造函数-->
+    <!--// 2. 设置属性和方法 (属性写在构造函数里, 方法写在原型对象上)-->
+    <!--// 3. 实现原型链继承-->
+    <!--// 4. 修正构造器的执行-->
+
+
+    <!--function Animal() {-->
+        <!--this.color = '黑色'-->
+    <!--}-->
+    <!--Animal.prototype.run = function () {-->
+        <!--console.log('Animal run');-->
+    <!--}-->
+
+
+    <!--function Person() {-->
+        <!--this.name = '张三'-->
+    <!--}-->
+    <!--Person.prototype = new Animal()-->
+    <!--Person.prototype.constructor = Person;-->
+    <!--Person.prototype.useTool = function () {-->
+        <!--console.log('person use tool');-->
+    <!--}-->
+
+    <!--function Stu() {-->
+        <!--this.num = 1005-->
+    <!--}-->
+    <!--Stu.prototype = new Person()-->
+    <!--Stu.prototype.constructor = Stu;-->
+    <!--Stu.prototype.study = function () {-->
+        <!--console.log('stu study');-->
+    <!--}-->
+
+    <!--function BoyStu() {-->
+        <!--this.sex = 'male'-->
+    <!--}-->
+    <!--BoyStu.prototype = new Stu()-->
+    <!--BoyStu.prototype.constructor = BoyStu;-->
+    <!--BoyStu.prototype.paly = function () {-->
+        <!--console.log('BoyStu play');-->
+    <!--}-->
+
+
+
+    <!--var boy = new BoyStu()-->
+    <!--console.log(boy);-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = '张三'-->
+    <!--}-->
+
+    <!--function Stu(num) {-->
+        <!--this.num = num-->
+    <!--}-->
+
+
+    <!--Stu.prototype = new Person()-->
+    <!--Stu.prototype.constructor = Stu;-->
+
+    <!--var s = new Stu(10054)-->
+
+    <!--console.log(s.num);-->
+    <!--console.log(s.name);-->
+
+    <!--//    s.name = 'lisi'  不能修改父构造函数中的name 属性-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var zs = {-->
+        <!--des : '我是一个老实人: ',-->
+        <!--showDes : function (param1, param2) {-->
+            <!--console.log(this.des + param1 + param2);-->
+
+        <!--}-->
+    <!--}-->
+
+    <!--var ls = {-->
+        <!--des : '我是一个聪明人: '-->
+    <!--}-->
+
+    <!--zs.showDes('憨厚', '耿直')-->
+
+    <!--// ls 没有zs 里面的 showDes 方法, 不能直接调用会报错-->
+    <!--// 但是在 ES3 之后系统增加了 Function 构造函数的原型新增了 call 方法, 可以用来借调其它方法-->
+    <!--// ls.showDes('智商高', '情商低') 不能这样直接调用报错-->
+
+
+    <!--// 使用 call 借用 zs 的showDes 方法-->
+    <!--// zs.showDes 表示实际被借调的方法-->
+    <!--// call的第一个参数: ls 指明那个对象要借调方法-->
+    <!--// '智商高', '情商低' 参数是传递个 zs.showDes 方法的参数-->
+    <!--zs.showDes.call(ls, '智商高', '情商低')-->
+
+
+<!--</script>-->
+
+
+
+<script>
+    var zs = {
+        des : '我是一个老实人: ',
+        showDes : function (param1, param2) {
+            console.log(this.des + param1 + param2);
+
+        }
+    }
+
+    var ls = {
+        des : '我是一个聪明人: '
+    }
+
+    zs.showDes('憨厚', '耿直')
+
+    // 传递给 showDes 的参数使用 数组包装
+    zs.showDes.call(ls, ['智商高', '情商低'])
+
+</script>
+
+
+
+</body>
+</html>
