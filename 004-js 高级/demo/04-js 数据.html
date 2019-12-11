@@ -249,21 +249,109 @@
 
 
 
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'zs'-->
+        <!--this.age= 18-->
+    <!--}-->
+    <!--var p = new Person()-->
+    <!--console.log(p); // {name: "zs", age: 18}-->
+
+    <!--// 禁止 对象 p 扩展新的属性或方法-->
+    <!--Object.preventExtensions(p)-->
+
+    <!--p.test = 'test'-->
+    <!--Object.isFrozen()-->
+    <!--console.log(p); // {name: "zs", age: 18}-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--// 1. 声明函数-->
+    <!--function 函数名() {-->
+        <!--// 函数体-->
+    <!--}-->
+
+    <!--// 2. 匿名的函数表达式-->
+    <!--var fun1 = function () {-->
+
+    <!--}-->
+
+    <!--// 3. 命令的函数表达式-->
+    <!--var func2 = function demo() {-->
+
+    <!--}-->
+
+    <!--// 4. Function 构造函数创建 函数-->
+    <!--// 注意点:-->
+    <!--// 1. Function 的每个参数都是字符串-->
+    <!--// 2. 不传参数, 创建的是一个空函数-->
+    <!--// 3. 只传一个参数, 把这个参数作为函数的函数体-->
+    <!--// 4. 传多个参数, 把最后一个参数作为函数体, 前面的参数作为函数的形参-->
+    <!--var fun3 = new Function("console.log('demo')")-->
+    <!--// 函数 func_3 和 函数 fun3 等价-->
+    <!--function  func_3() {-->
+        <!--console.log('demo')-->
+    <!--}-->
+
+
+
+    <!--var fun4 = new Function('num1', 'num2', 'return num1 + num2;')-->
+    <!--// 函数 func_4 和 函数 fun4 等价-->
+    <!--function  func_4(num1, num2) {-->
+        <!--return num1 + num2;-->
+    <!--}-->
+
+
+    <!--console.log(fun4(10, 20));-->
+    <!--console.log(func_4(10, 20));-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--function f1() {-->
+        <!--// 获取调用函数的函数-->
+        <!--console.log(f1.caller); // f2-->
+        <!--console.log(arguments.callee); // f1-->
+    <!--}-->
+
+    <!--function  f2() {-->
+        <!--f1()-->
+    <!--}-->
+    <!--f2()-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--(function(n){-->
+        <!--console.log('test', n);-->
+        <!--if(n > 0){-->
+            <!--arguments.callee(n-1)-->
+        <!--}-->
+        <!--return ;-->
+    <!--})(10)-->
+<!--</script>-->
+
 <script>
-    function Person(){
-        this.name = 'zs'
-        this.age= 18
+    function fn(a,b,c){
+        // 获取调用函数时传递的参数
+        console.log('实际调用函数的参数', arguments);
+
+        // 获取调动函数时传递的参数的个数
+        console.log('实际调用函数参数个数: ', arguments.length);
+
+        // 获取定义函数时, 形参的个数
+        console.log('定义函数形参个数: ',  fn.length);
+
+        // 遍历调用函数时传递的实际参数
+        for(var i = 0; i < arguments.length; i++){
+            console.log(i,  arguments[i]);
+        }
     }
-    var p = new Person()
-    console.log(p); // {name: "zs", age: 18}
 
-    // 禁止 对象 p 扩展新的属性或方法
-    Object.preventExtensions(p)
-
-    p.test = 'test'
-    Object.isFrozen()
-    console.log(p); // {name: "zs", age: 18}
+    fn('aa','bb', 'cc',)
 </script>
+
+
+
 
 </body>
 </html>

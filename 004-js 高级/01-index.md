@@ -3578,7 +3578,9 @@ try {
 
 
 
-# javaScript 常识
+# javaScript 基本使用
+
+
 
 
 
@@ -4163,3 +4165,209 @@ try {
 ### 17、Object.isFrozen() 判断对象是否冻结
 
 > 判断一个对象是否被冻结
+
+
+
+
+
+## 六、function 构造函数的使用
+
+
+
+### 1、创建函数的方式
+
+- 声明函数
+
+  ```
+  <script>
+    function 函数名() {
+      // 函数体
+    }
+  </script>
+  ```
+
+- 函数表达式
+
+  ```
+   <script>
+   		// 2. 匿名的函数表达式
+      var fun1 = function () { 
+      }
+      
+      // 3. 命令的函数表达式
+      var func2 = function demo() { 
+      }
+  </script>
+  ```
+
+  
+
+- Function 构造函数
+
+  - 1. Function 的每个参数都是字符串
+  - 2. 不传参数, 创建的是一个空函数
+  - 3. 只传一个参数, 把这个参数作为函数的函数体
+  - 4. 传多个参数, 把最后一个参数作为函数体, 前面的参数作为函数的形参
+
+  ```
+  <script>
+       var fn = new Function()
+       // 等价于
+       function fn(){}
+  </script>
+  ```
+
+  ```
+  <script>
+      var fn = new Function("console.log('demo')")
+      // 等价于
+      function  fn() {
+          console.log('demo')
+      }
+  </script>
+  ```
+
+  ```
+  <script>
+     var fn = new Function('num1', 'num2', 'return num1 + num2;') 
+     // 等价于 
+    function  func_4(num1, num2) {
+    	return num1 + num2;
+    }
+  </script>
+  ```
+
+
+
+
+
+###2、callee 和 caller
+
+- `caller`: 返回调用函数的函数, 在JS全局作用域 调用返回 null
+
+- `callee`: 返回函数自身, 常用于匿名函数的递归调用
+
+  > arguments 有个callee
+
+  ```
+  <script>
+      function f1() {
+          // 获取调用函数的函数
+          console.log(f1.caller); // f2
+          console.log(arguments.callee); // f1
+      }
+  
+      function  f2() {
+          f1()
+      }
+      f2()
+  </script>
+  ```
+
+  > 返回值都是 function 类型
+
+  ![Snip20191211_8](Snip20191211_8.png) 
+
+
+
+
+
+### 3、匿名函数的递归调用
+
+#### 1、 匿名函数
+
+- 没有名字的函数称为匿名函数
+
+  - 匿名函数的书写方式
+
+    ```
+    (function(){
+    	console.log('test');
+    })
+    ```
+
+  - 匿名函数的调用
+
+    ```
+    (function(){
+    	console.log('test');
+    })()
+    ```
+
+    
+
+#### 2、 匿名函数的递归调用
+
+- 在函数内部通过 `arguments.callee` 获取函数本省, 实现匿名函数的调用
+
+  ```
+  <script>
+      (function(n){
+          console.log('test', n);
+          if(n > 0){
+          		// 通过 arguments.callee 获取函数本身  
+              arguments.callee(n-1)
+          }
+          return ;
+      })(10)
+  </script>
+  ```
+
+  
+
+
+
+### 4、 函数的隐藏参数(arguments & this ), length
+
+
+
+- 在函数内部, 可以通过 `arguments` 获取调用函数时的实际参数, 以及实际参数的个数
+
+- 通过`函数名.length` 可以获取定义函数时,定义的形参个数
+
+  > 总结:
+  >
+  > - `arguments.length`  调用函数实参个数
+  >
+  > - `函数名.length ` 定义函数形参个数
+
+  ```
+  <script>
+      function fn(a,b,c){
+          // 获取调用函数时传递的参数
+          console.log('实际调用函数的参数', arguments);
+  
+          // 获取调动函数时传递的参数的个数
+          console.log('实际调用函数参数个数: ', arguments.length);
+  
+          // 获取定义函数时, 形参的个数
+          console.log('定义函数形参个数: ',  fn.length);
+  
+          // 遍历调用函数时传递的实际参数
+          for(var i = 0; i < arguments.length; i++){
+              console.log(i,  arguments[i]);
+          }
+      }
+  
+      fn('aa','bb', 'cc',)
+  </script>
+  ```
+
+  ![Snip20191211_8](Snip20191211_9.png) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
