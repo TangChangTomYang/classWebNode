@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+    <!--// 1. 创建 String 包装数据类型-->
+    <!--var str1 = new String('demo')-->
+    <!--var str2 = String('demo')-->
+    <!--var str3 = 'demo'-->
+
+    <!--console.log(typeof str1);   // object-->
+    <!--console.log(typeof str2);   // string-->
+    <!--console.log(typeof str3);   // string-->
+
+
+
+    <!--// 2. 创建 Number 包装数据类型-->
+    <!--var num1 = new Number(123)-->
+    <!--var num2 = Number(123)-->
+    <!--var num3 = 123-->
+
+    <!--console.log(typeof num1);   // object-->
+    <!--console.log(typeof nbum2);   // number-->
+    <!--console.log(typeof num3);   // number-->
+
+
+    <!--// 3. 创建 Boolean 包装数据类型-->
+    <!--var b1 = new Boolean(true)-->
+    <!--var b2 = Boolean(true)-->
+    <!--var b3 = true-->
+
+    <!--console.log(typeof b1);   // object-->
+    <!--console.log(typeof b2);   // boolean-->
+    <!--console.log(typeof b3);   // boolean-->
+
+
+
+    <!--// 4. 特殊的创建方式-->
+    <!--var s_1 = new Object('demo')-->
+    <!--var n_1 = new Object(123)-->
+    <!--var b_1 = new Object(true)-->
+
+    <!--console.log(typeof s_1);   // object-->
+    <!--console.log(typeof n_1);   // object-->
+    <!--console.log(typeof b_1);   // object-->
+
+<!--</script>-->
+
+
+
+<!--<script>-->
+    <!--var str1 = new String('demo')   // 0x123-->
+    <!--var str2 = new String('demo')   // 0x124-->
+    <!--var str3 = 'demo'-->
+
+    <!--// 如果都是对象的话, 比较地址是否相等-->
+    <!--console.log(str1 == str2);  // false-->
+    <!--console.log(str1 === str2); // false-->
+
+    <!--// 复杂数据类型和基本数据类型比较的时候, 首先将复杂数据类型转换为基本类型, 再比较值-->
+    <!--console.log(str1 == str3); // true-->
+    <!--console.log(str1 === str3); // false-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+
+
+    <!--Number.prototype.sum = function () {-->
+        <!--console.log(this + 10)-->
+    <!--}-->
+
+    <!--var num = new Number(12)-->
+    <!--num.sum()-->
+    <!--var num1 = 10-->
+    <!--num1.sum()-->
+    <!--20.sum()-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var obj = {name:'zhangsan'}-->
+    <!--var arr = [1, 'a']-->
+    <!--var str = new String('demo')-->
+    <!--var num = new Number(10)-->
+    <!--var b = new Boolean(true)-->
+    <!--var date = new Date()-->
+
+    <!--console.log(obj.valueOf());-->
+    <!--console.log(arr.valueOf());-->
+    <!--console.log(str.valueOf());-->
+    <!--console.log(num.valueOf());-->
+    <!--console.log(b.valueOf());-->
+    <!--console.log(date.valueOf());-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function  test() {-->
+        <!--// arguments 是一个对象, 不是数组, 但是有类似数组的结构, 可以遍历, 可以像操作数组一样操作它-->
+        <!--console.log(arguments);-->
+        <!--console.log(Array.isArray(arguments));  // false-->
+        <!--console.log(arguments[1]);  // b-->
+    <!--}-->
+
+    <!--test('a','b',1,3,4)-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {name:'zhangsan'}-->
+    <!--var obj2 -->
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--function Person(){-->
+        <!--this.name = 'zhangsan'-->
+    <!--}-->
+
+    <!--var p = new Person()-->
+    <!--console.log(p.constructor);     //  Person-->
+    <!--console.log(Person.prototype.constructor);  //  Person-->
+
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--function fun1() {-->
+        <!--// 返回调用函数的函数-->
+        <!--console.log(fun1.caller); // fun2-->
+        <!--console.log( '返回值类型: ',   typeof  fun1.caller);  // 返回值是一个 function 类型-->
+    <!--}-->
+
+
+    <!--function fun2() {-->
+        <!--'我要调用 fun1 函数了'-->
+        <!--fun1()-->
+    <!--}-->
+
+    <!--fun2()-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {name : 'zhagnsan'}-->
+
+    <!--console.log(Object.getOwnPropertyDescriptor(obj, 'name'));-->
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--var obj = {name :'zhangsan',-->
+                <!--age:18-->
+                <!--}-->
+
+     <!--// 参数1: 要定义的对象-->
+     <!--// 参数2: 要定义的对象的属性名-->
+     <!--// 参数3: 要定义的对象的属性的配置信息-->
+    <!--Object.defineProperty(obj, 'name', {-->
+        <!--configurable: true, // 是否可配置 (比如: 删除)-->
+        <!--enumerable: true,   // 是否可枚举-->
+        <!--value: "zhag ",-->
+        <!--writable: true  // 是否可写-->
+    <!--})-->
+
+    <!--Object.defineProperty(obj, 'name', {-->
+        <!--configurable: true, // 是否可配置 (比如: 删除)-->
+        <!--enumerable: false,   // 是否可枚举-->
+        <!--value: "zhag ",-->
+        <!--writable: true  // 是否可写-->
+    <!--})-->
+
+    <!--console.log(Object.getOwnPropertyDescriptor(obj, 'name'));-->
+
+
+    <!--Object.defineProperty(obj, 'name', {-->
+        <!--configurable: true, // 是否可配置 (比如: 删除)-->
+        <!--enumerable: true,   // 是否可枚举-->
+        <!--value: "zhag ",-->
+        <!--writable: true  // 是否可写-->
+    <!--})-->
+
+    <!--console.log(Object.getOwnPropertyDescriptor(obj, 'name'));-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'zs'-->
+        <!--this.age= 18-->
+        <!--this.fn = function () {-->
+            <!--console.log(test);-->
+        <!--}-->
+    <!--}-->
+    <!--var p = new Person()-->
+    <!--console.log(Object.getOwnPropertyNames(p));-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'zs'-->
+        <!--this.age= 18-->
+        <!--this.fn = function () {-->
+            <!--console.log(test);-->
+        <!--}-->
+    <!--}-->
+    <!--var p = new Person()-->
+    <!--Object.defineProperty(p,'name', {-->
+        <!--enumerable: false-->
+    <!--})-->
+
+
+    <!--console.log(Object.keys(p));-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'zs'-->
+        <!--this.age= 18-->
+        <!--this.fn = function () {-->
+            <!--console.log(test);-->
+        <!--}-->
+    <!--}-->
+   <!--var p = new Person()-->
+
+    <!--// 方式1:-->
+    <!--console.log(Object.getPrototypeOf(p));-->
+    <!--// 方式2:-->
+    <!--console.log(Person.prototype);-->
+    <!--// 方式3:-->
+    <!--console.log(p.__proto__);-->
+
+<!--</script>-->
+
+
+
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age= 18
+    }
+    var p = new Person()
+    console.log(p); // {name: "zs", age: 18}
+
+    // 禁止 对象 p 扩展新的属性或方法
+    Object.preventExtensions(p)
+
+    p.test = 'test'
+    Object.isFrozen()
+    console.log(p); // {name: "zs", age: 18}
+</script>
+
+</body>
+</html>

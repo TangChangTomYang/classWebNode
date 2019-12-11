@@ -2678,9 +2678,17 @@ try {
 - 原型是继承
 
 - 原型链继承
+
 - Object.create()
+
 - 借用构造函数继承
+
+  -  借调方法
+
+    >  `obj.fun.call(obj2, 参数1,参数2) ` ` obj.fun.apply(obj2, ['参数1','参数2'])`
+
 - 组合继承
+
 - 完全拷贝
 
 > 在javaScript 中继承有很多中, 我们这里重点介绍这7种
@@ -3237,4 +3245,921 @@ try {
   
   ```
 
+
+
+
+
+### 9、借用构造函数继承 (经典继承 | 伪对象继承)
+
+- 优点: `call` `Apply` 
+
+  > - 解决了原型链继承, 不能向父构造函数传参的问题 
+  > - 解决了父构造函数内引用类型属性, 数据共用的问题
+
+- 缺点:
+
+  > 只能获取实例属性和方法, 不能获取原型属性和方法
+
   
+
+  
+
+  ```
+  <script>
+  		// 父构造函数
+      function Person(name, age){
+          this.name = name;
+          this.age = age
+          this.friends = []
+      }
+      Person.prototype.des = 'des'
+  		
+  		// 子构造函数
+      function  Stu(num, name, age) {
+          this.num = num
+          // 借调父构造函数继承
+          Person.call(this, name, age)
+          //Person.apply(this, [name, age])
+      }
+  
+      var s1 = new Stu(10086, 'zhagnsan', 18)
+      s1.friends.push('xiaozhang')
+      var s2 = new Stu(10088, 'lisi', 20)
+      s2.friends.push('xiaoli')
+      console.log('s1', s1);
+      console.log('s2',s2);
+      // 只能获取实例属性和方法, 不能获取原型属性和方法
+      console.log(s1.des);
+      console.log(s2.des);
+  
+  </script>
+  ```
+
+  ![Snip20191211_1](Snip20191211_2.png) 
+
+   
+
+
+
+
+
+### 10、组合继承的基本写法(正确写法, 推荐 *)
+
+
+
+- 首先利用借用构造函数继承 ——> 获取实例属性和方法
+
+- 再利用原型链继承  —> 获取原型的属性和方法
+
+- 修正构造器指向
+
+  > 一句话, 组合继承就是 借用构造继承 + 原型继承
+
+- 注意:
+
+  > 组合继承中要使用原型链继承, 而不是使用原型继承
+  >
+  > - 如果使用原型继承会造成, 无法修改构造器指向
+
+  
+
+  ```
+  <script>
+      // 父构造函数
+      function Person(name, age){
+          this.name = name;
+          this.age = age
+          this.friends = []
+      }
+  
+      Person.prototype.des = 'des'
+  
+      // 1. 子构造函数 (借用构造函数继承)
+      function  Stu(num, name, age) {
+          this.num = num
+          // 借调父构造函数继承
+          Person.call(this, name, age)
+          //Person.apply(this, [name, age])
+      }
+      // 2. 原型链继承
+      Stu.prototype = new Person();
+      // 3. 修正构造器指向
+      Stu.prototype.constructor = Stu;
+  
+      var s1 = new Stu(10086, 'zhagnsan', 18)
+      s1.friends.push('xiaozhang')
+      var s2 = new Stu(10088, 'lisi', 20)
+      s2.friends.push('xiaoli')
+      console.log('s1', s1);
+      console.log('s2',s2);
+  
+      console.log(s1.des);
+      console.log(s2.des);
+      
+     	console.log(s1.constructor); // Person
+  
+  </script>
+  ```
+
+  > 组合继承总结
+  >
+  > 1. 使用 借用构造函数继承父构造函数
+  > 2. 使用原型链修正子构造函数的原型对象
+  > 3. 使用子构造函数修正子构造函数的原型对象的构造器
+
+
+
+
+
+
+
+# javaScript  拷贝
+
+
+
+## 一、浅拷贝 & 深拷贝
+
+
+
+### 1、浅拷贝(地址拷贝/ 指针拷贝)
+
+- 浅拷贝(地址), 原理如下:
+
+- 浅拷贝的问题:
+
+  > - 对于基本数据类型的属性来说, 拷贝前后, 属性是独立的
+  > - 对于引用类型来说, 拷贝前后, 属性数据是共用的相互影响
+
+  ```
+  <script>
+      var obj1 = {
+          name : "zhangsan",
+          car :{
+              type:'公交车'
+          }
+      } 
+      var obj2 = {}
+      for(var key in obj1){
+          obj2[key] = obj1[key];
+      }
+  
+      console.log(obj1.name, obj1.car.type)
+      console.log(obj2.name, obj2.car.type)
+  
+      console.log('----- obj2.car.type = 电瓶车----------');
+      obj2.car.type = '电瓶车'
+      console.log(obj1.name, obj1.car.type)
+      console.log(obj2.name, obj2.car.type)
+  </script>
+  ```
+
+  
+
+
+
+
+
+### 2、深拷贝(内容拷贝)
+
+- 深拷贝和浅拷贝不同, 深拷贝不是地址拷贝, 是将地址对应的内容拷贝一份
+
+  > 深拷贝是内容拷贝
+
+#### 1、补充知识 Array.isArray()
+
+
+
+- 判断一个对象是否是一个数组 (ES5 开始支持)
+
+- Array.isArray 底层实现原理
+
+  > 底层判断是否是  '[object Array]' 字符串
+  >
+  > 即: 数组的最底层方法打印出来是 '[object Array]' 字符串
+
+  ```
+  <script> 
+      if(!Array.isArray){ // 在以前, 我们是这样判断一个对象 是否是一个 数组的
+          Array.isArray = function (obj) {
+              // 这是 Array.isArray() 的底层实现原理
+              return Object.prototype.toString.call(obj) == '[object Array]';
+          }
+      }
+  
+  </script>
+  ```
+
+
+
+
+
+##### 1、Object.prototype.toString补充
+
+
+
+- 数组 `[]` 底层答应结果是 `"[object Array]"` 
+
+- 数组 `abc` 底层答应结果是 `"[object String]"` 
+
+- 数组 `{name:"zhangsan"}` 底层答应结果是 `"[object Object]"` 
+
+  ```
+  <script>
+      // 数组 
+      console.log(Object.prototype.toString.call(['a', 'b']));	// "[object Array]"
+      // 字符串 
+      console.log(Object.prototype.toString.call('AAA'));	//"[object String]"
+      // 对象 "[object Object]"
+      console.log(Object.prototype.toString.call({})); //"[object Object]"
+  </script>
+  ```
+
+  
+
+#####2 、{} 对象上层打印都一样 "[object Object]"
+
+- 所有的 {} 类型的对象, 默认调用 `toString()` 方法打印的结果都是一样的
+
+  ```
+  Object.prototype.toString.call({})	// "[object Object]"
+  Object.prototype.toString.call({name:"zhangsan", friends:[]}) // "[object Object]"
+  ```
+
+- 面试题:
+
+  ```
+  var a = {name:'zhangsan'}
+  var b = {}
+  var c = {}
+  
+  // [] 语法是通过名字来访问属性或方法的
+  c[a] = 'str1'
+  c[b] = 'str2'
+  
+  // 问: 
+  console.log(c[a]) ; 打印什么
+  ```
+
+  - 答案:
+
+    ```
+    'str2'
+    ```
+
+    - 原理:
+
+      当我们将一个对象`{}`作为属性名的时候, 默认会先调用 `toString()` 将对象转换成字符串
+
+      不论对象 `{}` 有没有内, `toString()` 后的返回结果都是`"[object Object]"`, 因此:
+
+      `a[{}] 和 a {name:'张三'}` 访问的都是`a['[object Object]']` 
+
+      
+
+    
+
+
+
+#### 2、深拷贝的实现
+
+- 提供一个函数来实现深拷贝: 参数1 source , 参数2 target
+
+- 判断第一个参数是否有值, 如果没有值初始化为空对象{}
+
+  - 判断属性的类型, 值类型直接赋值
+
+  - 引用类型的属性, 递归深拷贝
+
+    ```
+    <script>
+        // 将 sourceObj  拷贝到 targetObj 中
+        function  deepCopy(sourceObj, targetObj) {
+            targetObj = targetObj || {}
+            for(key in sourceObj){
+                // 只拷贝实例属性
+                if(sourceObj.hasOwnProperty(key)){
+                    if((typeof sourceObj[key]) == 'object'){
+                        // 引用类型
+                        targetObj[key] = Array.isArray(sourceObj[key] ) ? [] : {};
+                        deepCopy(sourceObj[key], targetObj[key]);
+                    }
+                    else {
+                        // 值类型 | 函数
+                        targetObj[key] = sourceObj[key];
+    
+                    }
+                }
+            }
+        }
+    
+    
+        var obj = {name:'zhangsan',
+                    car:{
+                            type:'奔驰'
+                        },
+                    friends:[1,2,3],
+            fun: function () {
+                console.log('abc');
+            }
+                    }
+        var obj2 = {}
+        deepCopy(obj, obj2)
+    
+        console.log(obj);
+        console.log(obj2);
+    </script>
+    ```
+
+    ![Snip20191211_3](Snip20191211_4.png) 
+
+     
+
+
+
+
+
+# javaScript 常识
+
+
+
+## 一、基本包装类型
+
+- 常见的基本包装类型:
+
+  `String` `Number` `Boolean`   
+
+  > `string` `number` `boolean` 是简单数据类型
+
+- 创建`String` 包装类型
+
+  ```
+  <script>
+      // 1. 创建 String 包装数据类型
+      var str1 = new String('demo')
+      var str2 = String('demo')
+      var str3 = 'demo'
+  
+      console.log(typeof str1);   // object
+      console.log(typeof str2);   // string
+      console.log(typeof str3);   // string
+  
+  
+  
+      // 2. 创建 Number 包装数据类型
+      var num1 = new Number(123)
+      var num2 = Number(123)
+      var num3 = 123
+  
+      console.log(typeof num1);   // object
+      console.log(typeof nbum2);   // number
+      console.log(typeof num3);   // number
+  
+  
+      // 3. 创建 Boolean 包装数据类型
+      var b1 = new Boolean(true)
+      var b2 = Boolean(true)
+      var b3 = true
+  
+      console.log(typeof b1);   // object
+      console.log(typeof b2);   // boolean
+      console.log(typeof b3);   // boolean
+  
+  
+  
+      // 4. 特殊的创建方式
+      var s_1 = new Object('demo')
+      var n_1 = new Object(123)
+      var b_1 = new Object(true)
+  
+      console.log(typeof s_1);   // object
+      console.log(typeof n_1);   // object
+      console.log(typeof b_1);   // object
+  
+  </script>
+  ```
+
+  
+
+
+
+
+
+## 二、基本包装类型和基本类型的区别(注意点)
+
+- 全等(===) 和 等于(==)
+
+  ```
+  <script>
+      var str1 = new String('demo')   // 0x123
+      var str2 = new String('demo')   // 0x124
+      var str3 = 'demo'
+  
+      // 如果都是对象的话, 比较地址是否相等
+      console.log(str1 == str2);  // false
+      console.log(str1 === str2); // false
+  
+      // 复杂数据类型和基本数据类型比较的时候, 首先将复杂数据类型转换为基本类型, 再比较值
+      console.log(str1 == str3); // true
+      console.log(str1 === str3); // false
+  
+  		// 数值和布尔的操作与字符串类似
+  </script>
+  ```
+
+  
+
+
+
+- 基本数据类型为什么可以访问属性和方法?
+
+  - 字符串 数值 布尔 在使用属性或者方法的时候, 系统内部默认会创建一个对象 (包装数据类型)
+
+  - 利用该对象使用属性或者方法
+  - 得到结果后返回
+  - 销毁创建的对象(包装数据类型)
+
+  ```
+  <script>
+  
+      var str = 'demo123'
+      var str2 = new String('demo123')
+      console.log(str.length);    // 7
+      console.log(str2.length);   // 7  
+  </script>
+  ```
+
+- 对基本数据类型访问属性和方法的解释验证
+
+  - 验证1
+
+    ```
+      // 详解如下:
+        var str3 = '123'
+        str3.des = 'des'
+        console.log(str3.des);   // undefined 
+        
+        
+        var str33 = new String('123')
+        str33.des = 'des'
+        console.log(str33.des);   // des
+    ```
+
+  - 验证2
+
+    ```
+    <script> 
+        Number.prototype.sum = function () {
+            console.log(this + 10)
+        } 
+        var num = new Number(12)
+        num.sum()	//22
+        var num1 = 10
+        num1.sum() // 20
+    </script>
+    ```
+
+  
+
+## 三、Object.prototype 详解
+
+- Object.prototype 详解
+
+  - `constructor`: 
+
+    > 指向对象的构造函数
+
+  - `hasOwnProperty`:
+
+    >  判断对象是否存在指定的实例属性
+
+  - `isPrototypeOf`: 
+
+    > 判断一个对象是否是指定对象的原型对象(判断是一条原型链)
+
+  - `propertyIsEnumerable`: 
+
+    >  判断一个属性是够是可枚举的 (如果是, 就可以通过for in)
+
+  - `toLocaleString`:
+
+    > 和 toString 差不多, 只是有本地化处理
+
+  - `toString()`:
+
+    > 返回对象当前的描述信息
+    >
+    > - 如果是 {} 对象, 返回的是 '[object Objec]' 字符串
+    > - 如果是 函数 或者 数组, 返回对应的字符串形式 (真实的书写形式)
+    > - 如果是 Number对象, toString() 方法可以传参, 表示进制转换,eg:  (10).toString(8)
+
+  - `valueOf`():
+
+    > 返回对应的值
+    >
+    > - 基本包装类型, 返回对应的基本类型的值
+    > - 对象, 返回对象本省
+    > - 日期对象, 返回时间戳
+
+    ```
+    <script>
+    
+        var obj = {name:'zhangsan'}
+        var arr = [1, 'a']
+        var str = new String('demo')
+        var num = new Number(10)
+        var b = new Boolean(true)
+        var date = new Date()
+    
+        console.log(obj.valueOf());
+        console.log(arr.valueOf());
+        console.log(str.valueOf());
+        console.log(num.valueOf());
+        console.log(b.valueOf());
+        console.log(date.valueOf());
+    
+    </script>
+    ```
+
+    ![Snip20191211_5](Snip20191211_5.png) 
+
+    
+
+
+
+## 四、静态成员和实例成员
+
+
+
+- 实例成员 (属性和方法)
+
+  > 直接添加在实例上的属性和方法称为实例成员
+
+- 原型成员 (属性和方法)
+
+  > 直接添加在原型对象上的属性和方法成员称为成员
+
+- 静态成员
+
+  > 直接添加在构造函数上的属性和方法称为静态成员
+
+  ```
+  <script>
+      function Person() {
+          this.name = 'zhangsan'   // 实例成员
+          this.age = 18            // 实例成员
+      }
+      Person.prototype.des = 'des' // 原型成员
+      var p1 = new Person()
+      p1.abc = 'abc'              // 实例成员
+  
+      Person.test = 'test'        // 静态成员
+      console.log(Person.test);
+  </script>
+  ```
+
+  
+
+
+
+## 五、Object的静态成员(重要)
+
+
+
+### 1、Object.apply 借调方法
+
+> 借用其它对象的方法
+
+```
+<script>
+    function Person() {
+        this.name = 'zhangsan'   // 实例成员
+        this.age = 18            // 实例成员
+        this.sum = function (num1 , num2) {
+            console.log(this.name  + (num1 + num2));
+        }
+    }
+    var p = new Person()
+    var obj = {name : 'abc'}
+		// obj 接调对象p的sum方法, 参数是 10 和 20
+    p.sum.apply(obj, [10, 20] )
+</script>
+```
+
+
+
+### 2 、Object.call: 借调方法
+
+> 借用其它对象的方法 
+
+```
+<script>
+    function Person() {
+        this.name = 'zhangsan'   // 实例成员
+        this.age = 18            // 实例成员
+        this.sum = function (num1 , num2) {
+            console.log(this.name  + (num1 + num2));
+        }
+    }
+    var p = new Person()
+    var obj = {name : 'abc'}
+		// obj 接调对象p的sum方法, 参数是 10 和 20
+    p.sum.call(obj, 10, 20 )
+</script>
+```
+
+
+
+### 3、Object.assign 拷贝对象属性
+
+> 函数拷贝属性
+
+```
+<script>
+    var obj1 = {name : 'abc'}
+    var obj2 = {age:18}
+    console.log(Object.assign(obj1, obj2)); // {name: "abc", age: 18}
+</script>
+```
+
+
+
+### 4、Object.arguments  方法参数
+
+> 接收实参并保存实参
+
+```
+<script>
+    function  test() {
+        // arguments 是一个对象, 不是数组, 但是有类似数组的结构, 可以遍历, 可以像操作数组一样操作它
+        console.log(arguments);
+        console.log(Array.isArray(arguments));  // false
+        console.log(arguments[1]);  // b
+    }
+
+    test('a','b',1,3,4)
+</script>
+```
+
+
+
+### 5、Object.create 根据原型对象创建新对象 
+
+> 创建一个对象并设置原型对象
+
+```
+<script>
+  var obj = {name:'zhangsan', age:18}
+   // 创建一个新的obj1对象, 并设置obj对象为 obj1 的原型对象
+   var obj1 = Object.create(obj);
+ </script>
+```
+
+
+
+### 6、Object.constructor 获取对象的构造器
+
+> 指向对应的构造函数
+
+```
+<script>
+
+    function Person(){
+        this.name = 'zhangsan'
+    }
+
+    var p = new Person()
+    console.log(p.constructor);     //  Person
+    console.log(Person.prototype.constructor);  //  Person
+
+</script>
+```
+
+
+
+### 7、Object.caller 获取调用函数的函数
+
+> 返回调用函数的函数, 
+>
+> 哪一个函数调用的就返回哪一个函数
+>
+> 注意: 在全局作用域下调用返回 null 
+
+```
+<script>
+
+    function fun1() {
+        // 返回调用函数的函数 
+        console.log(fun1.caller); // fun2
+        console.log(typeof  fun1.caller);  // 返回值是一个 function 类型
+    }
+ 
+    function fun2() {
+        '我要调用 fun1 函数了'
+        fun1()
+    } 
+    fun2() 
+</script>
+```
+
+![Snip20191211_6](Snip20191211_6.png) 
+
+
+
+### 8、 Object.getOwnPropertyDescription 获取实例属性的描述信息
+
+> 获取指定实例对象的指定属性的描述信息
+>
+> 参数1, 要获取属性信息的实例对象
+>
+> 参数2, 要获取的属性的名字
+>
+> 是这样的, 一个对象的属性包含很多信息, 比如`属性的值`, `属性是否可写`, `是否可枚举`  `是否可配置` 
+>
+> 也就是说你想知道某个对象的某个属性支持哪些操作就可以使用这个方法
+
+```
+<script>
+    var obj = {name : 'zhagnsan'} 
+    // 获取 obj 对象的 name属性的描述信息, 返回值是一个对象
+    console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
+</script>
+```
+
+![Snip20191211_6](Snip20191211_7.png) 
+
+
+
+
+
+### 9、Object.defineProperty 定义属性的属性
+
+> 定义对象的指定属性的属性信息
+>
+> 与`Object.getOwnPropertyDescriptor` 相对应, 一个是设置, 一个是获取
+>
+> 注意点: 
+>
+> 一旦,对象的某个属性的`configurable` 被设置为` false` 之后就不能设置回 `true` 了
+
+```
+<script>
+ 
+    var obj = {name :'zhangsan',
+                age:18
+                } 
+
+     // 参数1: 要定义的对象
+     // 参数2: 要定义的对象的属性名
+     // 参数3: 要定义的对象的属性的配置信息
+    Object.defineProperty(obj, 'name', {
+        configurable: false, // 是否可配置 (比如: 该属性是否可被删除, 可枚举是否可修改, 可写是否可写 )
+        enumerable: true,   // 是否可枚举
+        value: "zhagnsan",
+        writable: true  // 是否可写
+    })
+
+    delete obj.name
+    console.log(obj);
+</script>
+```
+
+
+
+### 10 、Object.getOwnPropertynames 获取所有的属性名
+
+> 获取实例对象的所有属性的名字
+
+```
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age= 18
+        this.fn = function () {
+            console.log(test);
+        }
+    }
+    var p = new Person()
+    console.log(Object.getOwnPropertyNames(p)); 
+
+</script>
+```
+
+
+
+
+
+### 11、 Object.keys() 获取所有可枚举属性
+
+> 获取实例对象的所有 可枚举的 属性的名字
+
+```
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age= 18
+        this.fn = function () {
+            console.log(test);
+        }
+    }
+    var p = new Person()
+    Object.defineProperty(p,'name', {
+        enumerable: false
+    })
+ 
+    console.log(Object.keys(p)); // ["age", "fn"]
+
+</script>
+```
+
+
+
+
+
+### 12、 Object.getPrototypeof 获取原型对象
+
+> 获取对象的原型对象 
+>
+> - `构造函数.ptototype ` 也可以获取对象的原型对象
+> - `对象.__proto__` 也可以获取对象的原型对象
+
+```
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age= 18
+        this.fn = function () {
+            console.log(test);
+        }
+    }
+   var p = new Person()
+
+    // 方式1:
+    console.log(Object.getPrototypeOf(p));
+    // 方式2:
+    console.log(Person.prototype);
+    // 方式3:
+    console.log(p.__proto__);
+
+</script>
+```
+
+
+
+
+
+### 13、 Object.preventExtensions() 禁止对象扩展
+
+> 禁止 对象   扩展新的属性或方法
+
+```
+<script>
+    function Person(){
+        this.name = 'zs'
+        this.age= 18
+    }
+    var p = new Person() 
+    console.log(p); // {name: "zs", age: 18}
+
+    // 禁止 对象 p 扩展新的属性或方法
+    Object.preventExtensions(p)
+
+    p.test = 'test' // 这一行不生效
+    console.log(p); // {name: "zs", age: 18} 
+</script>
+```
+
+
+
+
+
+### 14、 Object.isExtensible 判断对象是否可扩展
+
+> 判断一个对象是否可以扩展新的属性
+
+
+
+
+
+### 15、Object.seal 密封对象
+
+> 密封对象
+>
+> - 不能新增属性
+> - 不能删除属性
+> - 但是可以修改/ 查看
+
+
+
+### 16、object.freeze 冻结对象
+
+> 冻结对象
+>
+> - 不能添加新属性
+> - 不能删除属性
+> - 不能修改属性
+
+
+
+### 17、Object.isFrozen() 判断对象是否冻结
+
+> 判断一个对象是否被冻结

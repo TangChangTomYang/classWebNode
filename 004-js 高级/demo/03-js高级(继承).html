@@ -289,27 +289,208 @@
 
 
 
-<script>
-    var zs = {
-        des : '我是一个老实人: ',
-        showDes : function (param1, param2) {
-            console.log(this.des + param1 + param2);
+<!--<script>-->
+    <!--var zs = {-->
+        <!--des : '我是一个老实人: ',-->
+        <!--showDes : function (param1, param2) {-->
+            <!--console.log(this.des + param1 + param2);-->
 
+        <!--}-->
+    <!--}-->
+
+    <!--var ls = {-->
+        <!--des : '我是一个聪明人: '-->
+    <!--}-->
+
+    <!--zs.showDes('憨厚', '耿直')-->
+
+    <!--// 传递给 showDes 的参数使用 数组包装-->
+    <!--zs.showDes.call(ls, ['智商高', '情商低'])-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(name, age){-->
+        <!--this.name= name;-->
+        <!--this.age = age-->
+    <!--}-->
+
+    <!--Person.prototype.des = 'des'-->
+
+    <!--function  Stu(num, name, age) {-->
+        <!--this.num = num-->
+        <!--// 借调父构造函数-->
+        <!--Person.call(this, name, age)-->
+    <!--}-->
+
+    <!--var s1 = new Stu(10086, 'zhagnsan', 18)-->
+    <!--var s2 = new Stu(10088, 'lisi', 20)-->
+
+    <!--console.log(s1);-->
+    <!--console.log(s2);-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--// 父构造函数-->
+    <!--function Person(name, age){-->
+        <!--this.name = name;-->
+        <!--this.age = age-->
+        <!--this.friends = []-->
+    <!--}-->
+
+    <!--Person.prototype.des = 'des'-->
+
+    <!--// 子构造函数-->
+    <!--function  Stu(num, name, age) {-->
+        <!--this.num = num-->
+        <!--// 借调父构造函数继承-->
+        <!--Person.call(this, name, age)-->
+        <!--//Person.apply(this, [name, age])-->
+    <!--}-->
+
+    <!--var s1 = new Stu(10086, 'zhagnsan', 18)-->
+    <!--s1.friends.push('xiaozhang')-->
+    <!--var s2 = new Stu(10088, 'lisi', 20)-->
+    <!--s2.friends.push('xiaoli')-->
+    <!--console.log('s1', s1);-->
+    <!--console.log('s2',s2);-->
+
+    <!--console.log(s1.des);-->
+    <!--console.log(s2.des);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 父构造函数-->
+    <!--function Person(name, age){-->
+        <!--this.name = name;-->
+        <!--this.age = age-->
+        <!--this.friends = []-->
+    <!--}-->
+
+    <!--Person.prototype.des = 'des'-->
+
+    <!--// 2. 子构造函数 (借用构造函数继承)-->
+    <!--function  Stu(num, name, age) {-->
+        <!--this.num = num-->
+        <!--// 借调父构造函数继承-->
+        <!--Person.call(this, name, age)-->
+        <!--//Person.apply(this, [name, age])-->
+    <!--}-->
+    <!--// 3. 子构造函数的 原型继承 (子构造函数的原型对象 == 父构造函数的原型对象)-->
+    <!--Stu.prototype = Person.prototype;-->
+    <!--// 4. 修改构造器指向-->
+    <!--Stu.prototype.constructor = Stu;-->
+
+    <!--var s1 = new Stu(10086, 'zhagnsan', 18)-->
+    <!--s1.friends.push('xiaozhang')-->
+    <!--var s2 = new Stu(10088, 'lisi', 20)-->
+    <!--s2.friends.push('xiaoli')-->
+    <!--console.log('s1', s1);-->
+    <!--console.log('s2',s2);-->
+
+    <!--console.log(s1.des);-->
+    <!--console.log(s2.des);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj1 = {-->
+        <!--name : "zhangsan",-->
+        <!--car :{-->
+            <!--type:'公交车'-->
+        <!--}-->
+    <!--}-->
+    <!--var obj2 = {}-->
+    <!--for(var key in obj1){-->
+        <!--obj2[key] = obj1[key];-->
+    <!--}-->
+
+    <!--console.log(obj1.name, obj1.car.type)-->
+    <!--console.log(obj2.name, obj2.car.type)-->
+
+    <!--console.log('-&#45;&#45;&#45;&#45; obj2.car.type = 电瓶车&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;');-->
+    <!--obj2.car.type = '电瓶车'-->
+    <!--console.log(obj1.name, obj1.car.type)-->
+    <!--console.log(obj2.name, obj2.car.type)-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {name : 'zhangsan'}-->
+    <!--var arr = [1,2,3]-->
+    <!--var str = 'abc'-->
+
+    <!--console.log(obj.toString());-->
+    <!--console.log(arr.toString());-->
+    <!--console.log(str.toString());-->
+
+
+    <!--console.log(Object.prototype.toString.call(arr)); // [object Array]-->
+
+    <!--//-->
+    <!--if(!Array.isArray){ // 在以前, 我们是这样判断一个对象 是否是一个 数组的-->
+        <!--Array.isArray = function (obj) {-->
+            <!--// 这是 Array.isArray() 的底层实现原理-->
+            <!--return Object.prototype.toString.call(obj) == '[object Array]';-->
+        <!--}-->
+    <!--}-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--// 数组 "[object Array]"-->
+    <!--console.log(Object.prototype.toString.call(['a', 'b']));-->
+    <!--// 字符串 "[object String]"-->
+    <!--console.log(Object.prototype.toString.call('AAA'));-->
+    <!--// 对象 "[object Object]"-->
+    <!--console.log(Object.prototype.toString.call({}));-->
+
+
+<!--</script>-->
+
+<script>
+    // 将 sourceObj  拷贝到 targetObj 中
+    function  deepCopy(sourceObj, targetObj) {
+        targetObj = targetObj || {}
+        for(key in sourceObj){
+            // 只拷贝实例属性
+            if(sourceObj.hasOwnProperty(key)){
+                if((typeof sourceObj[key]) == 'object'){
+                    // 引用类型
+                    targetObj[key] = Array.isArray(sourceObj[key] ) ? [] : {};
+                    deepCopy(sourceObj[key], targetObj[key]);
+                }
+                else {
+                    // 值类型 | 函数
+                    targetObj[key] = sourceObj[key];
+
+                }
+            }
         }
     }
 
-    var ls = {
-        des : '我是一个聪明人: '
-    }
 
-    zs.showDes('憨厚', '耿直')
+    var obj = {name:'zhangsan',
+                car:{
+                        type:'奔驰'
+                    },
+                friends:[1,2,3],
+        fun: function () {
+            console.log('abc');
+        }
+                }
+    var obj2 = {}
+    deepCopy(obj, obj2)
 
-    // 传递给 showDes 的参数使用 数组包装
-    zs.showDes.call(ls, ['智商高', '情商低'])
-
+    console.log(obj);
+    console.log(obj2);
 </script>
-
-
 
 </body>
 </html>
+
