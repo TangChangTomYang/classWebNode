@@ -4317,7 +4317,9 @@ try {
 
 
 
-### 4、 函数的隐藏参数(arguments & this ), length
+### 4、 函数的隐藏参数(arguments.length & 函数名.length) 
+
+
 
 
 
