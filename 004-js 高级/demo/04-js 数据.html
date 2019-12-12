@@ -330,26 +330,257 @@
     <!--})(10)-->
 <!--</script>-->
 
+<!--<script>-->
+    <!--function fn(a,b,c){-->
+        <!--// 获取调用函数时传递的参数-->
+        <!--console.log('实际调用函数的参数', arguments);-->
+
+        <!--// 获取调动函数时传递的参数的个数-->
+        <!--console.log('实际调用函数参数个数: ', arguments.length);-->
+
+        <!--// 获取定义函数时, 形参的个数-->
+        <!--console.log('定义函数形参个数: ',  fn.length);-->
+
+        <!--// 遍历调用函数时传递的实际参数-->
+        <!--for(var i = 0; i < arguments.length; i++){-->
+            <!--console.log(i,  arguments[i]);-->
+        <!--}-->
+    <!--}-->
+
+    <!--fn('aa','bb', 'cc',)-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name: 'zhangsan',-->
+        <!--age:18,-->
+        <!--fn:function () {-->
+            <!--console.log(this, '正在调用 obj对象的 fn方法 ');-->
+        <!--}-->
+    <!--}-->
+
+    <!--// 1.-->
+    <!--obj.fn()-->
+
+    <!--// 2.-->
+    <!--var show = obj.fn;-->
+    <!--show()-->
+
+    <!--function Person(){-->
+        <!--console.log(this, '正在调用 Person构造方法');-->
+    <!--}-->
+    <!--// 3.-->
+    <!--var p = new Person()-->
+
+    <!--// 4.-->
+    <!--obj.fn.call(p)-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// (对象 instanceof 构造函数) 判断一个对象是否是 构造函数的实例对象-->
+    <!--console.log(Function instanceof Object); // true-->
+    <!--console.log(Function instanceof Function); // true-->
+    <!--console.log(Object instanceof Function);    // true-->
+    <!--console.log(Object instanceof Object);  // true-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function Person(){-->
+
+    <!--}-->
+    <!--var p1 = new Person()-->
+
+    <!--console.log(p1 instanceof Person);          // true-->
+    <!--console.log(typeof p1);                     // object-->
+    <!--console.log(p1.constructor);                //  Person-->
+    <!--console.log(Person.prototype.constructor);  // Person-->
+
+    <!--console.log('-&#45;&#45;&#45;&#45;&#45;&#45;');-->
+    <!--Person.prototype = {des:'des'}-->
+
+    <!--console.log(p1 instanceof Person);          // false-->
+    <!--console.log(typeof p1);                     // object-->
+    <!--console.log(p1.constructor);                // Person-->
+    <!--console.log(Person.prototype.constructor);  // Object-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function  Person(name, age) {-->
+        <!--this.name = name-->
+        <!--this.age = age-->
+    <!--}-->
+
+
+    <!--function Stu(num, name , age) {-->
+        <!--this.num = num-->
+        <!--Person.call(this, )-->
+    <!--}-->
+    <!--Stu.prototype = new Person();-->
+    <!--var s = new Stu(1001, 'zhagnsan', 18)-->
+
+    <!--console.log(s instanceof Person);-->
+    <!--console.log(s instanceof Stu);-->
+    <!--console.log(s.constructor);-->
+
+
+<!--</script>-->
+<!--<script>-->
+    <!--function Person(){-->
+        <!--this.name = 'za'-->
+        <!--// 特权方法, 可以访问私有变量和私有方法的函数, 称为特权函数/方法-->
+        <!--this.test = function (){-->
+            <!--console.log('test');-->
+            <!--console.log(age);-->
+            <!--fn()-->
+        <!--}-->
+
+        <!--// 私有变量, 外边不能访问-->
+        <!--var age = 20;-->
+        <!--// 私有方法, 外边不能访问-->
+        <!--function fn() {-->
+            <!--console.log('fn');-->
+        <!--}-->
+    <!--}-->
+
+
+    <!--var p = new Person()-->
+    <!--p.test()-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--eval("var a = 10"); // 相当于 var a = 10-->
+    <!--console.log(a);-->
+
+
+
+    <!--eval(`function fn(a){-->
+        <!--console.log(a)-->
+        <!--console.log('test')-->
+    <!--}`)-->
+
+    <!--fn(10)-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var objData = `{"name":"zhangsan", "age":18}`-->
+    <!--console.log(objData);-->
+
+    <!--// 1. string 转为对象-->
+    <!--var obj = JSON.parse(objData)-->
+    <!--console.log(obj);-->
+
+    <!--// 2. 对象转为 字符串-->
+    <!--var objStr = JSON.stringify(obj)-->
+    <!--console.log(objStr);-->
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var str = '{"name":"zhangsan"}'-->
+    <!--eval ('var info =' + str)-->
+    <!--console.log(info)-->
+
+    <!--// 方式2, 是用 () 包裹-->
+    <!--console.log(eval ('(' + str + ')'))-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name:'zhangsan',-->
+        <!--age:18,-->
+        <!--sex:'man'-->
+    <!--}-->
+
+    <!--console.log(obj);-->
+
+    <!--// 以前我们是通过 . 点语法 或者 [] 方括号 语法来修改属性的-->
+    <!--// 每次要在前面写上 对象的名字, 要修改的属性多就很麻烦, 如下:-->
+    <!--obj.name = 'wangwu'-->
+    <!--obj.age = 80-->
+    <!--obj.sex = 'weman'-->
+    <!--console.log(obj);-->
+    <!---->
+    <!--// 有了with之后, 可以把对象的作用域提升到 {} 处, 就简单了, 如下-->
+    <!--with(obj){-->
+        <!--name = 'zhaoliu'-->
+        <!--age = 55-->
+        <!--sex = 'man'-->
+    <!--}-->
+    <!--console.log(obj);-->
+    <!--// 有了with后简化操作, 方便很多-->
+    <!---->
+<!--</script>-->
+
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name:'zhangsan',-->
+        <!--age:18,-->
+        <!--sex:'man'-->
+    <!--}-->
+
+
+    <!--with(obj){-->
+        <!--name = 'zhaoliu'-->
+        <!--age = 55-->
+        <!--sex = 'man'-->
+    <!--}-->
+
+    <!--// 上面的with 可以使用下面 js 中的即时函数代替-->
+    <!--(function(){-->
+        <!--name = 'zhaoliu'-->
+        <!--age = 55-->
+        <!--sex = 'man'-->
+    <!--})(obj)-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var div = document.getElementsByTagName('div')-->
+    <!--var p = document.getElementsByTagName('p')-->
+    <!--console.log(div);-->
+    <!--console.log(p);-->
+
+    <!--// 上面代码在执行的时候每次前面都要写一个  document.getElementsByTagName 很麻烦-->
+    <!--// 有时, 可能就想把它抽出来-->
+    <!--// 下面就出现了this 丢失的问题-->
+    <!--var getEle = document.getElementsByTagName-->
+    <!--var div2 = getEle('div')-->
+    <!--var p2 = getEle('p')-->
+<!--</script>-->
+
 <script>
-    function fn(a,b,c){
-        // 获取调用函数时传递的参数
-        console.log('实际调用函数的参数', arguments);
-
-        // 获取调动函数时传递的参数的个数
-        console.log('实际调用函数参数个数: ', arguments.length);
-
-        // 获取定义函数时, 形参的个数
-        console.log('定义函数形参个数: ',  fn.length);
-
-        // 遍历调用函数时传递的实际参数
-        for(var i = 0; i < arguments.length; i++){
-            console.log(i,  arguments[i]);
+    function  Person() {
+        this.fn= function () {
+            console.log(this);
         }
     }
 
-    fn('aa','bb', 'cc',)
-</script>
+    var p = new Person()
+    p.fn(); // person
 
+    var f = p.fn ;
+    f(); // window
+
+
+    var arr = []
+    arr.splice()
+</script>
 
 
 

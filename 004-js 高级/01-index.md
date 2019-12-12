@@ -4170,7 +4170,7 @@ try {
 
 
 
-## 六、function 构造函数的使用
+## 六、函数的使用(详解)
 
 
 
@@ -4319,10 +4319,6 @@ try {
 
 ### 4、 函数的隐藏参数(arguments.length & 函数名.length) 
 
-
-
-
-
 - 在函数内部, 可以通过 `arguments` 获取调用函数时的实际参数, 以及实际参数的个数
 
 - 通过`函数名.length` 可以获取定义函数时,定义的形参个数
@@ -4361,6 +4357,368 @@ try {
 
 
 
+### 5、函数内部的this指向
+
+- 函数内部的`this` 的指向, 取决于哈数的调用方式
+
+  - 作为对象内部的方法调用时,  函数内部的`this` 就指向对象本身
+  - 作为普通函数被调用, 函数内部的`this` 指向的就是`window` 对象
+  - 使用`new` 构造函数调用时, `this` 指向的就是构造函数新创建的实例对象
+  - 使用`call` | `apply` 借调时, `this` 指向的就是借调对象
+
+  ```
+  <script>
+      var obj = {
+          name: 'zhangsan',
+          age:18,
+          fn:function () {
+              console.log(this, '正在调用 obj对象的 fn方法 ');
+          }
+      }
+  
+      // 1. 作为对象内部的方法调用时,  函数内部的`this` 就指向对象本身
+      obj.fn()
+  
+      // 2. 作为普通函数被调用, 函数内部的`this` 指向的就是`window` 对象
+      var show = obj.fn;
+      show()
+  
+      function Person(){
+          console.log(this, '正在调用 Person构造方法');
+      }
+      // 3. 使用`new` 构造函数调用时, `this` 指向的就是构造函数新创建的实例对象
+      var p = new Person()
+  
+      // 4. 使用`call` | `apply` 借调时, `this` 指向的就是借调对象
+      obj.fn.call(p)
+  </script>
+  ```
+
+  
+
+
+
+
+
+
+
+### 6、 Function.prototype 原型链
+
+```
+function Person(){
+
+}
+
+function Stu(){
+
+}
+
+var p1 = new Person()
+Stu.prototype = p1
+var s1 = new Stu()
+```
+
+
+
+![Snip20191212_1](Snip20191212_1.png) 
+
+
+
+- 原型链
+
+  ![Snip20191212_1](Snip20191212_2.png) 
+
+  
+
+- 完整原型链
+
+  ![Snip20191212_1](Snip20191212_3.png)  
+
+
+
+
+
+### 7、Object 和Function 的关系
+
+- Function 和 Object 互为对方的实例
+
+- 所有的对象都是 Object的实例
+
+  ```
+  <script>
+      // (对象 instanceof 构造函数) 判断一个对象是否是 构造函数的实例对象
+      console.log(Function instanceof Object); // true
+      console.log(Function instanceof Function); // true
+      console.log(Object instanceof Function);    // true
+      console.log(Object instanceof Object);  // true
+  </script>
+  ```
+
+- 深入的理解
+
+  - Object 的原型对象在Function的原型链上
+  - Function的原型对象在Object的原型链上
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+### 8、 `instanceof` 的判断本质
+
+
+
+- `对象 instanceof 构造函数` 的简单的理解: 
+
+  > 就是判断对象是否是构造函数的实例
+
+- `对象 instanceof 构造函数`  的深入的理解
+
+  > 检测构造函数的原型对象, 是否在 对象的原型链上
+
+  ```
+  <script>
+      function Person(){
+  
+      }
+      var p1 = new Person()
+  
+      console.log(p1 instanceof Person);          // true
+      console.log(typeof p1);                     // object
+      console.log(p1.constructor);                //  Person
+      console.log(Person.prototype.constructor);  // Person
+  
+      console.log('-------');
+      Person.prototype = {des:'des'}
+  
+      console.log(p1 instanceof Person);          // false
+      console.log(typeof p1);                     // object
+      console.log(p1.constructor);                // Person
+      console.log(Person.prototype.constructor);  // Object
+  
+  </script>
+  ```
+
+  
+
+
+
+
+
+## 七、私有变量和函数
+
+- 在构造函数内定义的, 没有赋值给`this` 的变量和函数,称为私有变量和函数, 在外面不能直接访问, 只能在构造函数内访问
+
+  ```
+   <script>
+      function Person(){
+          this.name = 'za'
+          // 特权方法, 可以访问私有变量和私有方法的函数, 称为特权函数/方法
+          this.test = function (){
+              console.log('test');
+              console.log(age);
+              fn()
+          }
+  
+          // 私有变量, 外边不能访问
+          var age = 20;
+          // 私有方法, 外边不能访问
+          function fn() {
+              console.log('fn');
+          }
+      }
+  
+  
+      var p = new Person()
+      p.test()
+  </script>
+  ```
+
+
+
+## 八、 eval 简单介绍
+
+### 1、 eval 介绍
+
+- `eval()`: 的功能很简单, 可以把字符创, 转换成对应的代码
+
+  > 其实`eval` 和以前学习的 `Function` 构造函数非常的相似
+
+
+
+- `eval` 和 `Function` 构造函数在讲字符串转为代码时的差异
+  - `eval` 和`Function构造函数` 都可以将字符串转为对应的 JS 代码
+  - `eval` 把字符串转为代码后会立即执行, `Function`构造函数需要调用后才能执行
+
+
+
+### 2、eval 的应用场景
+
+- 处理JSON数据
+
+  - 普通的 JSON 与 字符串的互转
+
+    > `JSON.parse`  和`JSON.stringify` 是ES5 才出来的, 以前不支持
+
+    ```
+    <script>
+        var objData = `{"name":"zhangsan", "age":18}`
+        console.log(objData);
+    
+        // 1. string 转为对象
+        var obj = JSON.parse(objData)
+        console.log(obj);
+    
+        // 2. 对象转为 字符串
+        var objStr = JSON.stringify(obj)
+        console.log(objStr); 
+    </script>
+    ```
+
+  - 使用`eval` 将json 转成对象
+
+    ```
+    <script>
+        var str = '{"name":"zhangsan"}'
+        // 方式1, 在前面拼接一个 变量
+        eval ('var info =' + str)
+        console.log(info)
+        
+        // 方式2, 是用 () 包裹 
+        console.log(eval ('(' + str + ')'))
+    </script>
+    ```
+
+    > 虽然, eval 很好用, 但是不建议使用, 因为JS 是词法作用域
+    >
+    > - 因为, eval 会动态的调整(破坏)词法作用于, 性能不好
+
+    
+
+
+
+## 九、 with 简单介绍
+
+
+
+### 1、with的作用介绍
+
+- `with` 可以吧对象的作用域, 引申到大括号中, 作用就是减少代码量
+
+  > 修改有属性
+  >
+  > - 通过with 只能修改属性, 不能添加属性 
+  > - 严格模式下不允许使用
+
+  ```
+  <script>
+      var obj = {
+          name:'zhangsan',
+          age:18,
+          sex:'man'
+      }
+      console.log(obj); // {name: "zhangsan", age: 18, sex: "man"}
+  
+  
+      // 以前我们是通过 . 点语法 或者 [] 方括号 语法来修改属性的
+      // 每次要在前面写上 对象的名字, 要修改的属性多就很麻烦, 如下:
+      obj.name = 'wangwu'
+      obj.age = 80
+      obj.sex = 'weman'
+      console.log(obj); // {name: "wangwu", age: 80, sex: "weman"}
+      
+      
+      // 有了with之后, 可以把对象的作用域提升到 {} 处, 就简单了, 如下
+      with(obj){
+          name = 'zhaoliu'
+          age = 55
+          sex = 'man'
+      }
+      console.log(obj); // {name: "zhaoliu", age: 55, sex: "man"}
+      // 有了with后简化操作, 方便很多
+      
+  </script>
+  ```
+
+- `with` 在有些场景下很好用, 但是不是什么场景下都能用, 我们可以使用 `即时函数代替它`
+
+  - 使用`JS 即时函数代替 with`
+
+    ```
+    <script>
+        var obj = {
+            name:'zhangsan',
+            age:18,
+            sex:'man'
+        }
+    
+    
+        with(obj){
+            name = 'zhaoliu'
+            age = 55
+            sex = 'man'
+        }
+    
+        // 上面的with 可以使用下面 js 中的即时函数代替
+        (function(){
+            name = 'zhaoliu'
+            age = 55
+            sex = 'man'
+        })(obj)
+    
+    </script>
+    ```
+
+    
+
+## 十、this的丢失问题
+
+```
+<script>
+    var div = document.getElementsByTagName('div')
+    var p = document.getElementsByTagName('p')
+    console.log(div);
+    console.log(p);
+
+    // 上面代码在执行的时候每次前面都要写一个  document.getElementsByTagName 很麻烦
+    // 有时, 可能就想把它抽出来
+    // 下面就出现了this 丢失的问题
+    var getEle = document.getElementsByTagName
+    var div2 = getEle('div')
+    var p2 = getEle('p')
+</script>
+```
+
+- 造成this丢失的问题原因就是下面这段代码的原因
+
+  ```
+  <script>
+      function  Person() {
+          this.fn= function () {
+              console.log(this);
+          }
+      }
+  
+      var p = new Person()
+      p.fn(); // person,此时this指向 p对象
+  
+      var f = p.fn ;
+      f(); // window , 此时this指向 window对象
+  </script>
+  ```
+
+  
+
+> 知道this 丢失的原因后, 以后我们在写代码的时候就要注意了, 不要简单粗暴的将代码做抽取
+>
+> 出现了this丢失的问题要清除原因
 
 
 
@@ -4372,4 +4730,248 @@ try {
 
 
 
+## 十一、面向对象(图书管理)
 
+- 在JS中定义类的正确姿势
+
+  - 在构造器中书写属性
+  - 在原型中写方法
+
+  ```
+  <script>
+  function BookManager(option){
+  	this._init(option)
+  }
+  
+  BookManager.prototype = {
+  	// 修正构造器指向
+  	constructor : BookManager,
+  	// 初始化操作
+  	_init : function (books){
+  		this.books = books || []
+  	},
+  	// 获取书
+  	getBook : function(name){
+  		// 表达式
+  	},
+  	addBook : function(book){
+  		// 表达式
+  	},
+  	updateBookName: function(bookName, newName){
+  		// 表达式
+  	},
+  	deleteBook: function(name){
+  		// 表达式
+  	}
+  	
+  }
+  
+  </script>
+  ```
+
+  
+
+
+
+## 十二 、JS开发中, 严格模式和非严格模式
+
+
+
+- 在严格模式下, 会做更加严格的语法检查
+- 默认情况下是非严格模式
+
+
+
+### 1、 如何开启严格模式
+
+- 在 `<script> </script>` 的第一句中写上` "use strict";` 开启严格模式, 如下:
+
+  > 在ES5开始才支持严格模式
+
+  ```
+  <script>
+      "use strict";
+      
+      // 后面书写严格模式的代码
+  </script>
+  ```
+
+  - 注意:
+
+    - `"use strict";`  这种方式开启严格模式, 做了先前兼容问题, 如果浏览器不支持严格模式, 那么这句话会被当成一般的字符串, 忽略处理掉. 
+
+      > 其实在 js 中, 我们定义普通的字符串 也是使用双引号 ` " "` 包起来的, 不是吗? 所以没有任何问题 
+
+
+
+- 开启严格模式的注意点
+
+  > "use strict"; 开启的严格模式, 只对当前 `script` 标签对内的代码有效
+
+  ```
+  <script> // 该标签内严格模式
+      "use strict";
+      
+       a = 10 // 直接报错
+  </script>
+  
+  
+  <script> // 该标签内 仍为非严格模式
+   	b = 30 // 可以使用
+  </script>
+  ```
+
+  
+
+
+
+### 2、严格模式 注意点
+
+- 所有的变量必须使用 `var` 关键字声明, 否则直接报错
+
+  > 在非严格模式下, 不使用 var 声明的变量是全局变量
+
+- 不能使用`delete` 关键字删除全局变量, 以前默认删除失败, 在严格模式下直接崩溃
+
+  - 非严格模式下, 可以
+
+    ```
+    <script> 
+        var a = 10
+        delete a ;      // 删不调 (静默错误)
+        console.log(a);
+    
+        var b = 20
+        delete window.b // 删不调 (静默错误)
+        console.log(b);
+    </script>
+    ```
+
+  - 严格模式下
+
+    > 在严格模式下不能删除全局变量
+
+    ```
+    <script> 
+        var a = 10
+        delete a ;      // 直接报错
+        console.log(a);
+    
+        var b = 20
+        delete window.b // 直接报错
+        console.log(b);
+    </script>
+    ```
+
+    
+
+- 在对象中不允许有同名的属性
+
+  > 非严格模式, 同名的后面覆盖前面
+
+- 函数的参数必须唯一, 不能出现同名的参数
+
+  > 非严格模式, 同名的后面覆盖前面
+
+- `arguments` 的行为不同, 在非严格模式下修改形参的值会反应到`arguments` 中, 而在严格模式下则相对独立
+
+  - 非严格模式下
+
+    ```
+    <script>
+        var num1 = 20
+        function fn(num) {
+            console.log(num);	// 20
+            console.log(arguments[0]);// 20
+            
+            num = 200
+            console.log(num);// 200
+            console.log(arguments[0]);// 200
+        }
+        fn(num1)
+    </script>
+    ```
+
+  - 严格模式下
+
+    ```
+    
+    <script>
+    		"use strict";
+        var num1 = 20
+        function fn(num) {
+            console.log(num);	// 20
+            console.log(arguments[0]);// 20
+            
+            num = 200
+            console.log(num);// 200
+            console.log(arguments[0]);// 20
+        }
+        fn(num1)
+    </script>
+    ```
+
+  > 注意了, 不论是在严格模式下还是非严格模式下 在函数内修改形参都不会影响外面的实参
+  >
+  > 只是在严格和非严格下对 arguments 有影响而已
+  >
+  > 也就是说, 在非严格模式下, 形参和arguments 是共用数据的
+
+- 禁用了`arguments.callee` 和`arguments.caller`, 他们一个引用函数本身, 一个应用调用函数
+
+  ```
+  <script> 
+   "use strict";
+   function f1(){
+   	console.log(f1.caller) // 崩溃
+   	console.log(arguments.callee) // 崩溃
+   }
+   function f2(){
+   	f1()
+   }
+   
+   f2()
+  </script>
+  ```
+
+  
+
+- 不能在`if` 语句中声明函数
+
+- 禁止使用`eval` 和 `arguments` 作为标识符
+
+  > 即, 在严格模式下不能使用 `eval` 和 `arguments` 作为成员名, 和其它关键字想` if`  `break` 这些关键字一样
+
+- 修正`this` 的值时, 在严格模式下, 函数的`this` 值始终指向指定的值
+
+  ```
+  <script>
+      "use strict";
+      var obj = {
+         name:'zs',
+          show : function(){
+              console.log(this);
+          }
+      }
+      obj.show(); // this --> obj
+      var sw = obj.show;
+      
+      sw();  // 非严格模式下 this -> window, 在严格模式下 this -> undefine
+      
+      
+      obj.show.call(null) // this -> null
+  </script>
+  
+  ```
+
+  > 概括:
+  >
+  > 在严格模式下, this必须明确指定, 指定的是什么就是什么
+  >
+  > 如果没有指定, 那么此时的this 就位 undefined
+
+- 禁用了`with` 语句
+
+- 去掉了`javaScript` 找那个的八进制字面量(以 0开头的数字是八进制)
+
+  

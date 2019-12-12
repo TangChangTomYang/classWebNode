@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+<!--//    "use strict";-->
+
+    <!--var a = 10-->
+    <!--delete a ;      // 删不调 (静默错误)-->
+    <!--console.log(a);-->
+
+
+    <!--var b = 20-->
+    <!--delete window.b // 删不调 (静默错误)-->
+    <!--console.log(b);-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--var obj = {-->
+        <!--name:'asdf',-->
+        <!--name:'asdfdfasdf'-->
+    <!--}-->
+    <!--console.log(obj);-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var obj = {-->
+       <!--name:'zs',-->
+        <!--show : function(){-->
+            <!--console.log(this);-->
+        <!--}-->
+    <!--}-->
+    <!--obj.show(); // this &ndash;&gt; obj-->
+    <!--var sw = obj.show;-->
+
+    <!--sw();  // 非严格模式下 this -> window, 在严格模式下 this -> undefine-->
+
+
+    <!--obj.show.call(null) // this -> null-->
+<!--</script>-->
+
+
+<script>
+    "use strict";
+
+     a = 10 // 直接报错
+</script>
+
+
+<script>
+
+
+
+
+
+    var num1 = 20
+    function fn(num) {
+        console.log(num);
+        console.log(arguments[0]);
+        num = 200
+
+        console.log(num);
+        console.log(arguments[0]);
+
+    }
+
+    fn(num1)
+
+</script>
+
+</body>
+</html>
