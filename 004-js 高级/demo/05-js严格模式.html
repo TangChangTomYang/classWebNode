@@ -50,32 +50,17 @@
 
 
 <script>
-    "use strict";
+    function fn() {
+        "use strict";
+        a = 101 // 直接报错
 
-     a = 10 // 直接报错
-</script>
+        b = 101 // 直接报错
 
-
-<script>
-
-
-
-
-
-    var num1 = 20
-    function fn(num) {
-        console.log(num);
-        console.log(arguments[0]);
-        num = 200
-
-        console.log(num);
-        console.log(arguments[0]);
-
+        console.log(a, b);
     }
-
-    fn(num1)
-
+    fn()
 </script>
+
 
 </body>
 </html>

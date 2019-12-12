@@ -4806,18 +4806,47 @@ var s1 = new Stu()
 
 - 开启严格模式的注意点
 
+  > - `"use strict":` 需要写在当前作用域的最前面才会生效, 否则失效
+  > - 严格模式的作用域只限当前作用域
+  >
   > "use strict"; 开启的严格模式, 只对当前 `script` 标签对内的代码有效
 
   ```
-  <script> // 该标签内严格模式
+  <script> // 整个script标签有效, 超出失效
       "use strict";
-      
-       a = 10 // 直接报错
+         
   </script>
+  ```
+
+  ```
+  <script> //无效
+   	b = 30  
+   	"use strict";
+  </script>
+  ```
+
+  ```
+  <script> //无效
+      function fn() {
+          a = 101 // 直接报错
+          "use strict";
+          b = 101 // 直接报错 
+          console.log(a, b);
+      }
+      fn()
+  </script>
+  ```
+
+  ```
+  <script>
+      function fn() { // {}内有效, 超出失效
+          "use strict";
+          a = 101 // 直接报错 
+          b = 101 // 直接报错
   
-  
-  <script> // 该标签内 仍为非严格模式
-   	b = 30 // 可以使用
+          console.log(a, b);
+      }
+      fn()
   </script>
   ```
 
@@ -4975,3 +5004,384 @@ var s1 = new Stu()
 - 去掉了`javaScript` 找那个的八进制字面量(以 0开头的数字是八进制)
 
   
+
+
+
+
+
+
+
+## 十三、作用域
+
+
+
+- 作用域
+  - 一个变量有作用的范围 
+
+
+
+### 1、js 没有块级作用域 {}
+
+- 在javaScript 中 `{}` 花括号, 没有想其它语言(eg:C 语言)一样的作用域的概念
+
+  在 `{}` 中定义的变量和在外面定义的变量是一个概念
+
+```
+<script>
+
+    if(true){ 
+        var a = 10; // a 全局变量
+    }
+    
+    console.log(a); // 10 
+    for (var i = 0; i < 5; i++){ // a 全局变量
+
+    }
+    console.log(i); // 5
+</script>
+```
+
+
+
+
+
+### 2、js  中的作用域
+
+- 在JS 中只有2种作用域: `全局作用域`  和 `函数作用(块级作用域)` 
+
+  - JS 中函数是唯一可以创建作用域的对象
+
+    > 你可以把函数的 {}范围, 理解为一个块级作用域
+
+  ```
+  <script>
+      function  fn() {
+  				// nn 只能在函数内访问
+          var nn = 'zs'
+      }
+      console.log(nn);  // 访问不到
+  </script>
+  ```
+
+
+
+
+
+### 3、词法作用域和动态作用于
+
+- 词法作用于:
+
+  - 变量声明完成后, 这个变量的作用域就已经确定了
+
+- 动态作用域:
+
+  - 变量的作用域由程序的执行环境所决定
+
+  > JS 属于词法作用域
+
+
+
+
+
+
+
+### 4、词法作用域 变量的搜索原则(就近原则)
+
+- 在使用变量的时候, 首先会在当前作用域查找, 找到就用
+- 如果没找到就去上一级作用于查找. 如果找到就用
+- 如果没找到就会继续向上查找, 直到全局作用域, 找到就用
+- 还是没找到就没有了 undefine 或 报错
+
+
+
+
+
+
+
+### 5、变量和函数的声明提升
+
+
+
+#### 1、 变量和函数声明提升介绍
+
+
+
+- JS 是解释性语言, 解释一行运行一行
+
+  > js 是从上到下, 一行一行执行的
+
+- JS 代码的执行过程, 2个阶段: `预解析阶段`  `执行阶段` 
+
+  - `预解析阶段` , 会对 `var` 声明的变量和 `function` 声明的代码块进行声明提升, 提升到当前作用域的顶端, 这也是为什么, 我们在书写 js 代码的时候, 可以在声明之前使用变量和方法
+
+  - `执行阶段`:  一行一行的执行
+
+    ```
+    <script> 
+        console.log(a);
+        var a = 10
+        demo()
+        function  demo() {
+            console.log('demo');
+        }
+    </script>
+    ```
+
+    - 模拟提升(上面代码块的代码, 可以改写为下面的样式)
+
+      > 就是因为JS 对变量和方法进行了提升, 所以执行时没有报错
+
+      ```
+      <script> 
+      		var a;
+      		function  demo() {
+              console.log('demo');
+          }
+          
+          console.log(a);
+          a = 10
+          demo() 
+      </script>
+      ```
+
+      
+
+
+
+
+
+> 注意:
+>
+> - 只会提升变量和函数的声明, 不会提升定义(赋值)
+> - 变量和变量同名, 后面的覆盖前面的
+> - 函数和函数同名, 候命的覆盖签名的
+> - 当函数和变量同名时, 只提升函数, 不提升变量
+
+```
+<script> 
+    console.log(demo); 
+    function  demo() {
+        console.log('demo22');
+    }
+    var demo = 123 
+    console.log(demo);
+    demo()  
+</script>
+```
+
+![Snip20191212_4](Snip20191212_4.png) 
+
+
+
+
+
+#### 2、变量的提升是分作用域的
+
+- 变量的提升是分作用域的, 如下代码:
+
+  ```
+  <script>
+      var a = 10
+  
+      function test1() {
+          console.log(a); // undefined
+          var a = 20;
+      } 
+      function  test2() {
+          var a = 30
+          test1()       // undefined      
+          console.log(a); // 30
+          var a = 40
+      }
+  
+      test1()   
+      test2()
+      console.log(a); // 10 
+  </script>
+  ```
+
+  - 提升后的代码等价于下面
+
+    ```
+    <script>
+        var a;
+        function test1() {
+    		    var a;
+            console.log(a); // undefined
+            a = 20;
+        }
+        function  test2() {
+            var a;
+            a = 30;
+            test1()       // undefined      
+            console.log(a); // 30
+            a = 40
+        }
+        
+    		a = 10 
+        test1()   
+        test2()
+        console.log(a); // 10 
+    </script>
+    ```
+
+  
+
+  
+
+#### 3、函数表达式提升
+
+- 只提升变量, 不提升定义
+
+  ```
+  <script> 
+      fn() // 这句报错
+      var fn = function () {
+          console.log('test');
+      } 
+  </script>
+  ```
+
+  - 提升后的代码等价于
+
+    ```
+    <script> 
+    		var fn;
+        fn()		// 这句报错
+        fn = function () {
+            console.log('test');
+        } 
+    </script>
+    ```
+
+    
+
+
+
+## 十四、面试题
+
+
+
+###1、 变量提升面试题 
+
+1、
+
+```
+<script>
+    function  foo() {
+        var num = 123
+        console.log(num); // 123
+    }
+    foo()
+    console.log(num);  // 因为没声明, 报错
+</script>
+```
+
+2 、
+
+```
+<script>
+    function  foo() {
+        num = 123  // 方法执行后, 相当于全局变量
+        console.log(num); // 123
+    }
+    foo()
+    console.log(num);  // 123
+</script>
+```
+
+3、
+
+```
+<script>
+    function  foo() {
+        num = 123  // 方法执行后, 相当于全局变量
+        console.log(num); // 123
+    }
+    console.log(num);  // 未声明, 直接报错
+    foo()
+    
+</script>
+```
+
+4、
+
+```
+<script>
+     var scope = 'global'
+
+    foo()
+
+    function  foo() {
+        console.log(scope); // undefined
+        var scope = 'local'
+        console.log(scope); // local
+    }
+		console.log(scope); //global
+</script>
+```
+
+
+
+5、
+
+```
+<script>
+
+    if("a" in window){
+        var a = 10
+    } 
+    console.log(a);  // 10
+</script>
+```
+
+
+
+6、
+
+```
+<script>
+
+ function f1() {
+     if("a" in window){
+         var a = 10
+     }
+
+     console.log(a);  // undefined
+ }
+ f1()
+</script>
+```
+
+7、
+
+```
+<script>
+    var foo = 1
+    function bar (){
+        if(!foo){
+            var foo = 10
+        }
+
+        console.log(foo);
+    }
+
+    bar()
+</script>
+
+等价于下面
+<script>
+
+    var foo;
+    function bar (){
+        var foo;
+        if(!foo){
+            foo = 10
+        }
+        console.log(foo);	// 10 
+    }
+    foo = 1 
+    bar()
+</script>
+```
+

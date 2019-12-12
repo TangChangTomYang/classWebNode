@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+
+    <!--if(true){-->
+        <!--var a = 10-->
+    <!--}-->
+    <!--console.log(a); // 10-->
+
+
+    <!--for (var i = 0; i < 5; i++){-->
+
+    <!--}-->
+    <!--console.log(i); // 5-->
+
+
+    <!--function  fn() {-->
+        <!--var nn = 'zs'-->
+    <!--}-->
+
+    <!--console.log(nn);  // 访问不到-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--console.log(a);-->
+    <!--var a = 10-->
+    <!--demo()-->
+    <!--function  demo() {-->
+        <!--console.log('demo');-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+
+    <!--console.log(demo);-->
+
+    <!--function  demo() {-->
+        <!--console.log('demo22');-->
+    <!--}-->
+    <!--var demo = 123-->
+
+
+    <!--console.log(demo);-->
+    <!--demo()-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--var a = 10-->
+
+    <!--function test1() {-->
+        <!--console.log(a); // undefined-->
+        <!--var a = 20;-->
+    <!--}-->
+
+
+    <!--function  test2() {-->
+        <!--var a = 30-->
+        <!--test1()       // undefined-->
+        <!--console.log(a); // 30-->
+        <!--var a = 40-->
+    <!--}-->
+
+    <!--test1()-->
+    <!--test2()-->
+    <!--console.log(a); // 10-->
+
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--fn()-->
+    <!--var fn = function () {-->
+        <!--console.log('test');-->
+    <!--}-->
+
+<!--</script>-->
+
+<!--<script>-->
+    <!--function  foo() {-->
+        <!--var num = 123-->
+        <!--console.log(num); // 123-->
+    <!--}-->
+    <!--foo()-->
+    <!--console.log(num);  // 因为没声明, 报错-->
+<!--</script>-->
+
+
+<!--<script>-->
+     <!--var scope = 'global'-->
+
+    <!--foo()-->
+
+    <!--function  foo() {-->
+        <!--console.log(scope); // undefined-->
+        <!--var scope = 'local'-->
+        <!--console.log(scope); // local-->
+    <!--}-->
+
+    <!--console.log(scope); //global-->
+<!--</script>-->
+
+
+
+<!--<script>-->
+
+    <!--if("a" in window){-->
+        <!--var a = 10-->
+    <!--}-->
+
+    <!--console.log(a);  // 10-->
+<!--</script>-->
+
+
+
+<!--<script>-->
+
+ <!--function f1() {-->
+     <!--if("a" in window){-->
+         <!--var a = 10-->
+     <!--}-->
+
+     <!--console.log(a);  // undefined-->
+ <!--}-->
+ <!--f1()-->
+<!--</script>-->
+
+
+
+<script>
+    var foo = 1
+    function bar (){
+        if(!foo){
+            var foo = 10
+        }
+
+        console.log(foo);
+    }
+
+    bar()
+</script>
+
+
+<script>
+
+    var foo;
+    function bar (){
+        var foo;
+        if(!foo){
+            foo = 10
+        }
+        console.log(foo);
+    }
+
+
+    foo = 1
+    bar()
+</script>
+
+
+</body>
+</html>
