@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            height: 50px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<!--<div>我是第1个</div>-->
+<!--<div>我是第2个</div>-->
+<!--<div>我是第3个</div>-->
+<!--<div>我是第4个</div>-->
+<!--<div>我是第5个</div>-->
+
+<!--<script>-->
+    <!--var divs = document.getElementsByTagName('div')-->
+    <!--for (var i = 0; i < divs.length; i++){-->
+        <!--divs[i].onclick = (function (j) {-->
+           <!--return function () {-->
+                <!--console.log(`点击了第${j + 1}个div`);-->
+            <!--}-->
+        <!--})(i)-->
+
+
+        <!--console.log(i, divs[i].onclick);-->
+    <!--}-->
+
+
+    <!--for (var i = 0; i < divs.length; i++){-->
+        <!--console.log(divs[i].onclick == divs[i].onclick);;-->
+    <!--}-->
+
+
+
+<!--</script>-->
+
+
+<!--<script>-->
+
+
+    <!--// 这种方式就称为, 即时 函数 出事化-->
+  <!--var obj =  ({-->
+        <!--name:'zhangsan',-->
+        <!--age:18,-->
+        <!--_init:function(){-->
+           <!--return  `姓名: ${this.name}, age: ${this.age}`-->
+        <!--}-->
+    <!--})._init()-->
+
+    <!--console.log(obj);-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function foo() {-->
+
+        <!--console.log('foo');-->
+        <!--foo = function () {  // 1次后才执行这里明-->
+            <!--console.log('foo-foo');-->
+        <!--}-->
+    <!--}-->
+
+
+    <!--foo()-->
+    <!--foo()-->
+<!--</script>-->
+
+
+<script>
+
+    // 1. 提供一个父构造函数(开了一家工厂)
+    function  PhoneMake() {
+
+    }
+
+    // 2. 设置父构造函数的原型对象 (产品一些公共的东西)
+    PhoneMake.prototype.logDes = function () {
+        console.log(`我们的口号${this.des}`);
+    }
+
+    // 3. 在父构造函数上提供一个静态的工厂 方法 (生产车间)
+    PhoneMake.factory = function (type) {
+        // 1. 接收传入的参数
+        var typeStr = type
+        // 2. 判断是否支持生产该类型的产品 (有这个名字的方法)
+        if(typeof  PhoneMake[typeStr] != 'function'){
+            throw `暂不支持"${typeStr}"类型产品`
+        }
+
+        // 3. 设置子构造函数的原型对象
+        PhoneMake[typeStr].prototype = new PhoneMake()
+
+        // 4. 使用子构造函数创建对象
+        var obj = new PhoneMake[typeStr]()
+
+        return obj;
+    }
+
+    PhoneMake.iphone = function () {
+        this.des = '最安全, 最稳定的系统, 就是不好用'
+    }
+
+    PhoneMake.vivo = function () {
+        this.des = '拍照最难看'
+    }
+
+    PhoneMake.oppo = function () {
+        this.des = '充电2小时, 通话5分钟'
+    }
+
+
+    PhoneMake.factory('iphone').logDes()
+    PhoneMake.factory('vivo').logDes()
+    PhoneMake.factory('oppo').logDes()
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

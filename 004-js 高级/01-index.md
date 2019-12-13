@@ -617,7 +617,7 @@ window.open('https://baidu.com'); // 打开百度页面
 
 ## 六、 值类型和引用数据类型
 
-### 1、 值类型
+### 1、 值类型 (5种) 
 
 `string` `number` `boolean` `undefined` `null`
 
@@ -1420,18 +1420,9 @@ try {
 
 
 
-### 2、对象的创建
 
-```
-<script>
-	var obj = {
-		name: 'zhangsan'
-	}
-	
-	var obj1 = new Object(); // 等价于 var obj1 = {};
-	
-</script>
-```
+
+
 
 
 
@@ -1705,7 +1696,7 @@ try {
 
 
 
-## 二、javaScript 中创建对象的方式(4类)
+## 二、javaScript 创建对象的方式(4类)
 
 
 
@@ -1731,31 +1722,7 @@ try {
 
   
 
- 
-
-### 2、内置的构造函数创建对象(代码冗余,无法区分类型)
-
-- 什么是内置构造函数?
-
-  > 所谓的内置构造函数就是说, 这个构造函数是系统提供的, 不是你自己写的.  有代表性的内置构造函数如下:
-  >
-  > `Object` `Array` `Date` `Function` `String` `Number` `Boolean` 
-
-- 使用内置构造函数创建对象 (示例)
-
-  > 内置构造函数和字面量创建对象的特点都差不多, 代码无法复用
-
-  ```
-  <script> 
-      var stu1 = new Object(); // 等价于  var stu = {}
-      stu1.name = "zhangsan";
-      stu1.age = 18
-  </script>
-  ```
-
-   
-
-### 3、 简单的工厂函数创建对象(无法区分类型)
+### 2、 简单的工厂函数创建对象(无法区分类型)
 
 - 提供一个函数把创建对象的过程封装起来
 
@@ -1803,9 +1770,33 @@ try {
 
 ​		
 
+### 3、内置的构造函数创建对象(代码冗余,无法区分类型)
 
+- 什么是内置构造函数?
 
+  > 所谓的内置构造函数就是说, 这个构造函数是系统提供的, 不是你自己写的.  有代表性的内置构造函数如下:
+  >
+  > `Object` `Array` `Date` `Function` `String` `Number` `Boolean` 
 
+- 使用内置构造函数创建对象 (示例)
+
+  > 内置构造函数和字面量创建对象的特点都差不多, 代码无法复用			
+
+  ```
+  <script> 
+      var stu1 = new Object(); // 等价于  var stu = {}
+      stu1.name = "zhangsan";
+      stu1.age = 18
+  </script>
+  ```
+
+  > 注意, 在使用构造函数创建对象时, 如果不传参数时,构造函数后面的括号`()`可以省略,即: 下面两种情况是等价的
+  >
+  > ```
+  > var obj = new Object();
+  > // 等价于下面
+  > var obj1 = new Object;
+  > ```
 
 ### 4、 自定义构造函数创建对象(有坑)(重点)
 
@@ -1875,7 +1866,10 @@ try {
         }
         ```
 
-        
+
+- 注意: 
+
+  > 在使用自定义构造函数创建对象时, 如果不传参数, 后面的小括号
 
 
 
@@ -4508,7 +4502,122 @@ var s1 = new Stu()
 
   
 
+### 9、 即时函数
 
+####1、 即时函数介绍
+
+- `JS` 是单线程的, 也就是说只有一条线程执行任务
+- `js` 中的任务是分级别的
+  - 优先执行渲染任务
+  - 其次执行代码的主要任务
+  - 再其次执行 事件性任务 (点击事件, 定时器)
+
+- `JS` 中的即时函数可以让里面的代码立即执行, 而不区分级别, 格式如下:
+
+  ```
+   <script>
+   (function(){
+   		// 这里面的代码会立即执行
+   })()
+   </script>
+   
+   // 写法2
+   <script>
+   (function(){
+   		// 这里面的代码会立即执行
+   }())
+   </script>
+  ```
+
+  - 即时函数还有其他的很种写法
+
+    > 定义时直接在函数的 {} 后面使用 () 调用即可, 主要不报错
+
+  ```
+   <script> 
+   -function(){
+   		// 这里面的代码会立即执行
+   }()
+    
+   +function(){
+   		// 这里面的代码会立即执行
+   }()
+    
+   ~function(){
+   		// 这里面的代码会立即执行
+   }()
+    
+   new function(){
+   		// 这里面的代码会立即执行
+   }()
+    
+   void function(){
+   		// 这里面的代码会立即执行
+   }()
+    
+   typeof function(){
+   		// 这里面的代码会立即执行
+   }()
+   
+   
+   var fn = function(){
+   		// 这里面的代码会立即执行
+   }()
+   
+   1, function(){
+   		// 这里面的代码会立即执行
+   }()
+   ... 还有很多
+   </script>
+  ```
+
+  
+
+#### 2、即时函数的应用场景
+
+- 使用即时函数之前, 示例1: 
+
+  ```
+  <script>
+      for(var i = 0 ; i< 10; i++){
+          setTimeout(function () {
+              console.log(i);  // 最后这里打印的是 10次 10 
+          },0)
+      } 
+  </script>
+  ```
+
+- 使用即时函数之前, 示例2:
+
+  ```
+  <script>
+      for(var i = 0 ; i< 10; i++){
+          setTimeout(function () {
+              console.log(i);  // 最后这里打印的是 10次 100
+          },0)
+      }
+      i = 100
+  </script>
+  ```
+
+- 使用即时函数之后
+
+  ```
+  <script>
+      for(var i = 0 ; i< 10; i++){
+          (function(j){
+          setTimeout(function () {
+              console.log(j);  // 打印的是 0,1,2,3,4,5,6,7,8,9 
+          },0)
+          })(i)
+      }
+      i = 100
+  </script>
+  ```
+
+  
+
+   
 
 
 
@@ -5385,3 +5494,699 @@ var s1 = new Stu()
 </script>
 ```
 
+- **这里有坑** 
+
+```
+<script>
+
+    function Foo() {
+        getName = function () {
+            console.log('1');
+        }
+        return this;
+    }
+
+
+
+    Foo.getName = function () {
+        console.log('2');
+    }
+
+
+    Foo.prototype.getName = function () {
+        console.log('3');
+    }
+
+    var getName = function () {
+        console.log('4');
+    }
+
+    function getName() {
+        console.log('5');
+    }
+
+    Foo.getName()  //   2
+    getName()   //  4
+    Foo().getName()       // 1
+    getName()   // 1
+
+    // 说明, new Foo() 和 new Foo 等价
+    // new Foo.getName() 这句代码会先执行 Foo.getName(), 再执行new, 相当于 new (Foo.getName())
+    new Foo.getName()   // 2
+    new Foo().getName() // 3
+    new new Foo().getName() // 3
+</script>
+```
+
+
+
+
+
+## 十五、 作用域链
+
+1、函数可以创建作用域
+
+2、函数中可以声明一个函数
+
+3、函数的函数中也可以声明一个函数
+
+以上行程一个链式的结构, 称为作用域
+
+
+
+
+
+- 特点:
+  - 内层作用域可以访问外城作用域, 翻过来不行
+
+
+
+
+
+
+
+## 十六、闭包 (重点 *)
+
+
+
+### 1、什么是闭包? 
+
+- 内层作用域可以访问外层的作用域, 但是反过来不行
+- 但是有的时候, 我们确实需要访问内层作用域
+- `闭包技术`是一种可以(间接)访问封闭空间数据的方法
+
+
+
+
+
+### 2、获取内层作用域数据(函数返回值)
+
+- 当我们每次调用函数时,其实每次的返回值都是新的数据, 不是同一份数据
+
+  - **如果想要函数每次返回同一份数据, 需要用到闭包技术** 
+
+  ```
+  <script>
+  
+      function fn() {
+          var obj = {name : 'zhangsan'}
+          return obj;
+      }
+  		// 每次返回的都不是同一个数据
+      var obj1 = fn()
+      var obj2 = fn()
+      console.log(obj1, obj2);
+  
+      console.log(obj1 == obj2); // false
+  </script>
+  ```
+
+
+
+### 3、通过闭包, 可以获取同一份数据
+
+- 闭包技术的实现
+
+  > 直接返回的数据使用函数包装
+
+- 以前我们通过函数直接返回数据时, 获取到的都是新的数据
+
+
+
+
+
+
+
+
+
+- 闭包返回一份数据
+
+#### 1、闭包返回一份数据 
+
+- ```
+  <script>
+  
+      function fn() {
+          var obj = {name: '张三'}
+          return function () {
+              return obj;
+          }
+      }
+  
+      var f = fn()
+      var obj1 = f()
+      var obj2 = f()
+      console.log(obj1, obj2);
+  
+      console.log(obj1 == obj2); // true
+  </script>
+  ```
+
+  
+
+#### 2、闭包返回多分数据
+
+
+
+##### 方式1, 返回闭包数组 (函数包裹数组)
+
+- > 每次返回的不是同一个数组, 但是数组内装的内容是同一分
+
+```
+<script>
+
+    function fn() {
+        var name = new  Object('张三')
+        var sex = new  Object('man')
+
+        return function () {
+            return [name, sex]
+        }
+    }
+
+    var info = fn()
+    var name1 = info()[0]   // 相当于是 [name, sex][0]
+    var name2 = info()[0]   // 相当于是 [name, sex][0]
+    console.log(name1, name2);
+    console.log(name1 == name2); // true
+
+    var sex1 = info()[1]	// 相当于是 [name, sex][1]
+    var sex2 = info()[1]  // 相当于是 [name, sex][1]
+    console.log(sex1, sex2);
+    console.log(sex1 == sex2); // true
+</script>
+```
+
+
+
+##### 方式2: 返回闭包对象
+
+```
+<script>
+
+    function fn() {
+        var name = new  Object('张三')
+        var sex = new  Object('man')
+
+        return function () {
+            return {getName : name,getSex:sex }
+        }
+
+    }
+
+    var info = fn()
+    var name1 = info().getName
+    var name2 = info().getName
+    console.log(name1, name2);
+    console.log(name1 == name2); // true
+
+    var sex1 = info().getSex
+    var sex2 = info().getSex
+    console.log(sex1, sex2, typeof  sex1, typeof sex2);
+    console.log(sex1 == sex2); // true
+</script>
+```
+
+
+
+##### 方式3: 返回数组闭包
+
+```
+<script>
+
+    function fn() {
+        var name = new  Object('张三')
+        var sex = new  Object('man')
+
+        return function () {
+            return [ name,sex]
+        }
+
+    }
+
+    var info = fn()
+    var name1 = info()[0]
+    var name2 = info()[0]
+    console.log(name1, name2);
+    console.log(name1 == name2); // true
+
+    var sex1 = info()[1]
+    var sex2 = info()[1]
+    console.log(sex1, sex2, typeof  sex1, typeof sex2);
+    console.log(sex1 == sex2); // true
+</script>
+```
+
+
+
+##### 方式4: 放回对象闭包
+
+```
+<script>
+
+    function fn() {
+        var name = new  Object('张三')
+        var sex = new  Object('man')
+
+        return {
+            getName : function () {
+                return name
+            },
+            getSex : function () {
+                return sex
+            }
+        }
+    }
+
+    var info = fn()
+    var name1 = info.getName()
+    var name2 = info.getName()
+    console.log(name1, name2);
+    console.log(name1 == name2); // true
+
+    var sex1 = info.getSex()
+    var sex2 = info.getSex()
+    console.log(sex1, sex2, typeof  sex1, typeof sex2);
+    console.log(sex1 == sex2); // true
+</script>
+```
+
+
+
+
+
+
+
+### 4、开发中完整的闭包 (* 重点)
+
+```
+<script>
+    function fn(){
+        var name = new Object('zhangsan')
+        var age = new Object('18')
+
+        return {
+            getName : function(){
+                return namel
+            },
+            setName : function(newName){
+            		if(newName == undefined) return
+                name = newName
+            },
+            getAge : function(){
+                return age
+            },
+            setAge : function(newAge){
+		            if(newAge == undefined) return
+                age = newAge
+            }
+        }
+    }
+
+    var info = fn()
+    // 获取信息
+    var name = info.getName()
+    var age = info.getAge()
+
+</script>
+```
+
+
+
+### 5、闭包的使用总结
+
+1. 获取到函数内部的数据只能通过指定的接口(方法)
+
+2. 设置数据的时候更加安全 (set方法可以对数据进行过滤/ 校验处理)
+
+3. **延长变量的声明周期** 
+
+   > 内层函数引用着外层函数的变量, 外层变量就不会释放, 一直存在
+
+
+
+
+
+### 6、setTimeOut 和闭包的执行(很奇葩)
+
+- `setTimeOut(func, interval)`:  延迟执行函数
+
+- `setInterval(func, interval)`:  定时器
+
+  ```
+  <script>
+      for(var i = 0 ; i< 10; i++){
+          setTimeout(function () {
+              console.log(i);   // 执行结果, 打印10次 10
+          },0)
+      }
+  </script>
+  ```
+
+- 为什么上面的代码执行后, 会打印10次 10 呢?  我们需要了解下 `进程` 和`线程` 的概念
+
+  - `进程`: 正在运行的应用程序
+
+  - `线程` : 进程中用来执行任务的,  同一时间只能执行一个任务
+
+  - `JS 是单线程的` :  同一时间只能执行一个任务
+
+  - `JS中任务是有优先级的`:
+
+    - 优先执行渲染任务
+
+    - 其次执行代码的主要任务
+
+    - 再其次执行 事件性任务 (点击事件, 定时器)
+
+      ```
+      <script>
+          for(var i = 0 ; i< 10; i++){
+              setTimeout(function () {
+                  console.log(i);  // 最后这里打印的是 10次 100
+              },0)
+          }
+          i = 100
+      </script>
+      ```
+
+  - 如果有时, 我们就想要立即执行定时器, 怎么办呢? 
+
+    > 我们可以使用 `js` 中的即时函数 `(function(){ })()`
+
+    ```
+    <script>
+        for(var i = 0 ; i< 10; i++){
+            (function(j){
+            setTimeout(function () {
+                console.log(j);  // 最后这里打印的是 0,1,2,3,4,5,6,7,8,9 
+            },0)
+            })(i)
+        }
+        i = 100
+    </script>
+    ```
+
+    - 另外一种写法
+
+      ```
+      <script>
+          for(var i = 0 ; i< 10; i++){
+      
+                  setTimeout((function (j) {
+                        return function () {
+                            console.log(j);
+                        } 
+                      })(i) ,i*1000)
+      
+          }
+          i = 100
+      </script>
+      ```
+
+      
+
+
+
+
+
+### 7、div 与闭包 (很奇葩) - 即时函数应用 
+
+- 先看一个现象
+
+  ```
+  <body>
+  
+  <div>我是第1个</div>
+  <div>我是第2个</div>
+  <div>我是第3个</div>
+  <div>我是第4个</div>
+  <div>我是第5个</div>
+  
+  <script>
+      var divs = document.getElementsByTagName('div')
+      for (var i = 0; i < divs.length; i++){
+          divs[i].onclick = function () {
+                  console.log(`点击了第${j + 1}个div`);
+          }
+      }
+  </script>
+  
+  </body>
+  ```
+
+  > 上面的代码, 因为JS 是单线程和任务的有线级的问题, 
+  >
+  > 无论点击哪一个 div, 显示的都是  `点击了第6个div`
+
+- 解决方案1 :
+
+  > 使用即时函数解决问题
+
+  ```
+  <body>
+  
+  <div>我是第1个</div>
+  <div>我是第2个</div>
+  <div>我是第3个</div>
+  <div>我是第4个</div>
+  <div>我是第5个</div>
+  
+  <script>
+      var divs = document.getElementsByTagName('div')
+      for (var i = 0; i < divs.length; i++){
+          (function (j) {
+              divs[i].onclick = function () {
+                  console.log(`点击了第${j + 1}个div`);
+              }
+          })(i)
+      }
+  </script>
+  
+  </body>
+  ```
+
+  > 打印正常了 1,2,3,4,5
+
+- 使用闭包解决问题
+
+  ```
+  <body>
+  
+  <div>我是第1个</div>
+  <div>我是第2个</div>
+  <div>我是第3个</div>
+  <div>我是第4个</div>
+  <div>我是第5个</div>
+  
+  <script>
+      var divs = document.getElementsByTagName('div')
+      for (var i = 0; i < divs.length; i++){
+          divs[i].onclick = (function(j){
+                                  return function () {
+                                      console.log(`点击了第${j + 1}个div`);
+                                  }
+                             })(i)
+  
+      }
+  </script>
+  
+  ```
+
+  > 打印正常了 1,2,3,4,5
+
+
+
+
+
+
+
+## 十七、 函数的特殊性
+
+### 1、函数与一般对象相比的特殊性
+
+
+
+
+
+1、 函数也是一个对象
+
+2、 函数可以创建对象
+
+3、函数可以被调用
+
+4、函数可作为参数
+
+5、函数有返回值
+
+
+
+
+
+
+
+
+
+### 2、 函数的names属性
+
+每个函数都有一个name属性, 只能读取, 不能修改
+
+```
+<script>
+    var fn = function () {
+        console.log('fff');
+    }
+    function  demo() {
+        console.log('demo');
+    }
+
+    var fn2 = function func2() {
+
+    }
+
+
+    console.log(fn.name);		// fn
+    console.log(demo.name);	// demo
+    console.log(fn2.name);	// func2
+</script>
+```
+
+
+
+### 3、函数的回调
+
+- 把一个函数作为另外一个函数的参数
+
+  ```
+  <script>
+     function fun1() {
+         console.log('func1');
+     }
+  
+     function fun2(callback) {
+         callback()
+     }
+  
+     fun2(fun1)
+  </script>
+  ```
+
+
+
+### 4 、 即时 对象 初始化
+
+- 下面这种写法就称为, 即时函数初始化
+
+```
+ <script>
+  var obj =  ({
+        name:'zhangsan',
+        age:18,
+        _init:function(){
+           return  `姓名: ${this.name}, age: ${this.age}`
+        }
+    })._init()
+
+    console.log(obj);  // 姓名: zhangsan, age: 18
+</script>
+```
+
+
+
+
+
+###5 、惰性函数
+
+- 惰性函数的使用场景
+
+  > 需要做一次性初始化操做
+
+```
+<script>
+    function foo() {
+        
+        console.log('foo');
+        foo = function () {  // 1次后才执行这里明
+            console.log('foo-foo');
+        }
+    }
+
+
+    foo()	// foo
+    foo() // foo-foo
+</script>
+```
+
+
+
+
+
+# 十八设计模式
+
+
+
+### 1 工厂模式
+
+- 工厂模式的步骤:
+
+  - 1. 提供一个父构造函数(开了一家工厂)
+  - 2. 设置父构造函数的原型对象 (提供一些公共接口)
+  - 3. 在父构造函数上提供一个静态的工厂 方法 (生产车间)
+  - 4. 添加产品线
+  - 5. 调用父构造的 工厂方法, 传入产品名, 生产产品
+
+  ```
+  
+  <script>
+  
+      // 1. 提供一个父构造函数(开了一家工厂)
+      function  PhoneMake() {
+  
+      }
+  
+      // 2. 设置父构造函数的原型对象 (产品一些公共的东西)
+      PhoneMake.prototype.logDes = function () {
+          console.log(`我们的口号${this.des}`);
+      }
+  
+      // 3. 在父构造函数上提供一个静态的工厂 方法 (生产车间)
+      PhoneMake.factory = function (type) {
+          // 1. 接收传入的参数
+          var typeStr = type
+          // 2. 判断是否支持生产该类型的产品 (有这个名字的方法)
+          if(typeof  PhoneMake[typeStr] != 'function'){
+              throw `暂不支持"${typeStr}"类型产品`
+          }
+  
+          // 3. 设置子构造函数的原型对象
+          PhoneMake[typeStr].prototype = new PhoneMake()
+  
+          // 4. 使用子构造函数创建对象
+          var obj = new PhoneMake[typeStr]()
+  
+          return obj;
+      }
+  
+  		// 4. 添加产品线
+      PhoneMake.iphone = function () {
+          this.des = '最安全, 最稳定的系统, 就是不好用'
+      }
+  
+      PhoneMake.vivo = function () {
+          this.des = '拍照最难看'
+      }
+  
+      PhoneMake.oppo = function () {
+          this.des = '充电2小时, 通话5分钟'
+      }
+  
+  
+      PhoneMake.factory('iphone').logDes()
+      PhoneMake.factory('vivo').logDes()
+      PhoneMake.factory('oppo').logDes()
+  
+  </script>
+  
+  ```
+
+  

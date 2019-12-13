@@ -137,35 +137,76 @@
 
 
 
-<script>
-    var foo = 1
-    function bar (){
-        if(!foo){
-            var foo = 10
-        }
+<!--<script>-->
+    <!--var foo = 1-->
+    <!--function bar (){-->
+        <!--if(!foo){-->
+            <!--var foo = 10-->
+        <!--}-->
 
-        console.log(foo);
+        <!--console.log(foo);-->
+    <!--}-->
+
+    <!--bar()-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--var foo;-->
+    <!--function bar (){-->
+        <!--var foo;-->
+        <!--if(!foo){-->
+            <!--foo = 10-->
+        <!--}-->
+        <!--console.log(foo);-->
+    <!--}-->
+
+
+    <!--foo = 1-->
+    <!--bar()-->
+<!--</script>-->
+
+<script>
+
+    function Foo() {
+        getName = function () {
+            console.log('1');
+        }
+        return this;
     }
 
-    bar()
-</script>
 
 
-<script>
-
-    var foo;
-    function bar (){
-        var foo;
-        if(!foo){
-            foo = 10
-        }
-        console.log(foo);
+    Foo.getName = function () {
+        console.log('2');
     }
 
 
-    foo = 1
-    bar()
+    Foo.prototype.getName = function () {
+        console.log('3');
+    }
+
+    var getName = function () {
+        console.log('4');
+    }
+
+    function getName() {
+        console.log('5');
+    }
+
+    Foo.getName()  //   2
+    getName()   //  4
+    Foo().getName()       // 1
+    getName()   // 1
+
+    // 说明, new Foo() 和 new Foo 等价
+    // new Foo.getName() 这句代码会先执行 Foo.getName(), 再执行new, 相当于 new (Foo.getName())
+    new Foo.getName()   // 2
+    new Foo().getName() // 3
+    new new Foo().getName() // 3
 </script>
+
 
 
 </body>

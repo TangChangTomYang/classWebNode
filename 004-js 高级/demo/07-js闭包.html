@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var obj = {name : 'zhangsan'}-->
+        <!--return obj;-->
+    <!--}-->
+
+    <!--var obj1 = fn()-->
+    <!--var obj2 = fn()-->
+    <!--console.log(obj1, obj2);-->
+
+    <!--console.log(obj1 == obj2); // false-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var obj = {name: '张三'}-->
+        <!--return function () {-->
+            <!--return obj;-->
+        <!--}-->
+    <!--}-->
+
+    <!--var f = fn()-->
+    <!--var obj1 = f()-->
+    <!--var obj2 = f()-->
+    <!--console.log(obj1, obj2);-->
+
+    <!--console.log(obj1 == obj2); // false-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var name = new  Object('张三')-->
+        <!--var sex = new  Object('man')-->
+
+        <!--return function () {-->
+            <!--return {-->
+                <!--getName : name,-->
+                <!--getSex:sex-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var info = fn()-->
+    <!--var name1 = info().getName-->
+    <!--var name2 = info().getName-->
+    <!--console.log(name1, name2);-->
+    <!--console.log(name1 == name2); // true-->
+
+    <!--var sex1 = info().getSex-->
+    <!--var sex2 = info().getSex-->
+    <!--console.log(sex1, sex2);-->
+    <!--console.log(sex1 == sex2); // true-->
+<!--</script>-->
+
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var name = new  Object('张三')-->
+        <!--var sex = new  Object('man')-->
+
+        <!--return function () {-->
+            <!--return [name, sex]-->
+        <!--}-->
+    <!--}-->
+
+    <!--var info = fn()-->
+    <!--var name1 = info()[0]-->
+    <!--var name2 = info()[0]-->
+    <!--console.log(name1, name2);-->
+    <!--console.log(name1 == name2); // true-->
+
+    <!--var sex1 = info()[1]-->
+    <!--var sex2 = info()[1]-->
+    <!--console.log(sex1, sex2, typeof  sex1, typeof sex2);-->
+    <!--console.log(sex1 == sex2); // true-->
+<!--</script>-->
+
+
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var name = new  Object('张三')-->
+        <!--var sex = new  Object('man')-->
+
+        <!--return {-->
+            <!--getName : function () {-->
+                <!--return name-->
+            <!--},-->
+            <!--getSex : function () {-->
+                <!--return sex-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var info = fn()-->
+    <!--var name1 = info.getName()-->
+    <!--var name2 = info.getName()-->
+    <!--console.log(name1, name2);-->
+    <!--console.log(name1 == name2); // true-->
+
+    <!--var sex1 = info.getSex()-->
+    <!--var sex2 = info.getSex()-->
+    <!--console.log(sex1, sex2, typeof  sex1, typeof sex2);-->
+    <!--console.log(sex1 == sex2); // true-->
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var name = new  Object('张三')-->
+        <!--var sex = new  Object('man')-->
+
+        <!--return function () {-->
+            <!--return {getName : name,getSex:sex }-->
+        <!--}-->
+
+    <!--}-->
+
+    <!--var info = fn()-->
+    <!--var name1 = info().getName-->
+    <!--var name2 = info().getName-->
+    <!--console.log(name1, name2);-->
+    <!--console.log(name1 == name2); // true-->
+
+    <!--var sex1 = info().getSex-->
+    <!--var sex2 = info().getSex-->
+    <!--console.log(sex1, sex2, typeof  sex1, typeof sex2);-->
+    <!--console.log(sex1 == sex2); // true-->
+<!--</script>-->
+
+<!--<script>-->
+
+    <!--function fn() {-->
+        <!--var name = new  Object('张三')-->
+        <!--var sex = new  Object('man')-->
+
+        <!--return [ name,sex]-->
+
+    <!--}-->
+
+    <!--var name1 = fn()[0]-->
+    <!--var name2 = fn()[0]-->
+    <!--console.log(name1, name2);-->
+    <!--console.log(name1 == name2); // true-->
+
+    <!--var sex1 = fn()[1]-->
+    <!--var sex2 = fn()[1]-->
+    <!--console.log(sex1, sex2, typeof  sex1, typeof sex2);-->
+    <!--console.log(sex1 == sex2); // true-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--function fn(){-->
+        <!--var name = new Object('zhangsan')-->
+        <!--var age = new Object('18')-->
+
+        <!--return {-->
+            <!--getName : function(){-->
+                <!--return name-->
+            <!--},-->
+            <!--setName : function(newName){-->
+                <!--name = newName-->
+            <!--},-->
+            <!--getAge : function(){-->
+                <!--return age-->
+            <!--},-->
+            <!--setAge : function(newAge){-->
+                <!--age = newAge-->
+            <!--}-->
+        <!--}-->
+    <!--}-->
+
+    <!--var info = fn()-->
+    <!--// 获取信息-->
+    <!--var name1 = info.getName()-->
+    <!--console.log(name1);-->
+    <!--info.setName('abc')-->
+    <!--var name2 = info.getName()-->
+
+    <!--console.log(name1, name2);-->
+
+
+    <!--console.log(name1 == name2);-->
+    <!--var age1 = info.getAge()-->
+    <!--var age2 = info.getAge()-->
+    <!--console.log(age1 == age2);-->
+
+
+    <!--settime-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--for(var i = 0 ; i< 10; i++){-->
+        <!--setTimeout(function () {-->
+            <!--console.log(i);-->
+        <!--},0)-->
+    <!--}-->
+    <!--i = 'adsfas'-->
+<!--</script>-->
+
+<script>
+    for(var i = 0 ; i< 10; i++){
+
+            setTimeout((function (j) {
+                return function () {
+                    console.log(j);
+                }
+            })(i) ,i*1000)
+
+    }
+    i = 100
+</script>
+</body>
+</html>
