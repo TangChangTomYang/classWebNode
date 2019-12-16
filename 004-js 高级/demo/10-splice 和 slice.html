@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    // splice 修改原数组, 返回一个新的数组
+    var arr1 = [1,2,3,4,5,6,7]
+    var arr2 = arr1.splice(3,2)
+    console.log(arr1);  // [1, 2, 3, 6, 7]
+    console.log(arr2);  // [4, 5]
+
+    // slice 不会修改原数组
+    // 截取索引 start 到 end的元素, 不包括end
+    // 把截取的所有元素保存在一个新的数组中返回
+    // 传1个参数表示从这个位置开始到数组的最后一个元素
+    // 传负数表示倒数
+
+    var arr3 = [1,2,3,4,5,6,7]
+    var arr4 = arr3.slice(2,4)
+    var arr5 = arr3.slice(-2)
+    console.log(arr4);  //[3, 4]
+    console.log(arr5);  //[6, 7]
+
+</script>
+</body>
+</html>

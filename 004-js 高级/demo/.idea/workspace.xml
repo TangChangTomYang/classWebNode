@@ -26,7 +26,7 @@
       <file leaf-file-name="06-js作用域.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/06-js作用域.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
+            <state relative-caret-position="2608">
               <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding />
             </state>
@@ -36,18 +36,38 @@
       <file leaf-file-name="07-js闭包.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/07-js闭包.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="695">
+            <state relative-caret-position="3712">
               <caret line="232" column="7" selection-start-line="232" selection-start-column="7" selection-end-line="232" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="08-div 与 闭包.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="08-div 与 闭包.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/08-div 与 闭包.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="92" column="40" selection-start-line="73" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+            <state relative-caret-position="1664">
+              <caret line="104" column="36" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="09-js 单例.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/09-js 单例.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1776">
+              <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="154" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="10-splice 和 slice.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/10-splice 和 slice.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="28" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -58,6 +78,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -73,6 +94,9 @@
         <option value="$PROJECT_DIR$/06-js作用域.html" />
         <option value="$PROJECT_DIR$/07-js闭包.html" />
         <option value="$PROJECT_DIR$/08-div 与 闭包.html" />
+        <option value="$PROJECT_DIR$/09-js 单例.html" />
+        <option value="$PROJECT_DIR$/10-splice 和 slice.css" />
+        <option value="$PROJECT_DIR$/10-splice 和 slice.html" />
       </list>
     </option>
   </component>
@@ -83,8 +107,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="708" />
-    <option name="y" value="100" />
+    <option name="x" value="786" />
+    <option name="y" value="221" />
     <option name="width" value="1036" />
     <option name="height" value="961" />
   </component>
@@ -113,7 +137,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -134,7 +158,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -148,6 +172,7 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;jar:///Applications/WebStorm.app/Contents/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript6.js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -212,6 +237,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0699a7b2-7255-4f1e-bcd1-7c55d377b7fc" name="Default" comment="" />
@@ -225,33 +253,35 @@
       <workItem from="1575941000468" duration="12210000" />
       <workItem from="1576026896309" duration="20417000" />
       <workItem from="1576118155040" duration="16038000" />
-      <workItem from="1576198927114" duration="13649000" />
+      <workItem from="1576198927114" duration="14029000" />
+      <workItem from="1576458570638" duration="7884000" />
+      <workItem from="1576476810904" duration="2000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93076000" />
+    <option name="totallyTimeSpent" value="101342000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="708" y="100" width="1036" height="961" extended-state="1" />
-    <editor active="true" />
+    <frame x="786" y="221" width="1036" height="961" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21871921" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21871921" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -272,6 +302,70 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/06-js作用域.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2608">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/07-js闭包.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3712">
+          <caret line="232" column="7" selection-start-line="232" selection-start-column="7" selection-end-line="232" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/08-div 与 闭包.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1664">
+          <caret line="104" column="36" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/09-js 单例.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1776">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="154" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/10-splice 和 slice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06-js作用域.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2608">
+          <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/07-js闭包.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3712">
+          <caret line="232" column="7" selection-start-line="232" selection-start-column="7" selection-end-line="232" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/08-div 与 闭包.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1472">
+          <caret line="92" column="40" selection-start-line="73" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/06-js作用域.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -282,7 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -290,7 +383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="896">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -298,7 +390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5776">
           <caret line="361" column="27" selection-start-line="361" selection-start-column="27" selection-end-line="361" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -306,7 +397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -321,7 +411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="896">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -329,7 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -337,7 +425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -345,7 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -353,7 +439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="896">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -361,7 +446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5776">
           <caret line="361" column="27" selection-start-line="361" selection-start-column="27" selection-end-line="361" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -383,7 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7824">
           <caret line="489" column="21" selection-start-line="489" selection-start-column="21" selection-end-line="489" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -391,7 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
           <caret line="581" column="11" selection-start-line="581" selection-start-column="11" selection-end-line="581" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -419,7 +501,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/06-js作用域.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
+        <state relative-caret-position="2608">
           <caret line="163" column="0" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
           <folding />
         </state>
@@ -427,7 +509,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/07-js闭包.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
+        <state relative-caret-position="3712">
           <caret line="232" column="7" selection-start-line="232" selection-start-column="7" selection-end-line="232" selection-end-column="7" />
           <folding />
         </state>
@@ -435,8 +517,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08-div 与 闭包.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="92" column="40" selection-start-line="73" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+        <state relative-caret-position="1664">
+          <caret line="104" column="36" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/10-splice 和 slice.css" />
+    <entry file="file://$PROJECT_DIR$/09-js 单例.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1776">
+          <caret line="111" column="0" selection-start-line="111" selection-start-column="0" selection-end-line="154" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/10-splice 和 slice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="28" selection-end-column="9" />
           <folding />
         </state>
       </provider>

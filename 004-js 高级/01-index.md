@@ -6223,5 +6223,323 @@ ES6没有类, 限定一个讨论的范围
 
 
 
+#### 2、全局变量实现单例
+
+> 缺点, 单例容易被破坏
+
+```
+<script>
+
+    // 1. 定义一个全局变量
+    var instance ;
+
+    // 2. 提供一个构造函数
+    function  Person() {
+        // 3. 判断全局变量是否有值, 如果有值就直接返回出去
+        if(instance){
+            return instance
+        }
+
+        // 4. 赋值给 instance
+        instance = this
+
+        // 5. 设置属性和方法
+        this.name = 'zhangsan'
+    } 
+    var p = new Person()
+</script>
+```
+
+
+
+
+
+#### 3、静态方法实现单例
+
+> 缺点, 单例容易被破坏
+
+```
+<script>
+    // 1. 提供一个构造函数
+    function Person(){
+        // 2. 判断是否有值, 如果有值直接返回
+        if(Person.instance){
+            return Person.instance
+        }
+
+        // 3. 把this 赋值给Person
+        Person.instance = this
+
+        // 4. 设置属性
+        this.name = 'zs'
+    }
+    
+   var p = new Person() 
+    
+</script>
+```
+
+
+
+
+
+#### 4、 惰性函数实现单例
+
+- 单例对象的构造去属性, 默认执行旧的构造函数
+- 创建对象之前和之后拿到的不是同一个原型对象
+
+ ```
+<script>
+    // 1. 提供一个构造函数
+    function  Person() {
+        // 2. 在构造函数内部声明一个变量
+        var instance
+        
+        // 3. 利用惰性函数更新构造函数
+        Person = function () {
+            return instance
+        }
+        
+        // 4. 把this 赋值给 instance
+        instance = this
+        
+        // 5. 设置对象的属性和方法
+        this.name = 'zs' 
+        
+    }
+</script>
+ ```
+
+
+
+
+
+#### 5 、惰性函数改进版单例模式 (推荐1)
+
+```
+<script>
+    // 1. 提供一个构造函数
+    function Person() {
+        // 2. 在构造函数内部声明一个私有变量
+        var instance
+        // 3. 利用惰性函数更新构造函数
+        Person = function () {
+            return instance
+        }
+        // 4. 设置新构造函数的原型对象为 旧构造函数的 对象
+        Person.prototype = this  // 原型链继承
+        // 5. 使用新的构造函数创建对象并赋值给 instance
+        instance = new Person()
+        // 6. 修改构造器属性的指向
+        instance.constructor = Person
+        // 7. 设置对象的属性和方法
+        instance.name = 'zs'
+        return instance
+    }
+
+
+    Person.prototype.des = 'des'
+    var p1 = new Person();
+    Person.prototype.hi = 'hi'
+    var p2 = new Person();
+
+    console.log(p1 == p2);  // true
+    console.log(p1.constructor == Person); // true
+    console.log(p1.des);    // des
+    console.log(p2.des);    // des
+    console.log(p1.hi);     // hi
+    console.log(p2.hi);     // hi  
+
+</script>
+```
+
+
+
+
+
+#### 6 单例(推荐2)
+
+> 这种方式的好处, 主要是解决了 全局变量随时被外部修改, 破坏了单例的特点
+
+```
+<script>
+    var Person;
+    (function () {
+               
+        // 1. 提供一个全局变量
+        var instance 
+        //2. 提供一个构造函数
+        Person = function () {
+            // 3. 判断全局变量是否有值
+            if(instance){
+                return instance
+            }
+            
+            // 4. 把this赋值给 instance
+            instance = this
+            
+            // 5. 设置对象的属性和方法
+            this.name = 'zs'
+        }
+            
+    } )()
+    
+    var p1 = new Person()
+    var p2 = new Person()
+    console.log(p1 == p2);
+
+</script>
+```
+
+
+
+
+
+### 3、观察者模式
+
+
+
+#### 1、什么是观察者模式?
+
+
+
+**观察者模式**  又名 **发布订阅者模式** , 它定义了对象的一种一对多的依赖关系, 当一个对象的状态发生改变时, 所有依赖于它的对象都将得到通知.
+
+
+
+
+
+#### 2、观察者模式的优点(特点)
+
+- 观察者模式, 可以广泛的应用于异步编程中, 这是一种替代传递回调函数的方案
+- 观察者模式可以取代对象之间硬性编码的通知机制, 一个对象不再显示的调用另外一个对象的接口, 这种模式让两个对象松耦合的联系在一起, 他们不需要清楚彼此的实现细节就能相互通信
+- 在这种设计模式中, 不再是一个对象调用另外一个对象的方法, 而是一个对象订阅另一个对象特定的活动并且在状态改变后获得通知
+
+
+
+**模型**:
+
+- **订阅者**  也称为 **观察者**
+- 被观察的对象称为 **发布者** 或者 **主题** 
+
+- 当发生一个重要的事件的时候, 发布者将会通知所有订阅者并且经常以事件的形式来传递消息
+
+  ```
+  <script>
+  
+      // 发布者
+      function Publiser() {
+          // 存储的是function
+          this.observers = {
+          },
+          this.addObserver= function (type, fn) {
+  
+          },
+          this.removerObserver = function (type, fn) {
+  
+          },
+          this.publis = function (type) {
+  
+          }
+      }
+  
+  
+  
+      // 订阅者
+      var jack = {
+          name:"jack",
+          eat:function () {
+              console.log(`${this.name}开始吃放了`);
+          }
+      }
+  
+      var rose = {
+          name:"rose",
+          eat:function () {
+              console.log(`${this.name}开始吃放了`);
+          }
+      }
+  
+  
+      // 发布消息
+      var pub = new Publiser()
+      pub.addObserver('eat', jack.eat())
+      pub.addObserver('eat', rose.eat())
+  
+      pub.publis('eat')
+  
+  </script>
+  ```
+
+  
+
+
+
+## 十九 javaScript 中的命名空间
+
+
+
+在javaScript 中, 其实是没有命名空间的, 但是我们可以自己实现命名空间
+
+
+
+- 普通代码的书写
+
+  ```
+  var a = 0;
+  function sum(a,b){
+  	return a+b
+  }
+  var obj = {
+  	name:'zhangsan',
+  	age:18
+  }
+  ```
+
+- 自己实现javaScript的命名空间
+
+  ```
+  var QQ = {}
+  QQ.a = 0;
+  QQ.sum = function(a,b){
+  	return a+b
+  }
+  QQ.obj = {
+  	name:'zhangsan',
+  	age:18
+  }
+  ```
+
+  
+
+
+
+
+
+## 二十. splice 和 slice
+
+```
+<script>
+    // splice 修改原数组, 返回一个新的数组
+    var arr1 = [1,2,3,4,5,6,7]
+    var arr2 = arr1.splice(3,2)
+    console.log(arr1);  // [1, 2, 3, 6, 7]
+    console.log(arr2);  // [4, 5]
+
+    // slice 不会修改原数组
+    // 截取索引 start 到 end的元素, 不包括end
+    // 把截取的所有元素保存在一个新的数组中返回
+    // 传1个参数表示从这个位置开始到数组的最后一个元素
+    // 传负数表示倒数
+
+    var arr3 = [1,2,3,4,5,6,7]
+    var arr4 = arr3.slice(2,4)
+    var arr5 = arr3.slice(-2)
+    console.log(arr4);  //[3, 4]
+    console.log(arr5);  //[6, 7]
+
+</script>
+```
+
 
 

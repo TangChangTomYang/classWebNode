@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+         .box{
+             width: 200px;
+             height: 200px;
+             background-color: red;
+         }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+
+    <script src="jQuery_3.4.1.js"></script>
+
+</head>
+<body>
+
+    <div class="box">
+        <div class="box2"></div>
+    </div>
+    <button>获取宽高</button>
+    <button>设置宽高</button>
+    <button>点击添加样式3</button>
+
+    <script>
+        $(function () {
+            $('button').eq(0) .click(function () {
+
+                console.log($('.box').eq(0).width());
+                console.log($('.box').eq(0).height());
+            })
+
+
+
+            $('button').eq(1).click(function () {
+                // 支持链式编程
+                $('.box2').eq(0).width(80).height('70px')
+            })
+        })
+    </script>
+</body>
+</html>

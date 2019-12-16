@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--<script>-->
+
+    <!--// 1. 定义一个全局变量-->
+    <!--var instance ;-->
+
+    <!--// 2. 提供一个构造函数-->
+    <!--function  Person() {-->
+        <!--// 3. 判断全局变量是否有值, 如果有值就直接返回出去-->
+        <!--if(instance){-->
+            <!--return instance-->
+        <!--}-->
+
+        <!--// 4. 赋值给 instance-->
+        <!--instance = this-->
+
+        <!--// 5. 设置属性和方法-->
+        <!--this.name = 'zhangsan'-->
+    <!--}-->
+
+
+
+    <!--var p = new Person()-->
+<!--</script>-->
+
+<!--<script>-->
+    <!--// 1. 提供一个构造函数-->
+    <!--function Person(){-->
+        <!--// 2. 判断是否有值, 如果有值直接返回-->
+        <!--if(Person.instance){-->
+            <!--return Person.instance-->
+        <!--}-->
+
+        <!--// 3. 把this 赋值给Person-->
+        <!--Person.instance = this-->
+
+        <!--// 4. 设置属性-->
+        <!--this.name = 'zs'-->
+    <!--}-->
+
+   <!--var p = new Person()-->
+
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 提供一个构造函数-->
+    <!--function  Person() {-->
+        <!--// 2. 在构造函数内部声明一个变量-->
+        <!--var instance-->
+
+        <!--// 3. 利用惰性函数更新构造函数-->
+        <!--Person = function () {-->
+            <!--return instance-->
+        <!--}-->
+
+        <!--// 4. 把this 赋值给 instance-->
+        <!--instance = this-->
+
+        <!--// 5. 设置对象的属性和方法-->
+        <!--this.name = 'zs'-->
+
+    <!--}-->
+<!--</script>-->
+
+
+<!--<script>-->
+    <!--// 1. 提供一个构造函数-->
+    <!--function Person() {-->
+        <!--// 2. 在构造函数内部声明一个私有变量-->
+        <!--var instance-->
+        <!--// 3. 利用惰性函数更新构造函数-->
+        <!--Person = function () {-->
+            <!--return instance-->
+        <!--}-->
+        <!--// 4. 设置新构造函数的原型对象为 旧构造函数的原型对象-->
+        <!--Person.prototype = this.__proto__-->
+        <!--// 5. 使用新的构造函数创建对象并赋值给 instance-->
+        <!--instance = new Person()-->
+        <!--// 6. 修改构造器属性的指向-->
+        <!--instance.constructor = Person-->
+        <!--// 7. 设置对象的属性和方法-->
+        <!--instance.name = 'zs'-->
+        <!--return instance-->
+    <!--}-->
+
+
+    <!--Person.prototype.des = 'des'-->
+    <!--var p1 = new Person();-->
+    <!--Person.prototype.hi = 'hi'-->
+    <!--var p2 = new Person();-->
+
+    <!--console.log(p1 == p2);  // true-->
+    <!--console.log(p1.constructor == Person); // true-->
+    <!--console.log(p1.des);    // des-->
+    <!--console.log(p2.des);    // des-->
+    <!--console.log(p1.hi);     // hi-->
+    <!--console.log(p2.hi);     // hi-->
+
+
+<!--</script>-->
+
+
+<script>
+
+    // 发布者
+    function Publiser() {
+        // 存储的是function
+        this.observers = {
+        },
+        this.addObserver= function (type, fn) {
+
+        },
+        this.removerObserver = function (type, fn) {
+
+        },
+        this.publis = function (type) {
+
+        }
+    }
+
+
+
+    // 订阅者
+    var jack = {
+        name:"jack",
+        eat:function () {
+            console.log(`${this.name}开始吃放了`);
+        }
+    }
+
+    var rose = {
+        name:"rose",
+        eat:function () {
+            console.log(`${this.name}开始吃放了`);
+        }
+    }
+
+
+    // 发布消息
+    var pub = new Publiser()
+    pub.addObserver('eat', jack.eat())
+    pub.addObserver('eat', rose.eat())
+
+    pub.publis('eat')
+
+</script>
+
+
+</body>
+</html>
