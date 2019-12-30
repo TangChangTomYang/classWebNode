@@ -4019,7 +4019,7 @@ function getScroll() {
 
 
 
-#  六、Web APIs动画
+#  十一、Web APIs动画
 
 
 
@@ -4496,7 +4496,6 @@ touchstart、touchmove、touchend 三个事件都会各自有事件对象。
 
    ​
 
-    
 
 
 1. 自动播放功能-无缝滚动
@@ -4516,6 +4515,10 @@ touchstart、touchmove、touchend 三个事件都会各自有事件对象。
    ![1551795483(1)](images\1551795483(1).jpg)
 
 ## 3、classList 属性
+
+
+
+### 1、classList 属性介绍
 
 classList属性是HTML5新增的一个属性，返回元素的类名。但是ie10以上版本支持。
 
@@ -4546,6 +4549,8 @@ focus.classList.toggle('current');
 ```
 
 `注意:以上方法里面，所有类名都不带点`
+
+
 
 ### 2、案例分析
 
@@ -4585,7 +4590,7 @@ focus.classList.toggle('current');
 
 点击可以返回顶部
 
-### 3、案例分析
+### 4、案例分析
 
 1. 滚动某个地方显示
 2. 事件：scroll页面滚动事件  
@@ -4644,7 +4649,30 @@ function tap (obj, callback) {
 
 3. 使用插件。fastclick 插件解决300ms 延迟。 
 
-   ![1551797533(1)](images\1551797533(1).jpg)
+   ```
+   <script src='fastclick.js'> </script>
+   <body>
+   	<div></div>
+   	<script>
+         if('addEventListener' in document){
+           document.addEventListener('DOMContentLoaded', function(){
+             FastClick.attach(document.body)
+           },false)
+         }
+         var div = document.querySelector('div')
+         div.AddEventListener('click',function(){
+           alert(11)
+         })
+   	
+   	</script>
+   </body>
+   ```
+
+   ​
+
+   ​
+
+    
 
 ## 5、移动端常用开发插件
 
@@ -4686,12 +4714,14 @@ GitHub官网地址： [https://](https://github.com/ftlabs/fastclick)[github.com
 
 
 
+
 ### 3、 Swiper 插件的使用
 
 中文官网地址： https://www.swiper.com.cn/ 
 
 1.  引入插件相关文件。
 2.  按照规定语法使用
+
 
 
 
@@ -4769,11 +4799,9 @@ Bootstrap JS插件使用步骤：
 
 
 
-## 7、本地存储
+## 7、本地存储 
 
 随着互联网的快速发展，基于网页的应用越来越普遍，同时也变的越来越复杂，为了满足各种各样的需求，会经常性在本地存储大量的数据，HTML5规范提出了相关解决方案。
-
-
 
 ### 1、本地存储特性
 
