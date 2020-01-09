@@ -5,35 +5,41 @@
   <title>Title</title>
 
   <style>
-    .box {
-      font-size: 20px;
-      width: 200px;
-      height: 100px;
-      background-color: pink;
+
+    /*下面是定义一个媒体查询, 含义如下:
+      当媒体的类型为 screen (屏幕) 且屏幕的宽度小于等于800时就执行里面的代码
+    */
+    @media screen and (max-width: 1200px){
+      body {
+        background-color: red;
+      }
     }
 
-    .a {
-      font-size: 10px;
-      width: 2em;
-      height: 2em;
-      background-color: green;
+    @media screen  and (max-width: 800px) {
+      body {
+        background-color: green;
+      }
     }
 
-    .b {
-      width: 40px;
-      height: 40px;
-      background-color: blue;
+    @media screen  and (max-width: 600px) {
+      body {
+        background-color: blue;
+      }
     }
+
   </style>
 
 </head>
 <body>
 
 
-
-<div class="box">
-  <div class="a"></div>
-  <div class="b"></div>
+<div>
+  <button>变小</button>
+  <button>变大</button>
 </div>
+
+<script>
+
+</script>
 </body>
 </html>

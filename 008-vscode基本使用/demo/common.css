@@ -1,0 +1,8 @@
+html {
+  font-size: 50px;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 32PX;
+  }
+}

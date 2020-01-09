@@ -1,0 +1,13 @@
+html {
+  font-size: 50px;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 32PX;
+  }
+}
+div {
+  background-color: red;
+  width: 10rem;
+  height: 100px;
+}

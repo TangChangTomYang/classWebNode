@@ -1,0 +1,13 @@
+
+// 定义less 变量
+@count: 10;  // 整个屏幕划分成count份
+
+html { // 如果是PC端就限定死 50px, 太大了不好看
+	font-size:  50px;
+}
+
+@media screen and (min-width: 320px){
+    html {
+        font-size: 320PX / @count;
+    }
+}
