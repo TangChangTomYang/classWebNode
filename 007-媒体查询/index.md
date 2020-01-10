@@ -789,24 +789,29 @@ div::before {
       }
   }
 
+    // 下面是重点
 
-  // 下面是重点
   .box1 {
       width:  count * 1rem; // 表示可以接受的最大宽度
-  }
-   
+   }
+
   .box2 {
-      width: 88rem / @remFont; // 表示的是标准设计文档 750px 尺寸下的 88px
-      // rem / @remFont 表示的就是 1px
+  	width: 88rem / @remFont; // 表示的是标准设计文档 750px 尺寸下的 88px
+  	// rem / @remFont 表示的就是 1px
   }
+
   ```
 
-  ​
+
+
+
+
 
 ## 5、less 下的媒体查询 (rem + less + 媒体查询) 
 
-<img src="./images/5.jpg"> 
 
+
+![](./images/5.jpg) 
 ```
 //common.less 文件内容
 
@@ -816,65 +821,66 @@ div::before {
 html { // 如果是PC端就限定死 50px, 太大了不好看
 	font-size: 50px;
 }
+
 // 通常关注的屏幕尺寸有: 320px 360px 375px 384px 400px 414px 424px 480px 540px 720px 
 @media screen and (min-width: 320px){
-    html {
-        font-size: 320PX / @count;
-    }
+  html {
+      font-size: 320PX / @count;
+  }
 }
 
 @media screen and (min-width: 360px){
-    html {
-        font-size: 360PX / @count;
-    }
+  html {
+      font-size: 360PX / @count;
+  }
 }
 
 @media screen and (min-width: 375px){
-    html {
-        font-size: 375PX / @count;
-    }
+  html {
+      font-size: 375PX / @count;
+  }
 }
 
 @media screen and (min-width: 384px){
-    html {
-        font-size: 384PX / @count;
-    }
+  html {
+      font-size: 384PX / @count;
+  }
 }
 
 @media screen and (min-width: 400px){
-    html {
-        font-size: 400px / @count;
-    }
+  html {
+      font-size: 400px / @count;
+  }
 }
 
 @media screen and (min-width: 414px){
-    html {
-        font-size:  414px / @count;
-    }
+  html {
+      font-size:  414px / @count;
+  }
 }
 
 @media screen and (min-width: 424px){
-    html {
-        font-size:  424px / @count;
-    }
+  html {
+      font-size:  424px / @count;
+  }
 }
 
 @media screen and (min-width: 480px){
-    html {
-        font-size:  480px / @count;
-    }
+  html {
+      font-size:  480px / @count;
+  }
 }
 
 @media screen and (min-width: 540px){
-    html {
-        font-size:  540px / @count;
-    }
+  html {
+      font-size:  540px / @count;
+  }
 }
 
 @media screen and (min-width: 720pxx){
-    html {
-        font-size:  720px / @count;
-    }
+  html {
+      font-size:  720px / @count;
+  }
 }
 ```
 
@@ -882,9 +888,7 @@ html { // 如果是PC端就限定死 50px, 太大了不好看
 
 # 五、rem 适配方案2 (rem + flexible.js)
 
-
-
-## 1、flexible.js 库介绍 
+## 1、flexible.js 库介绍
 
 **`flexible.js` 是手机淘宝团队出的简洁高效 移动端适配库**, 有了`flexible.js` 后我们再也不需要写不同屏幕的媒体查询，因为里面js做了处理
 
@@ -892,18 +896,19 @@ html { // 如果是PC端就限定死 50px, 太大了不好看
 
 - flexible.js 库的原理:
   - flexible.js 库的原理是把屏幕划分成10等分,不同宽度设备下比例是一致的. 
+
 - 使用`flexible.js` 代替自己手动写不同屏幕的媒体查询后, 我们要做的就是确定好当前设备的html字体大小就可以了. 
   - 比如当前设计稿是 750px， 那么我们只需要把 html 文字大小设置为 75px(750px / 10) 就可以
 
+  ​
 
+  ​
 
 github地址：[https://github.com/amfe/lib-flexible](https://link.jianshu.com/?t=https://github.com/amfe/lib-flexible)
 
 
 
-
-
-##2、cssrem 插件
+## 2、cssrem 插件
 
 ### 1、什么是cssrem插件?
 
@@ -921,53 +926,227 @@ github地址：[https://github.com/amfe/lib-flexible](https://link.jianshu.com/?
 
 ```
  @count : 15;  // 屏幕总共分为15份
+
  @perWidth: 750 / @count; // 每一份的宽度
+
 ```
 
 这样我们就可以很容易的表示出 1px 与 rem之间的关系, 可以直观的写出表示元素宽高的表达式, 如下示例.
 
+
+
 ```
  @count : 15;  // 屏幕总共分为15份
+
  @perWidth: 750 / @count; // 每一份的宽度
- 
+
  html {
-     font-size: 50px;  // 规定屏幕最宽的标准不能超过750, 超过按750标准算
+ font-size: 50px;  // 规定屏幕最宽的标准不能超过750, 超过按750标准算
+
  }
 
  @media screen and (min-width: 320px){
-    html {
-        font-size: 320PX / @count;
-    }
+html {
+    font-size: 320PX / @count;
+}
 }
 
 @media screen and (min-width: 375px){
-    html {
-        font-size: 375PX / @count;
-    }
+html {
+    font-size: 375PX / @count;
+}
 }
 
 // 下面是重点
+
 .box1 {
-    width:  count * 1rem; // 表示可以接受的最大宽度
+width:  count * 1rem; // 表示可以接受的最大宽度
 }
 
 .box2 {
-    width: 88rem / @perWidth; // 表示的是标准设计文档 750px 尺寸下的 88px
-    // rem / @perWidth 表示的就是 1px
+
+width: 88rem / @perWidth; // 表示的是标准设计文档 750px 尺寸下的 88px
+// rem / @perWidth 表示的就是 1px
 }
 ```
+ 但是, 当我们使用`flexible.js` 库时, 虽然不需要我们在繁琐的写各种设备的媒体查询, 我们知道`flexible.js` 内部是将整个屏幕宽度划分为1份来表示, 但是我们没办法知道一个rem具体用什么来表示他的大小, 即, 我们使用`flexible.js` 时不知道 `@baseFont`  , 且在CSS中也不支持表达式. 因此要借助于 `cssrem` 插件的帮助. 
 
-但是, 当我们使用`flexible.js` 库时, 虽然不需要我们在繁琐的写各种设备的媒体查询, 我们知道`flexible.js` 内部是将整个屏幕宽度划分为1份来表示, 但是我们没办法知道一个rem具体用什么来表示他的大小, 即, 我们使用`flexible.js` 时不知道 `@baseFont`  , 且在CSS中也不支持表达式. 因此要借助于 `cssrem` 插件的帮助. 
+
 
 
 
 ### 3、cssrem 插件的详细使用
 
+
+
 VSCode  px 转换rem 插件 cssrem 
 
 因为cssrem中css自动转化为rem是参照默认插件的16转换的所以需要自己配置
 
-<img src="./images/6.jpg">
+<img src="./images/6.jpg"> 
 
-<img src="./images/7.jpg">
+<img src="./images/7.jpg"> 
 
+
+
+
+
+## 4、flexible.js + rem 适配案例
+
+
+
+### 1、案例源码
+
+- index.html 代码
+
+  ```
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/index.css">
+      <!-- 引入我们的flexible.js 文件 -->
+      <script src="js/flexible.js"></script>
+      <title>Document</title>
+  </head>
+
+  <body>
+      <div class="search-content">
+          <a href="#" class="classify"></a>
+          <div class="search">
+              <form action="">
+                  <input type="search" value="rem适配方案2很开心哦">
+              </form>
+          </div>
+          <a href="#" class="login">登录</a>
+      </div>
+  </body>
+
+  </html>
+
+  ```
+
+- index.css 代码
+
+  ```
+  /* 如果我们的屏幕超过了 750px  那么我们就按照 750设计稿来走 不会让我们页面超过750px */
+  @media screen and (min-width: 750px) {
+      html {
+          font-size: 75px!important;
+      }
+  }
+
+
+  body {
+      min-width: 320px;
+      max-width: 750px;
+      /* flexible 给我们划分了 10 等份 */
+      width: 10rem;
+      margin: 0 auto;
+      line-height: 1.5;
+      font-family: Arial, Helvetica;
+      background: #f2f2f2;
+  }
+
+  a {
+      text-decoration: none;
+      font-size: .333333rem;
+  }
+
+
+  /* 这个插件默认的html文字大小 cssroot  16px */
+
+
+  /* 
+  img {
+      width: 5.125rem;
+      height: 4rem;
+      width: 1rem;
+      width: 1.093333rem;
+      height: 1rem;
+  } */
+
+
+
+
+  /* search-content */
+  .search-content {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10rem;
+      height: 1.173333rem;
+      background-color: #FFC001;
+  }
+
+  .classify {
+      width: .586667rem;
+      height: .933333rem;
+      margin: .146667rem .333333rem .133333rem;
+      background: url(../images/classify.png) no-repeat;
+      background-size: .586667rem .933333rem;
+  }
+
+  .search {
+      flex: 1;
+  }
+
+  .search input {
+      outline: none;
+      border: 0;
+      width: 100%;
+      height: .88rem;
+      font-size: .333333rem;
+      background-color: #FFF2CC;
+      margin-top: .133333rem;
+      border-radius: .44rem;
+      color: #757575;
+      padding-left: .733333rem;
+  }
+
+  .login {
+      width: 1rem;
+      height: .933333rem;
+      margin: .133333rem;
+      color: #fff;
+      text-align: center;
+      line-height: .933333rem;
+      font-size: .333333rem;
+  }
+  ```
+
+  ​
+
+
+
+### 2、flexible + rem 注意点
+
+默认情况下, flexible 会把整个屏幕的宽度分成10份来的方式 来适配. 但是有时我们的设计方案是, 当你的屏幕超过了某个宽度, 比如: 当前屏幕宽度超过了750px 宽度, 我们任想按照 最大750px来适配, 我们就需要这样做, 加上下面这段代码:
+
+```
+/* 如果我们的屏幕超过了 750px  那么我们就按照 750设计稿来走 不会让我们页面超过750px */
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 75px!important;
+    }
+}
+```
+
+![](images/flexiblerem.png) 
+
+
+
+
+
+# 六、rem 适配总结
+
+
+
+不论是`rem + less + 媒体查询`  还是 `flexible.js + rem` 做屏幕适配, 其适配的原理都是, 我们按照标准设计图的尺寸使用 `rem` 单位计算出元素的实际尺寸, 挡在其它小屏幕或者大屏幕上, 我们只需要通过媒体查询或者flexible.js 动态 的调整1个rem表示的具体字体大小即可以进行放大和缩小的屏幕适配了. 
